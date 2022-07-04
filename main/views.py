@@ -3,8 +3,11 @@ from django.http import HttpResponse
 from .models import Sensor, Item
 
 def index(response):
-    return HttpResponse("<h1>Index</h1>")
+    return render(response, "main/index.html", {})
+
 
 def sensor_id(response, id):
-    se = Sensor.objects.get(id=id)
-    return HttpResponse("<h1>%s</h1>" % se.name)
+    sensor = Sensor.objects.get(id=id)
+    return render(response, "main/list.html", {"sensor": sensor})
+
+

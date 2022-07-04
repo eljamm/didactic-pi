@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+
+{% block title %} List View {% endblock %}
+
+{% block content %}
+<h1>{{sensor.name}}</h1>
+<ul>
+    {% for item in sensor.item_set.all %}
+    <li>{{item.datetime}} - {{item.data}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
