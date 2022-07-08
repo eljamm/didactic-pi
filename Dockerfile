@@ -3,7 +3,7 @@ FROM python:3.10.5-alpine
 
 # Dependencies
 RUN apk update \
-	&& apk add postgresql-client
+	&& apk add gcc musl-dev postgresql-client
 
 # Project Directory
 WORKDIR /usr/src/app
@@ -15,6 +15,8 @@ ENV PYTHONUNBUFFERED 1
 # Python Dependencies
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
+
+RUN apk del gcc musl-dev
 
 # Copy Project
 COPY . .
