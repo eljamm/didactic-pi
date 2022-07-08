@@ -31,7 +31,7 @@ def add_sensor(response):
 
     else:
         form = AddSensor()
-    return render(response, "main/sensor.html", {"form": form, "action": "/sensor/"})
+    return render(response, "main/sensor.html", {"form": form, "action": "/add_sensor/"})
 
 
 def add_data(response):
@@ -53,4 +53,4 @@ def add_data(response):
 
     else:
         form = AddData()
-    return render(response, "main/data.html", {"form": form, "action": "/data/"})
+    return render(response, "main/data.html", {"form": form, "action": "/add_data/"})
