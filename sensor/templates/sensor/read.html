@@ -1,0 +1,25 @@
+{% extends 'sensor/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ sensor_name|title }}
+{% endblock %}
+
+{% block content %}
+{% if sensor_name in sensors %}
+
+<textarea id="data-log" cols="100" rows="20"></textarea><br>
+<input id="data-message-input" type="text" size="100"><br>
+<input id="data-message-submit" type="button" value="Send">
+{{ sensor_name|json_script:"sensor-name" }}
+
+<script src="{% static 'sensor/read.js' %}"></script>
+
+<button onclick="showLoc();">Show location properties</button>
+
+{% else %}
+
+{% include 'sensor/404.html'%}
+
+{% endif %}
+{% endblock %}
