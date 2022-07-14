@@ -1,9 +1,9 @@
 # Base Image
 FROM python:3.10.5-alpine
 
-# Dependencies
+# Install Dependencies
 RUN apk update \
-	&& apk add gcc musl-dev postgresql-client
+	&& apk add gcc libffi-dev musl-dev postgresql-client
 
 # Project Directory
 WORKDIR /usr/src/app
@@ -12,11 +12,12 @@ WORKDIR /usr/src/app
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# Python Dependencies
+# Install Python Dependencies
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
 
-RUN apk del gcc musl-dev
+# Uninstall Make Dependencies
+RUN apk del gcc libffi-dev musl-dev
 
 # Copy Project
 COPY . .
