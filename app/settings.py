@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main.apps.MainConfig',
     'channels',
-    'sensor'
+    'sensor.apps.MainConfig'
 ]
 
 MIDDLEWARE = [
