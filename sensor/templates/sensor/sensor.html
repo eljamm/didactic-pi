@@ -1,0 +1,25 @@
+{% extends 'sensor/base.html' %}
+{% load static %}
+
+{% block title %} {{sensor_name}} {% endblock %}
+
+{% block content-head %}
+<link rel="stylesheet" href="{% static 'sensor/css/sensor.css' %}">
+{% endblock %}
+
+{% block content %}
+
+{{ pi_name|json_script:"pi-name" }}
+{{ sensor_name|json_script:"sensor-name" }}
+
+<script src="{% static 'sensor/js/sensor.js' %}"></script>
+
+{% if sensor_name == "dht11" %}
+    {% include 'sensor/sensors/dht11.html' %}
+{% elif sensor_name == "ultrasonic" %}
+    {% include 'sensor/sensors/ultrasonic.html' %}
+{% else %}
+    {% include 'sensor/404.html' %}
+{% endif %}
+
+{% endblock %}

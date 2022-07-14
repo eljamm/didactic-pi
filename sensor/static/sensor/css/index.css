@@ -1,0 +1,8 @@
+.btn-add {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.grid-container {
+    padding: 30px
+}

@@ -1,0 +1,9 @@
+.grid-container {
+    padding: 30px
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

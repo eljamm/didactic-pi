@@ -1,31 +1,35 @@
 {% extends 'sensor/base.html' %}
+{% load static %}
 
-{% block title %} Sensor {% endblock %}
+{% block title %} Raspberry Pi {% endblock %}
+
+{% block content-head %}
+<link rel="stylesheet" href="{% static 'sensor/css/index.css' %}">
+{% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-10 mx-auto mt-5">
-            <h1>Hello-Bootstrap</h1>
-        </div>
-    </div>
+<div class="btn-add">
+    <button type="button" class="btn btn-success" style="margin: 20px 40px;">
+        <img src="{% static 'sensor/images/icons/plus.svg' %}" alt="plus"
+            style="filter: invert(85%); margin-right: 5px; margin-bottom: 2px;" class="icon">
+        Add Device
+    </button>
 </div>
 
-What sensor would you like to examine?<br>
-<input id="room-name-input" type="text" size="100"><br>
-<input id="room-name-submit" type="button" value="Enter">
+<div class="row row-cols-1 row-cols-md-4 g-4 grid-container">
 
-<script>
-    document.querySelector('#room-name-input').focus();
-    document.querySelector('#room-name-input').onkeyup = function (e) {
-        if (e.keyCode === 13) {  // enter, return
-            document.querySelector('#room-name-submit').click();
-        }
-    };
+    {% for item in raspi %}
+    <div class="col">
+        <div class="card text-center h-100" onclick="location.href='/{{item.name}}/';" style="cursor: pointer;">
+            <img src="{% static 'sensor/images/icons/Raspberry_Pi_Logo.svg' %}" class="card-img-top" alt="{{item.name}}"
+                style="padding: 30px 50px;">
+            <div class="card-body">
+                <h5 class="card-title">{{item.name}}</h5>
+                <p class="card-text" style="padding-bottom: 20px;">{{item.address}}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 
-    document.querySelector('#room-name-submit').onclick = function (e) {
-        var sensorID = document.querySelector('#room-name-input').value;
-        window.location.pathname = '/sensor/' + sensorID + '/';
-    };
-</script>
+</div>
 {% endblock %}

@@ -1,20 +1,32 @@
 const sensorName = JSON.parse(document.getElementById('sensor-name').textContent);
+const piName = JSON.parse(document.getElementById('pi-name').textContent);
 
 const dataSocket = new WebSocket(
     'ws://'
     + window.location.host
-    + '/ws/sensor/read/'
+    + '/ws/'
+    + piName
+    + '/'
     + sensorName
     + '/'
 );
 
 dataSocket.onmessage = function (e) {
     const data = JSON.parse(e.data);
-    document.querySelector('#data-log').value += (data.message + '\n');
+
+    console.log(data)
+
+    // Continuously add items
+    config.data.labels.shift();
+    config.data.labels.push(data.time.substring(11, 22));
+    config.data.datasets[0].data.shift();
+    config.data.datasets[0].data.push(data.message);
+    myChart.update();
 };
 
 dataSocket.onclose = function (e) {
     console.error('Data socket closed unexpectedly');
+    myChart.destroy()
 };
 
 document.querySelector('#data-message-input').focus();
