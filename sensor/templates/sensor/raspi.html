@@ -4,11 +4,11 @@
 {% block title %} {{ pi_name }} {% endblock %}
 
 {% block content-head %}
-<link rel="stylesheet" href="{% static 'sensor/css/sensor.css' %}">
+<link rel="stylesheet" href="{% static 'sensor/css/index.css' %}">
 {% endblock %}
 
 {% block content %}
-{% if pi_name in raspberry %}
+{% if pi_name in pi_list %}
 
 <div class="row row-cols-1 row-cols-md-4 g-4 grid-container">
     <div class="col">
@@ -18,7 +18,8 @@
                 style="padding: 20px; width: 60%; height: auto;">
             <div class="card-body">
                 <h5 class="card-title">DHT11</h5>
-                <p class="card-text" style="padding-bottom: 20px;">Capture Temperature and humidity values and output them as serial data</p>
+                <p class="card-text" style="padding-bottom: 20px;">Capture Temperature and humidity values and output
+                    them as serial data</p>
             </div>
         </div>
     </div>
@@ -38,7 +39,8 @@
                 alt="8x8 Led Matrix" style="padding: 20px 40px 20px 40px;">
             <div class="card-body">
                 <h5 class="card-title">8x8 LED Matrix</h5>
-                <p class="card-text" style="padding-bottom: 20px;">An 8x8 LED matrix which can be changed into various patterns</p>
+                <p class="card-text" style="padding-bottom: 20px;">An 8x8 LED matrix which can be changed into various
+                    patterns</p>
             </div>
         </div>
     </div>
@@ -59,7 +61,8 @@
                 style="padding: 20px; width: 50%; height: auto;">
             <div class="card-body">
                 <h5 class="card-title">Relay Module</h5>
-                <p class="card-text" style="padding-bottom: 20px;">An electrical switch that opens or closes to control other components such as
+                <p class="card-text" style="padding-bottom: 20px;">An electrical switch that opens or closes to control
+                    other components such as
                     motors</p>
             </div>
         </div>

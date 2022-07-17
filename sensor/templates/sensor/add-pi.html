@@ -4,25 +4,37 @@
 {% block title %} Add Raspberry Pi {% endblock %}
 
 {% block content-head %}
+<style>
+    .form-container {
+        padding-top: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
 
-<form action="/add-pi/" method="post" style="padding: 50px 150px;">
-    {% csrf_token %}
+<div class="form-container">
+    <form action="/add-pi/" method="post" style="width: 70%;">
+        {% csrf_token %}
 
-    {% for field in form %}
-    <div class="form-floating" style="padding: 10px;">
-        <input type="{{ field.field.widget.input_type }}" class="form-control" id="{{ field.id_for_label }}"
-            name="{{ field.name }}" {% if field.name == "address" %}
-            pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" {% endif %} required />
-        <label for="{{ field.id_for_label }}">{{ field.label|title }}</label>
-    </div>
-    {% endfor %}
+        {% for field in form %}
+        <div class="form-floating" style="padding: 10px;">
+            <input type="{{ field.field.widget.input_type }}" class="form-control" id="{{ field.id_for_label }}"
+                name="{{ field.name }}" {% if field.name == "address" %}
+                pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" {% endif %}
+                required />
+            <label for="{{ field.id_for_label }}">{{ field.label|title }}</label>
+        </div>
+        {% endfor %}
 
-    <div class="d-grid gap-2 d-md-block py-2" style="padding-left: 10px;">
-        <button class="btn btn-primary" type="submit">Submit Form</button>
-    </div>
-</form>
+        <div class="d-grid gap-2 d-md-block py-2" style="padding-left: 10px;">
+            <button class="btn btn-primary" type="submit">Submit Form</button>
+        </div>
+    </form>
+</div>
 
 {% endblock %}
