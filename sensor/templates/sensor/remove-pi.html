@@ -1,0 +1,33 @@
+{% extends 'sensor/base.html' %}
+{% load static %}
+
+{% block title %} Add Raspberry Pi {% endblock %}
+
+{% block content-head %}
+<link rel="stylesheet" href="{% static 'sensor/css/index.css' %}">
+<script type="application/javascript" src="{% static 'sensor/js/remove-pi.js' %}"></script>
+<script type="application/javascript" src="{% static 'sensor/js/third-party/js.cookie.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="row row-cols-1 row-cols-md-4 g-4 grid-container">
+    {% for item in raspi %}
+    <div class="col">
+        <form action="POST">
+            {% csrf_token %}
+            <div class="card card-container text-center h-100"
+                onclick="location.href='javascript:analyzeText(\'{{item.name}}\')';" style="cursor: pointer;">
+                <img src="{% static 'sensor/images/icons/Raspberry_Pi_Logo.svg' %}" class="card-img-top"
+                    alt="{{item.name}}" style="padding: 30px 50px; width: 80%; height: 80%;">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.name}}</h5>
+                    <p class="card-text" style="padding-bottom: 20px;">{{item.address}}</p>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

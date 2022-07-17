@@ -8,21 +8,37 @@
 {% endblock %}
 
 {% block content %}
-<div class="btn-add">
-    <button type="button" class="btn btn-success" style="margin: 20px 40px;">
-        <img src="{% static 'sensor/images/icons/plus.svg' %}" alt="plus"
-            style="filter: invert(85%); margin-right: 5px; margin-bottom: 2px;" class="icon">
-        Add Device
-    </button>
+
+<div class="btn-container">
+    <div class="btn-raspi">
+        <a class="btn btn-success btn-sm" href="/add-pi/" role="button">
+            <img src="{% static 'sensor/images/icons/plus.svg' %}" width="30" height="24" alt="add-pi"
+                style="filter: invert(85%); margin-right: 5px; margin-bottom: 2px;" class="icon">
+            Add Device
+        </a>
+    </div>
+    <div class="btn-raspi">
+        <a class="btn btn-dark btn-sm" href="#" role="button">
+            <img src="{% static 'sensor/images/icons/edit-2.svg' %}" width="28" height="22" alt="remove-pi"
+                style="filter: invert(85%); margin-right: 5px; margin-bottom: 2px;" class="icon">
+            Modify Device
+        </a>
+    </div>
+    <div class="btn-raspi">
+        <a class="btn btn-danger btn-sm" href="/remove-pi/" role="button">
+            <img src="{% static 'sensor/images/icons/minus.svg' %}" width="30" height="24" alt="remove-pi"
+                style="filter: invert(85%); margin-right: 5px; margin-bottom: 2px;" class="icon">
+            Remove Device
+        </a>
+    </div>
 </div>
 
 <div class="row row-cols-1 row-cols-md-4 g-4 grid-container">
-
     {% for item in raspi %}
     <div class="col">
-        <div class="card text-center h-100" onclick="location.href='/{{item.name}}/';" style="cursor: pointer;">
+        <div class="card card-container text-center h-100" onclick="location.href='/{{item.name}}/';" style="cursor: pointer;">
             <img src="{% static 'sensor/images/icons/Raspberry_Pi_Logo.svg' %}" class="card-img-top" alt="{{item.name}}"
-                style="padding: 30px 50px;">
+                style="padding: 30px 50px; width: 80%; height: 80%;">
             <div class="card-body">
                 <h5 class="card-title">{{item.name}}</h5>
                 <p class="card-text" style="padding-bottom: 20px;">{{item.address}}</p>
@@ -30,6 +46,6 @@
         </div>
     </div>
     {% endfor %}
-
 </div>
+
 {% endblock %}

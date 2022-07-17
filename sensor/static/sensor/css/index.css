@@ -1,8 +1,25 @@
-.btn-add {
+.btn-raspi {
+    padding-right: 10px;
+}
+
+.btn-raspi a {
+    font-size: larger;
+    padding-right: 15px;
+}
+
+.btn-container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0px;
 }
 
 .grid-container {
     padding: 30px
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
