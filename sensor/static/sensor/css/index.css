@@ -11,15 +11,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px 10%;
+    padding: 40px 10% 0px 10%;
 }
 
 .grid-container {
-    padding: 30px
+    padding: 40px
 }
 
 .card-container {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.log-container {
+    width: 80%;
+    height: auto;
 }
