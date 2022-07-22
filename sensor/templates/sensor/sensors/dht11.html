@@ -1,0 +1,92 @@
+{% load static %}
+
+<style>
+    .gauge-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .gauge-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 20px;
+    }
+
+    .gauge-box p {
+        font-style: bold;
+        font-size: 24px;
+        text-align: center;
+    }
+</style>
+
+<div class="gauge-container">
+    <div class="gauge-box">
+        <canvas id="temperaure" class="gauge" style="width: auto; height: 80%;"></canvas>
+        <p>Temperature</p>
+        <div id="temp-text"></div>
+    </div>
+    <div class="gauge-box">
+        <canvas id="humidity" class="gauge" style="width: auto; height: 80%;"></canvas>
+        <p>Humidity</p>
+        <div id="humid-text"></div>
+    </div>
+</div>
+
+<script src="{% static 'sensor/js/sensor.js' %}"></script>
+<script src="{% static 'sensor/js/third-party/gauge/gauge.min.js' %}"></script>
+
+<script>
+    // ----------------- //
+    // Set Gauge Options //
+    // ----------------- //
+    var opts = {
+        angle: 0.3, // The span of the gauge arc
+        lineWidth: 0.14, // The line thickness
+        radiusScale: 0.9, // Relative radius
+        pointer: {
+            length: 0.6, // // Relative to gauge radius
+            strokeWidth: 0.035, // The thickness
+            color: "#000000", // Fill color
+        },
+        limitMax: false, // If false, max value increases automatically if value > maxValue
+        limitMin: false, // If true, the min value of the gauge will be fixed
+        // Colors are red for Temperature
+        colorStart: "#A01B1B", // Colors
+        colorStop: "#DB1818", // just experiment with them
+        strokeColor: "#D1D1D1", // to see which ones work best for you
+        generateGradient: true,
+        highDpiSupport: true, // High resolution support
+    };
+
+    // ------------------------ //
+    // Create Temperature Gauge //
+    // ------------------------ //
+    var target = document.getElementById("temperaure");
+    var gauge_temp = new Donut(target).setOptions(opts);
+    // Temperature goes from 0°C to 50°C
+    gauge_temp.maxValue = 50;
+    gauge_temp.setMinValue(0);
+    gauge_temp.animationSpeed = 32;
+    gauge_temp.set(25); // set start value
+    gauge_temp.setTextField(document.getElementById("temp-text"));
+
+    // --------------------- //
+    // Create Humidity Gauge //
+    // --------------------- //
+    var target = document.getElementById("humidity");
+    // Modify colors for humidity
+    opts.colorStart = "#120DB5";
+    opts.colorStop = "#6081DB";
+    var gauge_hum = new Donut(target).setOptions(opts);
+    // Humidity goes from 20% to 90%
+    gauge_hum.maxValue = 90;
+    gauge_hum.setMinValue(20);
+    gauge_hum.animationSpeed = 32;
+    gauge_hum.set(35); // set start value
+    gauge_hum.setTextField(document.getElementById("humid-text"));
+</script>

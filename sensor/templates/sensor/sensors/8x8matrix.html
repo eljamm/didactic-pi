@@ -1,0 +1,28 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'sensor/css/leds.css' %}">
+
+{% load range_iterator %}
+{% iterate_over 8 as range %}
+
+<div class="text-center">
+    <div class="gauge-box" style="flex-direction: row;">
+        {% for i in range %}
+        <div class="led-container">
+            <div>
+                {% for j in range %}
+                <div class="led-box m-4">
+                    <div class="led-white-inactive" id="led-{{i}}-{{j}}"
+                        onclick="location.href='javascript:flipLED(\'led-{{i}}-{{j}}\')';"></div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <button type="button" class="btn btn-success" id="send-data">Send</button>
+    <button type="button" class="btn btn-dark" id="clear-data">Clear</button>
+</div>
+
+<script src="{% static 'sensor/js/utils/ledutils.js' %}"></script>
+<script src="{% static 'sensor/js/sensors/8x8matrix.js' %}"></script>
