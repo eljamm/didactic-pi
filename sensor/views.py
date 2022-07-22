@@ -26,8 +26,8 @@ def add_pi(request):
             raspi = Raspi(name=name, address=address)
             raspi.save()
 
-            sensors = ["dht11", "ultrasonic", "8x8-matrix", "buzzer",
-                       "relay", "lcd-display", "7-segment", "led-array", "joystick"]
+            sensors = ["dht11", "ultrasonic", "8x8matrix", "buzzer",
+                       "relay", "lcd", "7segment", "ledarray", "joystick"]
 
             for sensor_name in sensors:
                 raspi.sensor_set.create(name=sensor_name)
@@ -66,8 +66,8 @@ def pi_name(request, pi_name):
 
 
 def sensor_name(request, sensor_name, pi_name):
-    sensors = ["dht11", "ultrasonic", "8x8-matrix", "buzzer",
-               "relay", "lcd-display", "7-segment", "led-array", "joystick"]
+    sensors = ["dht11", "ultrasonic", "8x8matrix", "buzzer",
+               "relay", "lcd", "7segment", "ledarray", "joystick"]
     return render(request, 'sensor/sensor.html', {
         'pi_name': pi_name,
         'sensor_name': sensor_name,
