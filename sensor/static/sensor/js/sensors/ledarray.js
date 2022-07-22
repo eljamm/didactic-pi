@@ -14,23 +14,13 @@ window.onload = function () {
 
     dataSocket.onmessage = function (e) {
         const data = JSON.parse(e.data);
+        var leds = data.message
 
-        if (! data.sensor.match(/^mt-.*/i)) {
-            document.querySelector('#data-log').value += (data.message + '\n');
+        if (!data.sensor.match(/^mt-.*/i)) {
+            updateMatrix(sensorName, 2, 10, leds)
         }
 
         console.log(data)
-
-        if (sensorName === 'dht11') {
-            const temp = document.getElementById('temp-text')
-            const hum = document.getElementById('humid-text')
-
-            gauge_temp.set(data.temp);
-            gauge_hum.set(data.hum);
-
-            temp.textContent = data.temp;
-            hum.textContent = data.hum;
-        }
     };
 
     dataSocket.onopen = function (e) {
@@ -52,6 +42,18 @@ window.onload = function () {
         console.error('Data socket closed unexpectedly');
     };
 
+    document.querySelector('#send-data').onclick = function () {
+        const message = constructMatrix(sensorName, 2, 10);
+        dataSocket.send(JSON.stringify({
+            'sensor': sensorName,
+            'message': message
+        }));
+    };
+
+    document.querySelector('#clear-data').onclick = function () {
+        clearLEDs(2, 10);
+    };
+
     document.querySelector('#data-message-input').focus();
     document.querySelector('#data-message-input').onkeyup = function (e) {
         if (e.keyCode === 13) {  // enter, return
@@ -63,7 +65,7 @@ window.onload = function () {
         const messageInputDom = document.querySelector('#data-message-input');
         const message = messageInputDom.value;
         dataSocket.send(JSON.stringify({
-            'sensor': 'mt-' + sensorName,
+            'sensor': sensorName,
             'message': message
         }));
         messageInputDom.value = '';
