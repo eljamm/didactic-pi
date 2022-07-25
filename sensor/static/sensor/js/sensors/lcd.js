@@ -15,12 +15,10 @@ window.onload = function () {
     dataSocket.onmessage = function (e) {
         const data = JSON.parse(e.data);
         console.log(data);
-
-        var leds = data.message;
         
         // Don't log control messages to the debugging textfield
         if (!data.message_type === "command") {
-            updateMatrix(sensorName, 2, 10, leds);
+            document.querySelector('#lcd-data-log').value += (data.message + '\n');
         }
     };
 
@@ -45,18 +43,6 @@ window.onload = function () {
         console.error('Data socket closed unexpectedly');
     };
 
-    document.querySelector('#send-data').onclick = function () {
-        const message = constructMatrix(sensorName, 2, 10);
-        dataSocket.send(JSON.stringify({
-            'sensor': sensorName,
-            'message': message
-        }));
-    };
-
-    document.querySelector('#clear-data').onclick = function () {
-        clearLEDs(2, 10);
-    };
-
     document.querySelector('#data-message-input').focus();
     document.querySelector('#data-message-input').onkeyup = function (e) {
         if (e.keyCode === 13) {  // enter, return
@@ -77,6 +63,28 @@ window.onload = function () {
 
     document.querySelector('#clear-textarea').onclick = function (e) {
         const dataLogDom = document.querySelector('#data-log');
+        dataLogDom.value = '';
+    };
+
+    document.querySelector('#lcd-data-message-input').onkeyup = function (e) {
+        if (e.keyCode === 13) {  // enter, return
+            document.querySelector('#lcd-data-message-submit').click();
+        }
+    };
+
+    document.querySelector('#lcd-data-message-submit').onclick = function (e) {
+        const messageInputDom = document.querySelector('#lcd-data-message-input');
+        const message = messageInputDom.value;
+        dataSocket.send(JSON.stringify({
+            'sensor': sensorName,
+            'message': message,
+            'message_type': 'data'
+        }));
+        messageInputDom.value = '';
+    };
+
+    document.querySelector('#lcd-clear-textarea').onclick = function (e) {
+        const dataLogDom = document.querySelector('#lcd-data-log');
         dataLogDom.value = '';
     };
 }

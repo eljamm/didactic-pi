@@ -14,26 +14,29 @@ window.onload = function () {
 
     dataSocket.onmessage = function (e) {
         const data = JSON.parse(e.data);
-        var leds = data.message
+        console.log(data);
 
-        if (!data.sensor.match(/^mt-.*/i)) {
+        var leds = data.message;
+
+        // Don't log control messages to the debugging textfield
+        if (!data.message_type === "command") {
             updateMatrix(sensorName, 8, 8, leds);
         }
-
-        console.log(data)
     };
 
     dataSocket.onopen = function (e) {
         dataSocket.send(JSON.stringify({
             'sensor': 'mt-' + sensorName,
-            'message': 'start'
+            'message': 'start',
+            'message_type': 'command'
         }));
     }
 
     window.onbeforeunload = function () {
         dataSocket.send(JSON.stringify({
             'sensor': 'mt-' + sensorName,
-            'message': 'stop'
+            'message': 'stop',
+            'message_type': 'command'
         }));
         dataSocket.close
     };
@@ -46,7 +49,7 @@ window.onload = function () {
         const message = constructMatrix(sensorName, 8, 8);
         dataSocket.send(JSON.stringify({
             'sensor': sensorName,
-            'message': message
+            'message': message,
         }));
     };
 
@@ -65,8 +68,9 @@ window.onload = function () {
         const messageInputDom = document.querySelector('#data-message-input');
         const message = messageInputDom.value;
         dataSocket.send(JSON.stringify({
-            'sensor': sensorName,
-            'message': message
+            'sensor': "mt-" + sensorName,
+            'message': message,
+            'message_type': 'command'
         }));
         messageInputDom.value = '';
     };

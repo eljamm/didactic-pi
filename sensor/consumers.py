@@ -35,21 +35,18 @@ class PiConsumer(AsyncWebsocketConsumer):
     # Receive message from WebSocket
     async def receive(self, text_data):
         text_data_json = json.loads(text_data)
+
+        sensor = text_data_json['sensor']
         message = text_data_json['message']
-        
-        sensor = ''
-        dht11_json = ''
+        message_type = text_data_json['message_type']
+
         now = timezone.now()
 
-        try:
-            sensor = text_data_json['sensor']
-        except Exception as e:
-            logging.debug(e.args[0])
-        finally:
-            generic_json = {
+        json_file = {
             'type': 'sensor_message',
             'sensor': sensor,
             'message': message,
+            'message_type': message_type,
             'time': now.isoformat()
         }
 
@@ -62,10 +59,11 @@ class PiConsumer(AsyncWebsocketConsumer):
                 'hum': hum,
             }
 
-            json_file = {**generic_json, **dht11_json}
+            json_file = {**json_file, **dht11_json}
 
-        else:
-            json_file = generic_json
+        # Write data to database
+        if message_type != "control":
+            await self.register_data(self.pi_name, sensor, now, message)
 
         # Send message to group
         await self.channel_layer.group_send(
@@ -75,15 +73,14 @@ class PiConsumer(AsyncWebsocketConsumer):
     # Receive message from group
     async def sensor_message(self, event):
         message = event['message']
+        message_type = event['message_type']
         sensor = event['sensor']
         now = event['time']
 
-        # Write message to database
-        await self.register_data(self.pi_name, sensor, now, message)
-
-        generic_json = {
+        json_file = {
             'sensor': sensor,
             'message': message,
+            'message_type': message_type,
             'time': now
         }
 
@@ -96,10 +93,7 @@ class PiConsumer(AsyncWebsocketConsumer):
                 'hum': hum,
             }
 
-            json_file = {**generic_json, **dht11_json}
-
-        else:
-            json_file = generic_json
+            json_file = {**json_file, **dht11_json}
 
         # Send message to WebSocket
         await self.send(text_data=json.dumps(json_file))
