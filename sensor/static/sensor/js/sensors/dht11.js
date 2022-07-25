@@ -1,4 +1,5 @@
 window.onload = function () {
+    const debug = JSON.parse(document.getElementById('debug').textContent);
     const piName = JSON.parse(document.getElementById('pi-name').textContent);
     const sensorName = JSON.parse(document.getElementById('sensor-name').textContent);
     const extraFunction = JSON.parse(document.getElementById('extra-function').textContent);
@@ -60,6 +61,7 @@ window.onload = function () {
         console.error('Data socket closed unexpectedly');
     };
 
+    if (debug === true) {
         document.querySelector('#data-message-input').focus();
         document.querySelector('#data-message-input').onkeyup = function (e) {
             if (e.keyCode === 13) {  // enter, return
@@ -71,7 +73,7 @@ window.onload = function () {
             const messageInputDom = document.querySelector('#data-message-input');
             const message = messageInputDom.value;
             dataSocket.send(JSON.stringify({
-            'sensor': 'mt-' + sensorName,
+                'sensor': `mt-${sensorName}-${extraFunction}`,
                 'message': message,
                 'message_type': 'command'
             }));
@@ -82,4 +84,5 @@ window.onload = function () {
             const dataLogDom = document.querySelector('#data-log');
             dataLogDom.value = '';
         };
+    }
 }

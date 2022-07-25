@@ -26,7 +26,7 @@ window.onload = function () {
 
     dataSocket.onopen = function (e) {
         dataSocket.send(JSON.stringify({
-            'sensor': 'mt-' + sensorName,
+            'sensor': `mt-${sensorName}`,
             'message': 'start',
             'message_type': 'command'
         }));
@@ -34,7 +34,7 @@ window.onload = function () {
 
     window.onbeforeunload = function () {
         dataSocket.send(JSON.stringify({
-            'sensor': 'mt-' + sensorName,
+            'sensor': `mt-${sensorName}`,
             'message': 'stop',
             'message_type': 'command'
         }));
@@ -57,28 +57,30 @@ window.onload = function () {
         clearLEDs(2, 10);
     };
 
-    document.querySelector('#data-message-input').focus();
-    document.querySelector('#data-message-input').onkeyup = function (e) {
-        if (e.keyCode === 13) {  // enter, return
-            document.querySelector('#data-message-submit').click();
-        }
-    };
+    if (debug === true) {
+        document.querySelector('#data-message-input').focus();
+        document.querySelector('#data-message-input').onkeyup = function (e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#data-message-submit').click();
+            }
+        };
 
-    document.querySelector('#data-message-submit').onclick = function (e) {
-        const messageInputDom = document.querySelector('#data-message-input');
-        const message = messageInputDom.value;
-        dataSocket.send(JSON.stringify({
-            'sensor': "mt-" + sensorName,
-            'message': message,
-            'message_type': 'command'
-        }));
-        messageInputDom.value = '';
-    };
+        document.querySelector('#data-message-submit').onclick = function (e) {
+            const messageInputDom = document.querySelector('#data-message-input');
+            const message = messageInputDom.value;
+            dataSocket.send(JSON.stringify({
+                'sensor': `mt-${sensorName}`,
+                'message': message,
+                'message_type': 'command'
+            }));
+            messageInputDom.value = '';
+        };
 
-    document.querySelector('#clear-textarea').onclick = function (e) {
-        const dataLogDom = document.querySelector('#data-log');
-        dataLogDom.value = '';
-    };
+        document.querySelector('#clear-textarea').onclick = function (e) {
+            const dataLogDom = document.querySelector('#data-log');
+            dataLogDom.value = '';
+        };
+    }
 }
 
 

@@ -72,10 +72,12 @@ def pi_name(request, pi_name):
 
 
 def sensor_name(request, pi_name, sensor_name):
-def sensor_name(request, sensor_name, pi_name):
+    debug = settings.DEBUG
     sensors = ["dht11", "ultrasonic", "8x8matrix", "buzzer",
                "relay", "lcd", "7segment", "ledarray", "joystick"]
+
     return render(request, 'sensor/sensor.html', {
+        'debug': debug,
         'pi_name': pi_name,
         'sensor_name': sensor_name,
         'sensors': sensors,
@@ -84,6 +86,9 @@ def sensor_name(request, sensor_name, pi_name):
 
 
 def sensor_extra(request, pi_name, sensor_name, extra_function):
+    debug = settings.DEBUG
+    return render(request, 'sensor/extra.html', {
+        'debug': debug,
         'pi_name': pi_name,
         'sensor_name': sensor_name,
         'extra_function': extra_function,

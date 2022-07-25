@@ -1,15 +1,19 @@
 {% extends 'sensor/base.html' %}
 {% load static %}
 
+<!-- === Title === -->
 {% block title %} {{sensor_name}} {% endblock %}
 
+<!-- === Head === -->
 {% block content-head %}
 <link rel="stylesheet" href="{% static 'sensor/css/index.css' %}">
 <link rel="stylesheet" href="{% static 'sensor/css/sensor.css' %}">
 {% endblock %}
 
+<!-- === Body === -->
 {% block content %}
 
+{{ debug|json_script:"debug" }}
 {{ pi_name|json_script:"pi-name" }}
 {{ sensor_name|json_script:"sensor-name" }}
 
@@ -19,6 +23,8 @@
     {% include 'sensor/404.html' %}
 {% endif %}
 
+{% if debug == True %}
+<!-- Debugging -->
 <div class="d-flex p-2 align-content-center justify-content-center" style="margin: 20px;">
     <div class="d-inline-flex p-2 flex-column log-container">
         <textarea id="data-log" cols="100" rows="10" style="border:solid 2px;" readonly></textarea><br>
@@ -31,5 +37,6 @@
         </div>
     </div>
 </div>
+{% endif %}
 
 {% endblock %}

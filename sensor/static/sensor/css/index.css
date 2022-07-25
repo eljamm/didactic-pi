@@ -55,7 +55,7 @@
 }
 
 .card-img-top {
-    background-image: linear-gradient(to top, rgb(209, 209, 209), rgb(255, 255, 255));
+    background-image: linear-gradient(to bottom, rgb(241, 241, 241), rgb(255, 255, 255));
 }
 
 .card-container {
