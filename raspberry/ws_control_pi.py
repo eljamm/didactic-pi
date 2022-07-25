@@ -3,39 +3,72 @@ import asyncio
 import json
 import logging
 import sys
+import textwrap
 import threading
 from time import sleep
 
+import adafruit_character_lcd.character_lcd as character_lcd
 import adafruit_dht
 import board
 import coloredlogs
-import RPi.GPIO as GPIO
+import digitalio
 import websocket
+from gpiozero import LED
 
-from utils.dht11 import processDHT
+from utils.dht11 import DHT11
+from utils.lcd import LCD
+from utils.ledarray import ArrayLED
 from utils.ledmatrix import Matrix
 
 
-class Globals:
-    def __init__(self):
-        ## Logger ##
-        logger = logging.getLogger(__name__)
-        coloredlogs.install(level='DEBUG', logger=logger)
+def initial_setup():
+    # --- Logger --- #
+    global logger
 
-        ## Sensors ##
-        # DHT11
-        dht11 = adafruit_dht.DHT11(board.D19, use_pulseio=False)
+    logger = logging.getLogger(__name__)
+    coloredlogs.install(level='DEBUG', logger=logger)
 
-        # 8x8 Matrix
-        mat_rows = [7, 18, 9, 24, 2, 10, 3, 27]
-        mat_cols = [23, 4, 17, 8, 22, 25, 15, 14]
+    # --- DHT11 --- #
+    global dht11
 
-        mat8x8 = Matrix(mat_rows, mat_cols)
+    dht11 = DHT11(board.D14, logger)
 
-        ## Attributes ##
-        self.logger = logger
-        self.dht11 = dht11
-        self.mat8x8 = mat8x8
+    # --- 8x8 Matrix --- #
+    global mat8x8
+
+    mat_rows = [21, 8, 26, 12, 10, 19, 9, 6]
+    mat_cols = [7, 11, 5, 20, 13, 16, 25, 24]
+
+    mat8x8 = Matrix(mat_rows, mat_cols)
+
+    # --- LED Array --- #
+    global array_led
+
+    blue_array = [LED(21), LED(20), LED(16), LED(12), LED(7),
+                  LED(8), LED(25), LED(24), LED(23), LED(18)]
+
+    red_array = [LED(26), LED(19), LED(13), LED(6), LED(5),
+                 LED(11), LED(9), LED(10), LED(22), LED(27)]
+
+    array_led = ArrayLED(blue_array, red_array)
+
+    # --- LCD Display --- #
+    global lcd
+
+    lcd_pins = {
+        'rs': digitalio.DigitalInOut(board.D19),
+        'en': digitalio.DigitalInOut(board.D26),
+        'd4': digitalio.DigitalInOut(board.D7),
+        'd5': digitalio.DigitalInOut(board.D12),
+        'd6': digitalio.DigitalInOut(board.D16),
+        'd7': digitalio.DigitalInOut(board.D20),
+        'backlight': digitalio.DigitalInOut(board.D21)
+    }
+
+    lcd_columns = 16
+    lcd_rows = 2
+
+    lcd = LCD(lcd_pins, lcd_columns, lcd_rows)
 
 
 async def my_receive():
@@ -45,23 +78,62 @@ async def my_receive():
 
 def run(sensor, stop_event):
     t = threading.current_thread()
-    g.mat8x8.setup()
+
+    # --- Setup --- #
+    if sensor == "mt-dht11":
+        dht11 = DHT11(board.D4, logger)
+    elif sensor == "mt-8x8matrix":
+        mat8x8.setup()
+    elif sensor == "mt-lcd":
+        dht11 = DHT11(board.D4, logger)
+        lcd.on()
 
     while not stop_event.is_set():
-        if message == "stop":
-            stop_event.set()
-            g.mat8x8.clearMatrix()
+        # --- Clear --- #
+        if message == "stop" and message_type == "command":
+            if sensor == "mt-dht11":
+                dht11.device.exit()
+            elif sensor == "mt-8x8matrix":
+                mat8x8.clearMatrix()
+            elif sensor == "mt-ledarray":
+                array_led.clear_leds()
+            elif sensor == "mt-lcd":
+                lcd.clear()
+                lcd.off()
+            sensor = "none"
 
+        # --- Process --- #
         try:
             if sensor == "mt-dht11":
-                processDHT(ws, g.dht11, g.logger)
+                dht11.processDHT(ws, 1.5)
 
             elif sensor == "mt-8x8matrix":
-                g.mat8x8.processMatrix(message)
+                mat8x8.processMatrix(message)
+
+            elif sensor == "mt-ledarray":
+                blink_list = array_led.processArray(message)
+                array_led.blinkLEDs(blink_list, 1.0, 1.0)
+
+            elif sensor == "mt-lcd":
+                if message_type != "command":
+                    if message == "dht11":
+                        json_file = dht11.readDHT()
+
+                        if not len(json_file) == 0:
+                            temp = json_file['temp']
+                            temp_f = temp * (9 / 5) + 32
+                            hum = json_file['hum']
+
+                            lcd.clear()
+                            lcd.display(f"T: {temp} C | {temp_f} F\nH: {hum}%")
+                            sleep(2.0)
+                    else:
+                        lcd.processLCD(message)
 
         except RuntimeError as error:
-            g.logger.warning(error.args[0])
+            logger.warning(error.args[0])
             sleep(2.0)
+            continue
 
 
 if __name__ == "__main__":
@@ -70,7 +142,7 @@ if __name__ == "__main__":
     url = "ws://192.168.1.52:8000/ws/IOT1/"
     ws = websocket.create_connection(url)
 
-    g = Globals()
+    initial_setup()
 
     while True:
         try:
@@ -79,22 +151,32 @@ if __name__ == "__main__":
 
             sensor = json_file['sensor']
             message = json_file['message']
+            message_type = json_file['message_type']
 
             stop_event = threading.Event()
             t = threading.Thread(target=run,
                                  args=(sensor, stop_event),
                                  daemon=True)
 
-            if message == "start":
+            if message == "start" and message_type == "command":
                 print("Starting Thread")
                 t.start()
 
-            elif message == "stop":
+            elif message == "stop" and message_type == "command":
                 print("Stopping Thread")
+                stop_event.set()
                 ws.close()
                 ws.connect(url)
 
+            elif message == "exit" and message_type == "command":
+                print("\nClosing Program")
+                stop_event.set()
+                ws.close()
+                break
+
         except KeyboardInterrupt:
             print("\nClosing Program")
+            stop_event.set()
             ws.close()
-            sys.exit()
+            break
+    sys.exit()

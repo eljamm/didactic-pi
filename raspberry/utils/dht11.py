@@ -1,57 +1,77 @@
 import json
 import logging
+import textwrap
 from time import sleep
 
 import adafruit_dht
 import board
 import coloredlogs
-import RPi.GPIO as GPIO
 
 
-def readDHT(dht11, logger):
-    try:
-        temp_c = dht11.temperature
-        temp_f = temp_c * (9 / 5) + 32
-        hum = dht11.humidity
-        message = "Temp: {:.1f} F / {:.1f} C    Humidity: {}% ".format(
-            temp_f, temp_c, hum)
+class DHT11:
+    def __init__(self, pin, logger):
+        self.device = adafruit_dht.DHT11(pin, use_pulseio=False)
+        self.logger = logger
 
-        return [message, temp_c, temp_f, hum]
+    def readDHT(self):
+        try:
+            temp = self.device.temperature
+            temp_f = temp * (9 / 5) + 32
+            hum = self.device.humidity
 
-    except TypeError as error:
-        logger.warning(error.args[0])
+            message = "Temp: {:.1f} F / {:.1f} C    Humidity: {}%".format(
+                temp_f, temp, hum)
 
+            json_file = {
+                "sensor": "dht11",
+                "message": message,
+                "message_type": "data",
+                "temp": temp,
+                "hum": hum
+            }
 
-def processDHT(ws, dht11, logger):
-    message, temp_c, temp_f, hum = readDHT(dht11, logger)
+            return json_file
 
-    ws.send(json.dumps({
-        'sensor': 'dht11',
-        'message': message,
-        'temp': temp_c,
-        'hum': hum
-    }))
+        except (RuntimeError, TypeError) as error:
+            self.logger.warning(error.args[0])
+            sleep(2.0)
+            return {}
 
-    sleep(1.5)
+    def processDHT(self, ws, delay):
+        try:
+            json_file = self.readDHT()
+
+            # Send data if json_file is not empty
+            if not len(json_file) == 0:
+                ws.send(json.dumps(json_file))
+
+            sleep(delay)
+
+        except (RuntimeError, TypeError) as error:
+            self.logger.warning(error.args[0])
+            sleep(2.0)
 
 
 if __name__ == "__main__":
     logger = logging.getLogger(__name__)
     coloredlogs.install(level='DEBUG', logger=logger)
 
-    dhtDevice = adafruit_dht.DHT11(board.D19, use_pulseio=False)
+    dht11 = DHT11(board.D4, logger)
 
     while True:
         try:
-            message, temp_c, temp_f, hum = readDHT(dhtDevice)
+            json_file = dht11.readDHT()
 
-            print(message)
-            sleep(2.0)
+            if not len(json_file) == 0:
+                print(json_file['message'])
 
-        except RuntimeError as error:
+            sleep(1.5)
+
+        except (RuntimeError, TypeError) as error:
             logger.warning(error.args[0])
+            sleep(2.0)
 
         except KeyboardInterrupt:
             print("\nExiting Program")
-            GPIO.cleanup()
+            dht11.device.exit()
             break
