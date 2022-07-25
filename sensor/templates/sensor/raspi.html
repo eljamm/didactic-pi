@@ -11,103 +11,61 @@
 {% if pi_name in pi_list %}
 
 <div class="row row-cols-1 row-cols-md-4 g-4 grid-container">
+    {% for sensor_name in sensors %}
+
     <div class="col">
-        <div class="card text-center h-100 card-container" onclick="location.href='/{{pi_name}}/dht11';"
+        <div class="card text-center h-100 card-container" onclick="location.href='/{{pi_name}}/{{sensor_name}}';"
             style="cursor: pointer;">
-            <img src="{% static 'sensor/images/sensors/temperature_sensor.svg' %}" class="card-img-top" alt="DHT11"
-                style="padding: 20px; width: 60%; height: auto;">
+            <img src="{% static 'sensor/images/sensors/' %}{{sensor_name}}.svg" class="card-img-top img-{{sensor_name}}"
+                alt="{{sensor_name}}">
+
             <div class="card-body">
-                <h5 class="card-title">DHT11</h5>
-                <p class="card-text" style="padding-bottom: 20px;">Capture Temperature and humidity values and output
-                    them as serial data</p>
+                {% if sensor_name == "dht11" %}
+                    <h5 class="card-title">DHT11</h5>
+                    <p class="card-text">Capture Temperature and humidity values and output
+                        them as serial data</p>
+                
+                {% elif sensor_name == "ultrasonic" %}
+                    <h5 class="card-title">HC-SR04</h5>
+                    <p class="card-text">Measure distance using ultrasonic sound waves</p>
+                
+                {% elif sensor_name == "8x8matrix" %}
+                    <h5 class="card-title">8x8 LED Matrix</h5>
+                    <p class="card-text">An 8x8 LED matrix which can be changed into various
+                        patterns</p>
+                
+                {% elif sensor_name == "buzzer" %}
+                    <h5 class="card-title">Buzzer</h5>
+                    <p class="card-text">Make a buzzing noise by controlling the frequency</p>
+                
+                {% elif sensor_name == "relay" %}
+                    <h5 class="card-title">Relay Module</h5>
+                    <p class="card-text">An electrical switch that opens or closes to control
+                        other components such as
+                        motors</p>
+                
+                {% elif sensor_name == "lcd" %}
+                    <h5 class="card-title">LCD Display</h5>
+                    <p class="card-text">Display messages on a 16x2 flat-panel screen</p>
+                
+                {% elif sensor_name == "7segment" %}
+                    <h5 class="card-title">7 Segment Display</h5>
+                    <p class="card-text">Display decimal numerals</p>
+                
+                {% elif sensor_name == "ledarray" %}
+                    <h5 class="card-title">LED Array</h5>
+                    <p class="card-text">An arrangement of LEDs</p>
+                
+                {% elif sensor_name == "joystick" %}
+                    <h5 class="card-title">Joystick</h5>
+                    <p class="card-text">Control joystick directions</p>
+                {% endif %}
             </div>
+            
         </div>
     </div>
-    <div class="col">
-        <div class="card text-center h-100" onclick="location.href='/{{pi_name}}/ultrasonic';" style="cursor: pointer;">
-            <img src="{% static 'sensor/images/sensors/ultrasonic_distance_sensor.svg' %}" class="card-img-top"
-                alt="HC-SR04" style="padding: 40px; padding-bottom: 50px;">
-            <div class="card-body">
-                <h5 class="card-title">HC-SR04</h5>
-                <p class="card-text" style="padding-bottom: 20px;">Measure distance using ultrasonic sound waves</p>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card text-center h-100" onclick="location.href='/{{pi_name}}/8x8matrix';" style="cursor: pointer;">
-            <img src="{% static 'sensor/images/sensors/8_8_led_matrix_display_unit.svg' %}" class="card-img-top"
-                alt="8x8 Led Matrix" style="padding: 20px 40px 20px 40px;">
-            <div class="card-body">
-                <h5 class="card-title">8x8 LED Matrix</h5>
-                <p class="card-text" style="padding-bottom: 20px;">An 8x8 LED matrix which can be changed into various
-                    patterns</p>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card text-center h-100" onclick="location.href='/{{pi_name}}/buzzer';" style="cursor: pointer;">
-            <img src="{% static 'sensor/images/sensors/buzzer.png' %}" class="card-img-top" alt="Buzzer"
-                style="padding: 30px 50px;">
-            <div class="card-body">
-                <h5 class="card-title">Buzzer</h5>
-                <p class="card-text" style="padding-bottom: 20px;">Make a buzzing noise by controlling the frequency</p>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card text-center h-100 card-container" onclick="location.href='/{{pi_name}}/relay';"
-            style="cursor: pointer;">
-            <img src="{% static 'sensor/images/sensors/relay_module.svg' %}" class="card-img-top" alt="Replay"
-                style="padding: 20px; width: 50%; height: auto;">
-            <div class="card-body">
-                <h5 class="card-title">Relay Module</h5>
-                <p class="card-text" style="padding-bottom: 20px;">An electrical switch that opens or closes to control
-                    other components such as
-                    motors</p>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card text-center h-100" onclick="location.href='/{{pi_name}}/lcd';"
-            style="cursor: pointer;">
-            <img src="{% static 'sensor/images/sensors/lcd_display.svg' %}" class="card-img-top" alt="LCD Display"
-                style="padding: 40px; padding-bottom: 60px;">
-            <div class="card-body">
-                <h5 class="card-title">LCD Display</h5>
-                <p class="card-text" style="padding-bottom: 20px;">Display messages on a 16x2 flat-panel screen</p>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card text-center h-100" onclick="location.href='/{{pi_name}}/7segment';" style="cursor: pointer;">
-            <img src="{% static 'sensor/images/sensors/digit_display.svg' %}" class="card-img-top"
-                alt="7 Segment Display" style="padding: 40px; padding-bottom: 60px;">
-            <div class="card-body">
-                <h5 class="card-title">7 Segment Display</h5>
-                <p class="card-text" style="padding-bottom: 20px;">Display decimal numerals</p>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card text-center h-100" onclick="location.href='/{{pi_name}}/ledarray';" style="cursor: pointer;">
-            <img src="{% static 'sensor/images/sensors/led_unit.svg' %}" class="card-img-top" alt="LED Array"
-                style="padding: 30px 32%;">
-            <div class="card-body">
-                <h5 class="card-title">LED Array</h5>
-                <p class="card-text" style="padding-bottom: 20px;">An arrangement of LEDs</p>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card text-center h-100" onclick="location.href='/{{pi_name}}/joystick';" style="cursor: pointer;">
-            <img src="{% static 'sensor/images/sensors/joystick.png' %}" class="card-img-top" alt="Joystick"
-                style="padding: 30px 50px;">
-            <div class="card-body">
-                <h5 class="card-title">Joystick</h5>
-                <p class="card-text" style="padding-bottom: 20px;">Control joystick directions</p>
-            </div>
-        </div>
-    </div>
+
+    {% endfor %}
 </div>
 
 {% else %}

@@ -58,10 +58,13 @@ def remove_pi(request):
 def pi_name(request, pi_name):
     raspi = Raspi.objects.all()
     pi_list = [x.name for x in raspi]
+    sensors = ["dht11", "ultrasonic", "8x8matrix", "buzzer",
+               "relay", "lcd", "7segment", "ledarray", "joystick"]
 
     return render(request, 'sensor/raspi.html', {
         'pi_name': pi_name,
         'pi_list': pi_list,
+        'sensors': sensors
     })
 
 

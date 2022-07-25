@@ -36,9 +36,9 @@
 <div class="row row-cols-1 row-cols-md-4 g-4 grid-container">
     {% for item in raspi %}
     <div class="col">
-        <div class="card card-container text-center h-100" onclick="location.href='/{{item.name}}/';" style="cursor: pointer;">
-            <img src="{% static 'sensor/images/icons/Raspberry_Pi_Logo.svg' %}" class="card-img-top" alt="{{item.name}}"
-                style="padding: 40px 50px 20px 50px; width: 80%; height: auto;">
+        <div class="card card-container text-center h-100" onclick="location.href='/{{item.name}}/';"
+            style="cursor: pointer;">
+            <img src="{% static 'sensor/images/icons/raspberry_logo.svg' %}" class="card-img-top img-raspberry" alt="{{item.name}}">
             <div class="card-body">
                 <h5 class="card-title">{{item.name}}</h5>
                 <p class="card-text" style="padding-bottom: 20px;">{{item.address}}</p>

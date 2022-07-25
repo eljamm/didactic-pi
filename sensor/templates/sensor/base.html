@@ -3,15 +3,24 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<style>
+    html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+        overflow-x: hidden;
+    }
+</style>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} Base Template {% endblock %}</title>
 
-    <!-- CSS only -->
+    <!-- Bootstrap -->
     <link href="{% static 'sensor/css/third-party/bootstrap.min.css' %}" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <!-- JavaScript Bundle with Popper -->
     <script src="{% static 'sensor/js/third-party/bootstrap.bundle.min.js' %}"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>

@@ -1,10 +1,42 @@
+.img-raspberry {
+    padding: 0% 0%;
+}
+
+.img-dht11 {
+    padding: 17% 25%;
+}
+
+.img-ultrasonic,
+.img-lcd,
+.img-7segment {
+    padding: 20% 10%;
+}
+
+.img-8x8matrix,
+.img-buzzer {
+    padding: 10% 15%;
+}
+
+.img-relay {
+    padding: 10% 30%;
+}
+
+.img-ledarray {
+    padding: 10% 35%;
+}
+
+.img-joystick {
+    padding: 5% 10%;
+}
+
 .btn-raspi {
-    padding-right: 10px;
+    padding: 0px 15px;
 }
 
 .btn-raspi a {
     font-size: larger;
-    padding-right: 15px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 .btn-container {
@@ -18,13 +50,16 @@
     padding: 40px
 }
 
+.card-img-top {
+    background-image: linear-gradient(to top, rgb(209, 209, 209), rgb(255, 255, 255));
+}
+
 .card-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.log-container {
-    width: 80%;
-    height: auto;
+.card-body p {
+    padding-bottom: 20px;
 }

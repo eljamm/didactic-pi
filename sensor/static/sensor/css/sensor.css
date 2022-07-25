@@ -1,0 +1,26 @@
+.log-container {
+    width: 80%;
+    height: auto;
+}
+
+.gauge-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.gauge-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.gauge-box p {
+    font-style: bold;
+    font-size: 24px;
+    text-align: center;
+}
