@@ -1,17 +1,34 @@
 {% load static %}
 
-<div class="gauge-container">
-    <div class="gauge-box">
-        <canvas id="temperaure" class="gauge" style="width: auto; height: 80%;"></canvas>
-        <p>Temperature</p>
-        <div id="temp-text"></div>
-    </div>
-    <div class="gauge-box">
-        <canvas id="humidity" class="gauge" style="width: auto; height: 80%;"></canvas>
-        <p>Humidity</p>
-        <div id="humid-text"></div>
-    </div>
-</div>
+{% load range_iterator %}
+{% make_list "gauge, lcd" as extra_list %}
 
-<script src="{% static 'sensor/js/third-party/gauge/gauge.min.js' %}"></script>
-<script src="{% static 'sensor/js/sensors/dht11.js' %}"></script>
+<div class="row row-cols-1 row-cols-md-4 g-4 grid-container">
+
+    {% for item in extra_list %}
+    <div class="col">
+        <div class="card card-container text-center h-100" onclick="var current_path=location['pathname'];
+            location.href=current_path+'{{item}}/';" style="cursor: pointer;">
+            <img src="{% static 'sensor/images/sensors/dht11/' %}{{item}}.svg" class="card-img-top img-{{item}}"
+                alt="dht11-{{item}}">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {% if item == "gauge" %}
+                        Gauge
+                    {% elif item == "lcd" %}
+                        LCD Display
+                    {% endif %}
+                </h5>
+                <p class="card-text" style="padding-bottom: 20px;">
+                    {% if item == "gauge" %}
+                        Read data from DHT11 sensor and display them in a gauge.
+                    {% elif item == "lcd" %}
+                        Display DHT11 data on an LCD screen.
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>

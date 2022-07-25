@@ -1,0 +1,30 @@
+{% extends 'sensor/sensor.html' %}
+{% load static %}
+{% load range_iterator %}
+
+<!-- === Title === -->
+{% block title %} {{ sensor_name|title }} with {{extra_function}} {% endblock %}
+
+<!-- === Body === -->
+{% block content %}
+
+{{ debug|json_script:"debug" }}
+{{ pi_name|json_script:"pi-name" }}
+{{ sensor_name|json_script:"sensor-name" }}
+{{ extra_function|json_script:"extra-function" }}
+
+{% make_list "gauge, lcd" as extra_list %}
+{% if extra_function in extra_list %}
+    {% if extra_function == "gauge" %}
+        <script src="{% static 'sensor/js/third-party/gauge/gauge.min.js' %}"></script>
+        <script src="{% static 'sensor/js/utils/gauge.js' %}"></script>
+    {% endif %}
+
+    {% include url %}
+{% else %}
+    {% include 'sensor/404.html' %}
+{% endif %}
+
+<script src="{% static 'sensor/js/sensors/dht11.js' %}"></script>
+
+{% endblock %}
