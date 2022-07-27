@@ -44,12 +44,13 @@ class LCD:
     def clear(self):
         self.lcd.clear()
 
-    def processLCD(self, message):
+    def processLCD(self, message, delay_on, delay_scroll):
         self.clear()
         self.display(message)
-        sleep(3.0)
+        sleep(delay_on)
         self.scroll(message)
-        sleep(1.5)
+        self.clear()
+        sleep(delay_scroll)
 
 
 if __name__ == "__main__":

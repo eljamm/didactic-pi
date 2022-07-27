@@ -116,19 +116,7 @@ def run(sensor, stop_event):
 
             elif sensor == "mt-lcd":
                 if message_type != "command":
-                    if message == "dht11":
-                        json_file = dht11.readDHT()
-
-                        if not len(json_file) == 0:
-                            temp = json_file['temp']
-                            temp_f = temp * (9 / 5) + 32
-                            hum = json_file['hum']
-
-                            lcd.clear()
-                            lcd.display(f"T: {temp} C | {temp_f} F\nH: {hum}%")
-                            sleep(2.0)
-                    else:
-                        lcd.processLCD(message)
+                    lcd.processLCD(message, 3.0, 1.5)
 
         except RuntimeError as error:
             logger.warning(error.args[0])
