@@ -1,0 +1,13 @@
+{% extends 'sensor/base.html' %}
+{% load static %}
+
+<!-- === Title === -->
+{% block title %} Raspberry Pi Pinout {% endblock %}
+
+<!-- === Body === -->
+{% block content %}
+<div class="text-center d-flex justify-content-center align-items-center flex-column"
+    style="padding: var(--img-wiring-padding)">
+    <img class="img-cover" src="{% static 'sensor/images/wiring/pinout.svg' %}" alt="Raspberry Pi Pinout">
+</div>
+{% endblock %}

@@ -39,7 +39,7 @@ def add_pi(request):
     else:
         form = AddRaspi()
 
-    return render(request, 'sensor/add-pi.html', {'form': form})
+    return render(request, 'sensor/raspberry/add-pi.html', {'form': form})
 
 
 def remove_pi(request):
@@ -53,9 +53,13 @@ def remove_pi(request):
 
         return HttpResponseRedirect("/")
 
-    return render(request, 'sensor/remove-pi.html', {
+    return render(request, 'sensor/raspberry/remove-pi.html', {
         'raspi': raspi,
     })
+
+
+def pinout(request):
+    return render(request, 'sensor/base/pinout.html')
 
 
 def pi_name(request, pi_name):
@@ -64,7 +68,7 @@ def pi_name(request, pi_name):
     sensors = ["dht11", "ultrasonic", "8x8matrix", "buzzer",
                "relay", "lcd", "7segment", "ledarray", "joystick"]
 
-    return render(request, 'sensor/raspi.html', {
+    return render(request, 'sensor/raspberry/raspi.html', {
         'pi_name': pi_name,
         'pi_list': pi_list,
         'sensors': sensors

@@ -4,11 +4,6 @@
 <!-- === Title === -->
 {% block title %} {{ pi_name }} {% endblock %}
 
-<!-- === Head === -->
-{% block content-head %}
-<link rel="stylesheet" href="{% static 'sensor/css/index.css' %}">
-{% endblock %}
-
 <!-- === Body === -->
 {% block content %}
 {% if pi_name in pi_list %}
@@ -73,7 +68,7 @@
 
 {% else %}
 
-    {% include 'sensor/404.html' %}
+    {% include 'sensor/base/404.html' %}
 
 {% endif %}
 {% endblock %}

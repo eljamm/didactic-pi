@@ -20,7 +20,7 @@
 {% if sensor_name in sensors %}
     {% include url %}
 {% else %}
-    {% include 'sensor/404.html' %}
+    {% include 'sensor/base/404.html' %}
 {% endif %}
 
 {% if debug == True %}
