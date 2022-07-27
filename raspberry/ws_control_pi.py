@@ -2,6 +2,7 @@ import _thread
 import asyncio
 import json
 import logging
+import re
 import sys
 import textwrap
 import threading
@@ -78,34 +79,38 @@ async def my_receive():
 
 def run(sensor, stop_event):
     t = threading.current_thread()
+    reg_dht = re.compile(".*dht11.*")
+    reg_lcd = re.compile(".*lcd.*")
 
     # --- Setup --- #
-    if sensor == "mt-dht11":
+    if reg_dht.match(sensor):
         dht11 = DHT11(board.D4, logger)
-    elif sensor == "mt-8x8matrix":
-        mat8x8.setup()
-    elif sensor == "mt-lcd":
-        dht11 = DHT11(board.D4, logger)
+    if reg_lcd.match(sensor):
         lcd.on()
+    if sensor == "mt-8x8matrix":
+        mat8x8.setup()
 
     while not stop_event.is_set():
         # --- Clear --- #
         if message == "stop" and message_type == "command":
-            if sensor == "mt-dht11":
+            if reg_dht.match(sensor):
                 dht11.device.exit()
-            elif sensor == "mt-8x8matrix":
+            if reg_lcd.match(sensor):
+                lcd.clear()
+                lcd.off()
+            if sensor == "mt-8x8matrix":
                 mat8x8.clearMatrix()
             elif sensor == "mt-ledarray":
                 array_led.clear_leds()
-            elif sensor == "mt-lcd":
-                lcd.clear()
-                lcd.off()
             sensor = "none"
 
         # --- Process --- #
         try:
-            if sensor == "mt-dht11":
+            if sensor == "mt-dht11-gauge":
                 dht11.processDHT(ws, 1.5)
+            
+            elif sensor == "mt-dht11-lcd":
+                dht11.processDHT_LCD(lcd, 2.0)
 
             elif sensor == "mt-8x8matrix":
                 mat8x8.processMatrix(message)
