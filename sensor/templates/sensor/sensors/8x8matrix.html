@@ -2,6 +2,47 @@
 
 <link rel="stylesheet" href="{% static 'sensor/css/leds.css' %}">
 
+<h1 class="display-2 px-5 py-3">Wiring Schematic</h1>
+
+<div class="d-flex justify-content-center align-items-center flex-column" style="padding: var(--img-wiring-padding)">
+    <img class="img-cover" src="{% static 'sensor/images/wiring/ledmatrix.svg' %}" alt="LED Matrix Wiring">
+</div>
+
+<h1 class="display-2 px-5 py-3">Control Panel</h1>
+
+<div class="accordion" id="accordionInfo" style="padding: var(--accordion-padding);">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                <strong>How To Use ?</strong>
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+            data-bs-parent="#accordionInfo">
+            <div class="accordion-body">
+                <ul>
+                    <li>
+                        <h5 class="card-title">Send Data</h5>
+                        <p class="card-text">
+                            Click on a LED to switch its state between <strong>on</strong> and <strong>off</strong>
+                            then click the <u><strong>send</strong></u> button to display the pattern on the LED matrix.
+                        </p>
+                    </li><br>
+                    <li>
+                        <h5 class="card-title">Clear LEDs</h5>
+                        <p>
+                            After clicking the <u><strong>clear</strong></u> button you can either click
+                            <u><strong>send</strong></u> to clear the LED matrix or redraw the shape you
+                            want before sending it.
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% load range_iterator %}
 {% iterate_over 8 as range %}
 
@@ -11,7 +52,7 @@
         <div class="led-container">
             <div>
                 {% for j in range %}
-                <div class="led-box m-4">
+                <div class="led-box">
                     <div class="led-white-inactive" id="led-{{i}}-{{j}}"
                         onclick="location.href='javascript:flipLED(\'led-{{i}}-{{j}}\')';"></div>
                 </div>
@@ -20,8 +61,8 @@
         </div>
         {% endfor %}
     </div>
-    <button type="button" class="btn btn-success" id="send-data">Send</button>
-    <button type="button" class="btn btn-dark" id="clear-data">Clear</button>
+    <button type="button" class="btn btn-success btn-data" id="send-data">Send</button>
+    <button type="button" class="btn btn-dark btn-data" id="clear-data">Clear</button>
 </div>
 
 <script src="{% static 'sensor/js/utils/ledutils.js' %}"></script>

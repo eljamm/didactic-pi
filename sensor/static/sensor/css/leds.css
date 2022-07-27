@@ -1,23 +1,64 @@
 :root {
   --red-bg-color: #F00;
-  --red-inactive-color: #837d3d;
-  --red-inset-color: #000000;
-  --red-animation-color: #747474;
+  --red-bg-color-inactive: rgb(156, 0, 0);
+  --red-animation-color: #3f1212;
+  --red-inset-color: #a71919;
 
-  --blue-bg-color: #ffffff;
-  --blue-inactive-color: #837d3d;
-  --blue-inset-color: #000000;
-  --blue-animation-color: #747474;
-
-  --yellow-bg-color: #ffffff;
-  --yellow-inactive-color: #837d3d;
-  --yellow-inset-color: #000000;
-  --yellow-animation-color: #747474;
+  --blue-bg-color: #24E0FF;
+  --blue-bg-color-inactive: #006;
+  --blue-animation-color: #24E0FF;
+  --blue-inset-color: #026780;
 
   --white-bg-color: #ffffff;
-  --white-inactive-color: #837d3d;
+  --white-bg-color-inactive: #837d3d;
   --white-inset-color: #000000;
   --white-animation-color: #747474;
+}
+
+@media (min-width: 1100px) {
+  :root {
+    --led-width: 3vw;
+    --led-height: 3vw;
+    --led-box-margin: 2vw;
+
+    --gauge-box-margin: 5% 20%;
+    --gauge-box-margin-2: 5% 40% 3% 40%;
+
+    --led-container-margin: 15%;
+
+    --accordion-padding: 0% 15% 2% 15%;
+  }
+}
+
+@media (max-width: 1100px) {
+  :root {
+    --led-width: 4vw;
+    --led-height: 4vw;
+    --led-box-margin: 3vw;
+
+    --gauge-box-margin: 5% 10%;
+    --gauge-box-margin-2: 5% 37% 3% 37%;
+
+    --led-container-margin: 15%;
+
+    --accordion-padding: 0% 10% 2% 10%;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --led-width: 6vw;
+    --led-height: 6vw;
+
+    --led-box-margin: 5vw;
+
+    --gauge-box-margin: 5%;
+    --gauge-box-margin-2: 5% 30%;
+
+    --led-container-margin: 15%;
+
+    --accordion-padding: 0% 5% 2% 5%;
+  }
 }
 
 
@@ -41,7 +82,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 20px;
+  margin: var(--gauge-box-margin);
+  background-size: cover;
+  background: rgb(49, 49, 49);
 }
 
 .gauge-box p {
@@ -51,24 +94,27 @@
 }
 
 .led-container {
-  background-size: cover;
-  background: rgb(49, 49, 49);
-  padding: 20px 0px;
+  display: flex;
+  direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2% 0px;
+  height: 80%;
+  width: 10%;
 }
 
 .led-box {
-  height: auto;
   width: 25%;
-  margin: 20px 0;
+  margin: var(--led-box-margin);
 }
 
 .led-red-blink {
   margin: 0 auto;
-  width: 24px;
-  height: 24px;
-  background-color: #F00;
+  width: var(--led-width);
+  height: var(--led-height);
+  background-color: var(--red-bg-color);
   border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #3f1212 0 -1px 9px, #F00 0 2px 14px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset var(--red-animation-color) 0 -1px 9px, var(--red-bg-color) 0 2px 14px;
   -webkit-animation: blinkRed 0.5s infinite;
   -moz-animation: blinkRed 1s infinite;
   -ms-animation: blinkRed 1s infinite;
@@ -78,202 +124,104 @@
 
 .led-red-active {
   margin: 0 auto;
-  width: 24px;
-  height: 24px;
-  background-color: #F00;
+  width: var(--led-width);
+  height: var(--led-height);
+  background-color: var(--red-bg-color);
   border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #3f1212 0 -1px 9px, #F00 0 2px 14px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset var(--red-animation-color) 0 -1px 9px, var(--red-bg-color) 0 2px 14px;
 }
 
 .led-red-inactive {
   margin: 0 auto;
-  width: 24px;
-  height: 24px;
-  background-color: rgb(156, 0, 0);
+  width: var(--led-width);
+  height: var(--led-height);
+  background-color: var(--red-bg-color-inactive);
   border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #3f1212 0 -1px 9px, #F00 0 2px 14px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset var(--red-animation-color) 0 -1px 9px, var(--red-bg-color) 0 2px 14px;
 }
 
 @-webkit-keyframes blinkRed {
   from {
-    background-color: #F00;
+    background-color: var(--red-bg-color);
   }
 
   50% {
-    background-color: #3f1212;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #a71919 0 -1px 9px, #F00 0 2px 0;
+    background-color: var(--red-animation-color);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset var(--red-inset-color) 0 -1px 9px, var(--red-bg-color) 0 2px 0;
   }
 
   to {
-    background-color: #F00;
+    background-color: var(--red-bg-color);
   }
 }
 
 @-moz-keyframes blinkRed {
   from {
-    background-color: #F00;
+    background-color: var(--red-bg-color);
   }
 
   50% {
-    background-color: #3f1212;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #a71919 0 -1px 9px, #F00 0 2px 0;
+    background-color: var(--red-animation-color);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset var(--red-inset-color) 0 -1px 9px, var(--red-bg-color) 0 2px 0;
   }
 
   to {
-    background-color: #F00;
+    background-color: var(--red-bg-color);
   }
 }
 
 @-ms-keyframes blinkRed {
   from {
-    background-color: #F00;
+    background-color: var(--red-bg-color);
   }
 
   50% {
-    background-color: #3f1212;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #a71919 0 -1px 9px, #F00 0 2px 0;
+    background-color: var(--red-animation-color);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset var(--red-inset-color) 0 -1px 9px, var(--red-bg-color) 0 2px 0;
   }
 
   to {
-    background-color: #F00;
+    background-color: var(--red-bg-color);
   }
 }
 
 @-o-keyframes blinkRed {
   from {
-    background-color: #F00;
+    background-color: var(--red-bg-color);
   }
 
   50% {
-    background-color: #3f1212;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #a71919 0 -1px 9px, #F00 0 2px 0;
+    background-color: var(--red-animation-color);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset var(--red-inset-color) 0 -1px 9px, var(--red-bg-color) 0 2px 0;
   }
 
   to {
-    background-color: #F00;
+    background-color: var(--red-bg-color);
   }
 }
 
 @keyframes blinkRed {
   from {
-    background-color: #F00;
+    background-color: var(--red-bg-color);
   }
 
   50% {
-    background-color: #3f1212;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #a71919 0 -1px 9px, #F00 0 2px 0;
+    background-color: var(--red-animation-color);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset var(--red-inset-color) 0 -1px 9px, var(--red-bg-color) 0 2px 0;
   }
 
   to {
-    background-color: #F00;
-  }
-}
-
-.led-yellow-active {
-  margin: 0 auto;
-  width: 24px;
-  height: 24px;
-  background-color: #FF0;
-  border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #FF0 0 2px 12px;
-  -webkit-animation: blinkYellow 1s infinite;
-  -moz-animation: blinkYellow 1s infinite;
-  -ms-animation: blinkYellow 1s infinite;
-  -o-animation: blinkYellow 1s infinite;
-  animation: blinkYellow 1s infinite;
-}
-
-.led-yellow-inactive {
-  margin: 0 auto;
-  width: 24px;
-  height: 24px;
-  background-color: #AA0;
-  border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #FF0 0 2px 12px;
-}
-
-@-webkit-keyframes blinkYellow {
-  from {
-    background-color: #FF0;
-  }
-
-  50% {
-    background-color: #AA0;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #FF0 0 2px 0;
-  }
-
-  to {
-    background-color: #FF0;
-  }
-}
-
-@-moz-keyframes blinkYellow {
-  from {
-    background-color: #FF0;
-  }
-
-  50% {
-    background-color: #AA0;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #FF0 0 2px 0;
-  }
-
-  to {
-    background-color: #FF0;
-  }
-}
-
-@-ms-keyframes blinkYellow {
-  from {
-    background-color: #FF0;
-  }
-
-  50% {
-    background-color: #AA0;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #FF0 0 2px 0;
-  }
-
-  to {
-    background-color: #FF0;
-  }
-}
-
-@-o-keyframes blinkYellow {
-  from {
-    background-color: #FF0;
-  }
-
-  50% {
-    background-color: #AA0;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #FF0 0 2px 0;
-  }
-
-  to {
-    background-color: #FF0;
-  }
-}
-
-@keyframes blinkYellow {
-  from {
-    background-color: #FF0;
-  }
-
-  50% {
-    background-color: #AA0;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #FF0 0 2px 0;
-  }
-
-  to {
-    background-color: #FF0;
+    background-color: var(--red-bg-color)0;
   }
 }
 
 .led-blue-blink {
   margin: 0 auto;
-  width: 24px;
-  height: 24px;
-  background-color: #24E0FF;
+  width: var(--led-width);
+  height: var(--led-height);
+  background-color: var(--blue-bg-color);
   border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #006 0 -1px 9px, #24E0FF 0 2px 14px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset var(--blue-bg-color-inactive) 0 -1px 9px, var(--blue-bg-color) 0 2px 14px;
   -webkit-animation: blinkBlue 1s infinite;
   -moz-animation: blinkBlue 1s infinite;
   -ms-animation: blinkBlue 1s infinite;
@@ -283,101 +231,101 @@
 
 .led-blue-active {
   margin: 0 auto;
-  width: 24px;
-  height: 24px;
+  width: var(--led-width);
+  height: var(--led-height);
   background-color: #24E0FF;
   border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #006 0 -1px 9px, #24E0FF 0 2px 14px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset var(--blue-bg-color-inactive) 0 -1px 9px, var(--blue-bg-color) 0 2px 14px;
 }
 
 .led-blue-inactive {
   margin: 0 auto;
-  width: 24px;
-  height: 24px;
-  background-color: #006;
+  width: var(--led-width);
+  height: var(--led-height);
+  background-color: var(--blue-bg-color-inactive);
   border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #006 0 -1px 9px, #24E0FF 0 2px 14px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset var(--blue-bg-color-inactive) 0 -1px 9px, var(--blue-bg-color) 0 2px 14px;
 }
 
 @-webkit-keyframes blinkBlue {
   from {
-    background-color: #24E0FF;
+    background-color: var(--blue-bg-color);
   }
 
   50% {
-    background-color: #006;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #026780 0 -1px 9px, #24E0FF 0 2px 0;
+    background-color: var(--blue-bg-color-inactive);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset var(--blue-inset-color) 0 -1px 9px, var(--blue-animation-color) 0 2px 0;
   }
 
   to {
-    background-color: #24E0FF;
+    background-color: var(--blue-bg-color);
   }
 }
 
 @-moz-keyframes blinkBlue {
   from {
-    background-color: #24E0FF;
+    background-color: var(--blue-bg-color);
   }
 
   50% {
     background-color: #006;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #026780 0 -1px 9px, #24E0FF 0 2px 0;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset var(--blue-inset-color) 0 -1px 9px, var(--blue-animation-color) 0 2px 0;
   }
 
   to {
-    background-color: #24E0FF;
+    background-color: var(--blue-bg-color);
   }
 }
 
 @-ms-keyframes blinkBlue {
   from {
-    background-color: #24E0FF;
+    background-color: var(--blue-bg-color);
   }
 
   50% {
-    background-color: #006;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #026780 0 -1px 9px, #24E0FF 0 2px 0;
+    background-color: var(--blue-bg-color-inactive);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset var(--blue-inset-color) 0 -1px 9px, var(--blue-animation-color) 0 2px 0;
   }
 
   to {
-    background-color: #24E0FF;
+    background-color: var(--blue-bg-color);
   }
 }
 
 @-o-keyframes blinkBlue {
   from {
-    background-color: #24E0FF;
+    background-color: var(--blue-bg-color);
   }
 
   50% {
-    background-color: #006;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #026780 0 -1px 9px, #24E0FF 0 2px 0;
+    background-color: var(--blue-bg-color-inactive);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset var(--blue-inset-color) 0 -1px 9px, var(--blue-animation-color) 0 2px 0;
   }
 
   to {
-    background-color: #24E0FF;
+    background-color: var(--blue-bg-color);
   }
 }
 
 @keyframes blinkBlue {
   from {
-    background-color: #24E0FF;
+    background-color: var(--blue-bg-color);
   }
 
   50% {
-    background-color: #006;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #026780 0 -1px 9px, #24E0FF 0 2px 0;
+    background-color: var(--blue-bg-color-inactive);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset var(--blue-inset-color) 0 -1px 9px, var(--blue-animation-color) 0 2px 0;
   }
 
   to {
-    background-color: #24E0FF;
+    background-color: var(--blue-bg-color);
   }
 }
 
 .led-white-blink {
   margin: 0 auto;
-  width: 24px;
-  height: 24px;
+  width: var(--led-width);
+  height: var(--led-height);
   background-color: var(--white-bg-color);
   border-radius: 50%;
   box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, var(--white-inset-color) 0 -1px 9px, var(--white-inset-color) 0 2px 14px;
@@ -390,8 +338,8 @@
 
 .led-white-active {
   margin: 0 auto;
-  width: 24px;
-  height: 24px;
+  width: var(--led-width);
+  height: var(--led-height);
   background-color: var(--white-bg-color);
   border-radius: 50%;
   box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset var(--white-inset-color) 0 -1px 9px, var(--white-inset-color) 0 2px 14px;
@@ -399,9 +347,9 @@
 
 .led-white-inactive {
   margin: 0 auto;
-  width: 24px;
-  height: 24px;
-  background-color: var(--white-inactive-color);
+  width: var(--led-width);
+  height: var(--led-height);
+  background-color: var(--white-bg-color-inactive);
   border-radius: 50%;
   box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset var(--white-inset-color) 0 -1px 9px, var(--white-inset-color) 0 2px 14px;
 }

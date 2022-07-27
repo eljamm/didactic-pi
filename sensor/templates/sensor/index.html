@@ -4,31 +4,26 @@
 <!-- === Title === -->
 {% block title %} Raspberry Pi {% endblock %}
 
-<!-- === Head === -->
-{% block content-head %}
-<link rel="stylesheet" href="{% static 'sensor/css/index.css' %}">
-{% endblock %}
-
 <!-- === Body === -->
 {% block content %}
 
 <div class="btn-container">
     <div class="btn-raspi">
-        <a class="btn btn-success btn-sm" href="/add-pi/" role="button">
+        <a class="btn btn-success btn-lg" href="/add-pi/" role="button">
             <img src="{% static 'sensor/images/icons/plus.svg' %}" width="30" height="24" alt="add-pi"
                 style="filter: invert(85%); margin: 5px 0px;" class="icon">
             Add Device
         </a>
     </div>
     <div class="btn-raspi">
-        <a class="btn btn-dark btn-sm" href="#" role="button">
+        <a class="btn btn-dark btn-lg" href="#" role="button">
             <img src="{% static 'sensor/images/icons/edit-2.svg' %}" width="28" height="22" alt="remove-pi"
                 style="filter: invert(85%); margin: 5px 0px;" class="icon">
             Modify Device
         </a>
     </div>
     <div class="btn-raspi">
-        <a class="btn btn-danger btn-sm" href="/remove-pi/" role="button">
+        <a class="btn btn-danger btn-lg" href="/remove-pi/" role="button">
             <img src="{% static 'sensor/images/icons/minus.svg' %}" width="30" height="24" alt="remove-pi"
                 style="filter: invert(85%); margin: 5px 0px;" class="icon">
             Remove Device

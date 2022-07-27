@@ -1,3 +1,13 @@
+{% load static %}
+
+<h1 class="display-2 px-5 py-3">Wiring Schematic</h1>
+
+<div class="d-flex justify-content-center align-items-center flex-column" style="padding: var(--img-wiring-padding)">
+    <img class="img-cover" src="{% static 'sensor/images/wiring/dht11.svg' %}" alt="LED Matrix Wiring">
+</div>
+
+<h1 class="display-2 px-5 py-3">Display Panel</h1>
+
 <div class="gauge-container">
     <div class="gauge-box">
         <canvas id="temperaure" class="gauge" style="width: auto; height: 80%;"></canvas>

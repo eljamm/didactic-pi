@@ -13,6 +13,12 @@
 {{ sensor_name|json_script:"sensor-name" }}
 {{ extra_function|json_script:"extra-function" }}
 
+<div class="alert alert-primary alert-dismissible fade show" role="alert">
+    <p class="lead my-2">Check out the Raspberry Pi <a href="/pinout" class="alert-link">pinout page</a> for pin
+        numbers.</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
 {% make_list "gauge, lcd" as extra_list %}
 {% if extra_function in extra_list %}
     {% if extra_function == "gauge" %}
