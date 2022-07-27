@@ -50,6 +50,18 @@ class DHT11:
         except (RuntimeError, TypeError) as error:
             self.logger.warning(error.args[0])
             sleep(2.0)
+    
+    def processDHT_LCD(self, lcd, delay):
+        json_file = self.readDHT()
+
+        if not len(json_file) == 0:
+            temp = json_file['temp']
+            temp_f = temp * (9 / 5) + 32
+            hum = json_file['hum']
+
+            lcd.clear()
+            lcd.display(f"T: {temp} C | {temp_f} F\nH: {hum} %")
+            sleep(delay)
 
 
 if __name__ == "__main__":
