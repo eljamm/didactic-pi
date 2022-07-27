@@ -2,9 +2,16 @@
 
 <link rel="stylesheet" href="{% static 'sensor/css/leds.css' %}">
 
+<h1 class="display-2 px-5 py-3">Wiring Schematic</h1>
+
+<div class="d-flex justify-content-center align-items-center flex-column" style="padding: var(--img-wiring-padding)">
+    <img class="img-cover" src="{% static 'sensor/images/wiring/lcd.svg' %}" alt="LED Matrix Wiring">
+</div>
+
+<h1 class="display-2 px-5 py-3">Control Panel</h1>
+
 <div class="d-flex p-2 align-content-center justify-content-center" style="margin: 20px;">
     <div class="d-inline-flex p-2 flex-column log-container">
-        <textarea id="lcd-data-log" cols="100" rows="10" style="border:solid 2px;" readonly></textarea><br>
         <input id="lcd-data-message-input" type="text" size="100" style="border:solid 2px; margin-top: 20px;"><br>
         <div class="card-container">
             <input class="d-flex align-self-start" id="lcd-data-message-submit" type="button" value="Send"

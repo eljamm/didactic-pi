@@ -16,11 +16,6 @@ window.onload = function () {
     dataSocket.onmessage = function (e) {
         const data = JSON.parse(e.data);
         console.log(data);
-
-        // Don't log control messages to the debugging textfield
-        if (!data.message_type === "command") {
-            document.querySelector('#lcd-data-log').value += (data.message + '\n');
-        }
     };
 
     dataSocket.onopen = function (e) {
@@ -62,8 +57,14 @@ window.onload = function () {
     };
 
     document.querySelector('#lcd-clear-textarea').onclick = function (e) {
-        const dataLogDom = document.querySelector('#lcd-data-log');
+        const dataLogDom = document.querySelector('#lcd-data-message-input');
         dataLogDom.value = '';
+
+        dataSocket.send(JSON.stringify({
+            'sensor': sensorName,
+            'message': '',
+            'message_type': 'data'
+        }));
     };
 
     if (debug === true) {

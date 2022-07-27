@@ -3,8 +3,10 @@ window.onload = function () {
     const piName = JSON.parse(document.getElementById('pi-name').textContent);
     const sensorName = JSON.parse(document.getElementById('sensor-name').textContent);
     const extraFunction = JSON.parse(document.getElementById('extra-function').textContent);
-
-    if (extraFunction === "gauge") { createGauge() }
+    
+    if (extraFunction === "gauge") {
+        var [gauge_temp, gauge_hum] = createGauge();
+    };
 
     const dataSocket = new WebSocket(
         'ws://'

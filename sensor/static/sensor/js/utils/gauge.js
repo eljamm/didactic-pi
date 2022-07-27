@@ -50,4 +50,6 @@ function createGauge() {
     gauge_hum.animationSpeed = 32;
     gauge_hum.set(35); // set start value
     gauge_hum.setTextField(document.getElementById("humid-text"));
+
+    return [gauge_temp, gauge_hum];
 }
