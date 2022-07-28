@@ -7,30 +7,26 @@
 <!-- === Body === -->
 {% block content %}
 
+<!-- Button Group -->
 <div class="btn-container">
-    <div class="btn-raspi">
-        <a class="btn btn-success btn-lg" href="/add-pi/" role="button">
-            <img src="{% static 'sensor/images/icons/plus.svg' %}" width="30" height="24" alt="add-pi"
-                style="filter: invert(85%); margin: 5px 0px;" class="icon">
-            Add Device
-        </a>
-    </div>
-    <div class="btn-raspi">
-        <a class="btn btn-dark btn-lg" href="#" role="button">
-            <img src="{% static 'sensor/images/icons/edit-2.svg' %}" width="28" height="22" alt="remove-pi"
-                style="filter: invert(85%); margin: 5px 0px;" class="icon">
-            Modify Device
-        </a>
-    </div>
-    <div class="btn-raspi">
-        <a class="btn btn-danger btn-lg" href="/remove-pi/" role="button">
-            <img src="{% static 'sensor/images/icons/minus.svg' %}" width="30" height="24" alt="remove-pi"
-                style="filter: invert(85%); margin: 5px 0px;" class="icon">
-            Remove Device
-        </a>
-    </div>
+    <a class="btn btn-success btn-lg btn-raspi" href="/add-pi/" role="button">
+        <img src="{% static 'sensor/images/icons/plus.svg' %}" width="30" height="24" alt="add-pi"
+            style="filter: invert(85%); margin: 5px 0px;" class="icon">
+        Add Device
+    </a>
+    <a class="btn btn-dark btn-lg btn-raspi" href="/modify-pi/" role="button">
+        <img src="{% static 'sensor/images/icons/edit-2.svg' %}" width="28" height="22" alt="remove-pi"
+            style="filter: invert(85%); margin: 5px 0px;" class="icon">
+        Modify Device
+    </a>
+    <a class="btn btn-danger btn-lg btn-raspi" href="/remove-pi/" role="button">
+        <img src="{% static 'sensor/images/icons/minus.svg' %}" width="30" height="24" alt="remove-pi"
+            style="filter: invert(85%); margin: 5px 0px;" class="icon">
+        Remove Device
+    </a>
 </div>
 
+<!-- Card Group -->
 <div class="row row-cols-1 row-cols-md-4 g-4 grid-container">
     {% for item in raspi %}
     <div class="col">

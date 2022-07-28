@@ -3,8 +3,8 @@
 {% load range_iterator %}
 {% make_list "gauge, lcd" as extra_list %}
 
+<!-- Card Group -->
 <div class="row row-cols-1 row-cols-md-4 g-4 grid-container">
-
     {% for item in extra_list %}
     <div class="col">
         <div class="card card-container text-center h-100" onclick="var current_path=location['pathname'];
@@ -30,5 +30,4 @@
         </div>
     </div>
     {% endfor %}
-
 </div>

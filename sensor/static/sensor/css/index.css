@@ -1,5 +1,41 @@
+@media (min-width: 1100px) {
+    :root {
+        --modal-padding-top: 3%;
+        --form-raspi-padding: 1% 20% 1% 20%;
+    }
+}
+
+@media (max-width: 1100px) {
+    :root {
+        --modal-padding-top: 4%;
+        --form-raspi-padding: 2% 15% 1% 15%;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --modal-padding-top: 15%;
+        --form-raspi-padding: 4% 10% 2% 10%;
+    }
+}
+
 .alert {
     margin: 2% 5%;
+}
+
+.modal {
+    padding-top: var(--modal-padding-top);
+}
+
+.form-raspi {
+    padding: var(--form-raspi-padding);
+}
+
+.flex-container-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .btn-data {
@@ -20,11 +56,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 3% 10% 0% 10%;
+    padding: 3% 10% 2% 10%;
 }
 
 .grid-container {
-    padding: 40px
+    padding: 2% 40px 40px 40px;
 }
 
 .card-img-top {
@@ -49,16 +85,28 @@
 }
 
 @media (max-width: 1100px) {
+    .form-raspi {
+        padding: 2% 15% 1% 15%;
+    }
+
     .btn-data {
         width: 15%;
     }
 
     .btn-raspi {
-        margin: 0% 4%;
+        margin: 0% 3%;
     }
 }
 
 @media (max-width: 480px) {
+    .alert {
+        margin: 5% 10%;
+    }
+
+    .form-raspi {
+        padding: 4% 10% 2% 10%;
+    }
+
     .btn-data {
         width: 20%;
         margin: 2% 2% 2% 2%;

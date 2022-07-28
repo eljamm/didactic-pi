@@ -1,13 +1,16 @@
 {% extends 'sensor/base.html' %}
 {% load static %}
 
-{% block title %} Add Raspberry Pi {% endblock %}
+<!-- === Title === -->
+{% block title %} Remove Raspberry Pi {% endblock %}
 
+<!-- === Head === -->
 {% block content-head %}
 <script type="application/javascript" src="{% static 'sensor/js/remove-pi.js' %}"></script>
 <script type="application/javascript" src="{% static 'sensor/js/third-party/js.cookie.min.js' %}"></script>
 {% endblock %}
 
+<!-- === Body === -->
 {% block content %}
 
 <div class="row row-cols-1 row-cols-md-4 g-4 grid-container">
