@@ -10,7 +10,7 @@ from .models import Raspi, Sensor
 
 
 def index(request):
-    raspi = Raspi.objects.all()
+    raspi = Raspi.objects.all().order_by('name')
     return render(request, 'sensor/index.html', {
         'raspi': raspi,
     })
@@ -39,11 +39,37 @@ def add_pi(request):
     else:
         form = AddRaspi()
 
-    return render(request, 'sensor/raspberry/add-pi.html', {'form': form})
+    return render(request, 'sensor/raspberry/add-pi.html', {
+        'form': form
+    })
+
+
+def modify_pi(request):
+    raspi = Raspi.objects.all().order_by('name')
+    form = AddRaspi()
+
+    if request.method == "POST":
+        body = json.loads(request.body)
+
+        raspi_id = body["raspi_id"]
+        raspi_name = body["raspi_name"]
+        raspi_address = body["raspi_address"]
+
+        pi = Raspi.objects.get(id=raspi_id)
+
+        pi.name = raspi_name
+        pi.address = raspi_address
+
+        pi.save()
+
+    return render(request, 'sensor/raspberry/modify-pi.html', {
+        'form': form,
+        'raspi': raspi,
+    })
 
 
 def remove_pi(request):
-    raspi = Raspi.objects.all()
+    raspi = Raspi.objects.all().order_by('name')
 
     if request.method == "POST":
         body = json.loads(request.body)
@@ -63,7 +89,7 @@ def pinout(request):
 
 
 def pi_name(request, pi_name):
-    raspi = Raspi.objects.all()
+    raspi = Raspi.objects.all().order_by('name')
     pi_list = [x.name for x in raspi]
     sensors = ["dht11", "ultrasonic", "8x8matrix", "buzzer",
                "relay", "lcd", "7segment", "ledarray", "joystick"]

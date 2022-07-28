@@ -1,0 +1,71 @@
+{% extends 'sensor/base.html' %}
+{% load static %}
+
+<!-- === Title === -->
+{% block title %} Modify Raspberry Pi {% endblock %}
+
+<!-- === Head === -->
+{% block content-head %}
+<script type="application/javascript" src="{% static 'sensor/js/modify-pi.js' %}"></script>
+<script type="application/javascript" src="{% static 'sensor/js/third-party/js.cookie.min.js' %}"></script>
+{% endblock %}
+
+<!-- === Body === -->
+{% block content %}
+
+<!-- Alert -->
+<div class="alert alert-info" role="alert">
+    <p class="my-2" style="font-family: bold;">
+        Click on a device's icon to modify it.
+    </p>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modifyModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel"><strong>Modify Device</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {% for field in form %}
+                <div class="input-group mb-3 form-raspi">
+                    <span class="input-group-text"
+                        id="basic-addon-{{field.id_for_label}}"><strong>{{ field.label|title }}</strong></span>
+                    <input type="{{ field.field.widget.input_type }}" class="form-control form-control-lg"
+                        id="{{ field.id_for_label }}" name="{{ field.name }}" {% if field.name == "address" %}
+                        pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" {% else %}
+                        {% endif %} required />
+                </div>
+                {% endfor %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="modifyPi">Confirm</button>
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Card Group -->
+<div class="row row-cols-1 row-cols-md-4 g-4 grid-container">
+    {% for item in raspi %}
+    <div class="col">
+        <form action="POST">
+            {% csrf_token %}
+            <div class="card card-container text-center h-100" style="cursor: pointer;"
+                onclick="location.href='javascript:analyzeText(\'{{item.id}}\', \'{{item.name}}\', \'{{item.address}}\')';">
+                <img src="{% static 'sensor/images/icons/raspberry_logo.svg' %}" class="card-img-top img-raspberry"
+                    alt="{{item.name}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.name}}</h5>
+                    <p class="card-text" style="padding-bottom: 20px;">{{item.address}}</p>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
