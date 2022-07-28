@@ -1,20 +1,30 @@
-function analyzeText(pi_name) {
+function analyzeText(raspi_id, raspi_name) {
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     var requestBody = JSON.stringify({
-        pi_name: pi_name
+        raspi_id: raspi_id,
+        raspi_name: raspi_name
     });
-    const request = new Request(
-        '/remove-pi/',
-        {
-            method: 'POST',
-            headers: { 'X-CSRFToken': csrftoken },
-            mode: 'same-origin', // Do not send CSRF token to another domain.
-            body: requestBody
-        }
-    )
-    fetch(request).then(function (response) {
-        // console.log(response);
-        window.location.href = "/"
-    });
-    // console.log(request);
+
+    const myModal = new bootstrap.Modal('#deleteModal', {
+        keyboard: false
+    })
+
+    const modalToggle = document.getElementById('deleteModal'); myModal.show(modalToggle)
+
+    document.querySelector('#deletePi').onclick = function (e) {
+        const request = new Request(
+            '/remove-pi/',
+            {
+                method: 'POST',
+                headers: { 'X-CSRFToken': csrftoken },
+                mode: 'same-origin', // Do not send CSRF token to another domain.
+                body: requestBody
+            }
+        )
+        console.log(request);
+
+        fetch(request).then(function (response) {
+            window.location.href = "/remove-pi/"
+        });
+    };
 }

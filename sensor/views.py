@@ -73,11 +73,11 @@ def remove_pi(request):
 
     if request.method == "POST":
         body = json.loads(request.body)
-        name = body["pi_name"]
-        pi = Raspi.objects.get(name=name)
-        pi.delete()
+        raspi_name = body["raspi_name"]
+        raspi_id = body["raspi_id"]
 
-        return HttpResponseRedirect("/")
+        pi = Raspi.objects.get(id=raspi_id, name=raspi_name)
+        pi.delete()
 
     return render(request, 'sensor/raspberry/remove-pi.html', {
         'raspi': raspi,

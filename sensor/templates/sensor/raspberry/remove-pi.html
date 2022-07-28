@@ -13,15 +13,42 @@
 <!-- === Body === -->
 {% block content %}
 
+<!-- Alert -->
+<div class="alert alert-warning" role="alert">
+    <p class="my-2">
+        Click on a device's icon to remove it. <strong>(Cannot be undone!)</strong>
+    </p>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel"><strong>Remove Device</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Removed devices cannot be recovered, are you sure ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="deletePi">Confirm</button>
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Card Group -->
 <div class="row row-cols-1 row-cols-md-4 g-4 grid-container">
     {% for item in raspi %}
     <div class="col">
         <form action="POST">
             {% csrf_token %}
-            <div class="card card-container text-center h-100"
-                onclick="location.href='javascript:analyzeText(\'{{item.name}}\')';" style="cursor: pointer;">
-                <img src="{% static 'sensor/images/icons/Raspberry_Pi_Logo.svg' %}" class="card-img-top"
-                    alt="{{item.name}}" style="padding: 40px 50px 20px 50px; width: 80%; height: auto;">
+            <div class="card card-container text-center h-100" style="cursor: pointer;"
+                onclick="location.href='javascript:analyzeText(\'{{item.id}}\', \'{{item.name}}\')';">
+                <img src="{% static 'sensor/images/icons/raspberry_logo.svg' %}" class="card-img-top img-raspberry"
+                    alt="{{item.name}}">
                 <div class="card-body">
                     <h5 class="card-title">{{item.name}}</h5>
                     <p class="card-text" style="padding-bottom: 20px;">{{item.address}}</p>
