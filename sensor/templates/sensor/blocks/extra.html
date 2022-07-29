@@ -1,0 +1,38 @@
+{% load static %}
+
+<!-- Card Group -->
+<div class="row row-cols-1 row-cols-md-4 g-4 grid-container">
+    {% for item in extra_list %}
+    <div class="col">
+        <div class="card card-container text-center h-100" onclick="var current_path=location['pathname'];
+            location.href=current_path+'{{item}}/';" style="cursor: pointer;">
+            <img src="{% static 'sensor/images/sensors/' %}{{sensor_name}}/{{item}}.svg" class="card-img-top img-{{item}}"
+                alt="{{sensor_name}}-{{item}}">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {% if item == "gauge" %}
+                        Gauge
+                    {% elif item == "lcd" %}
+                        LCD Display
+                    {% elif item == "shape" %}
+                        Shape
+                    {% elif item == "dpad" %}
+                        Directional Pad
+                    {% endif %}
+                </h5>
+                <p class="card-text" style="padding-bottom: 20px;">
+                    {% if item == "gauge" %}
+                        Read data from DHT11 sensor and display them in a gauge.
+                    {% elif item == "lcd" %}
+                        Display DHT11 data on an LCD screen.
+                    {% elif item == "shape" %}
+                        Draw and display a shape on the 8x8 LED matrix.
+                    {% elif item == "dpad" %}
+                        Use a directional pad to control a pixel on the screen.
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>

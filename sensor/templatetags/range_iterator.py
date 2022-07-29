@@ -9,6 +9,6 @@ def iterate_over(n: int) -> range:
 
 
 @register.simple_tag
-def make_list(extra: str) -> list:
-    list = extra.split(", ")
+def make_list(extras: str) -> list:
+    list = extras.split(", ")
     return list
