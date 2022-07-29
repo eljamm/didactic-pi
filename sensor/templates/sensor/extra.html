@@ -13,7 +13,7 @@
 {{ debug|json_script:"debug" }}
 {{ pi_name|json_script:"pi-name" }}
 {{ sensor_name|json_script:"sensor-name" }}
-{{ extra_function|json_script:"extra-function" }}
+{{ extra|json_script:"extra-function" }}
 
 <!-- Alert -->
 <div class="alert alert-primary alert-dismissible fade show" role="alert">
@@ -23,9 +23,9 @@
 </div>
 
 <!-- Extra Page -->
-{% make_list "gauge, lcd" as extra_list %}
-{% if extra_function in extra_list %}
-    {% if extra_function == "gauge" %}
+{% make_list "gauge, lcd, shape, dpad" as extra_list %} 
+{% if extra in extra_list %}
+    {% if extra == "gauge" %}
         <script src="{% static 'sensor/js/third-party/gauge/gauge.min.js' %}"></script>
         <script src="{% static 'sensor/js/utils/gauge.js' %}"></script>
     {% endif %}

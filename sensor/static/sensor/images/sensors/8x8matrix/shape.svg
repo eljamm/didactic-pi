@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 284.12 284.12"
+   version="1.1"
+   id="svg140"
+   sodipodi:docname="shape.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="namedview142"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     showgrid="false"
+     inkscape:zoom="1.3688186"
+     inkscape:cx="134.42249"
+     inkscape:cy="119.81135"
+     inkscape:window-width="1366"
+     inkscape:window-height="708"
+     inkscape:window-x="0"
+     inkscape:window-y="19"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="flat" />
+  <defs
+     id="defs4">
+    <style
+       id="style2">.cls-1{fill:#414042;}.cls-2{fill:#fff;}</style>
+  </defs>
+  <title
+     id="title6">8_8_led_matrix_display_unit</title>
+  <g
+     id="Layer_2"
+     data-name="Layer 2">
+    <g
+       id="flat">
+      <rect
+         class="cls-1"
+         width="284.12"
+         height="284.12"
+         id="rect8" />
+      <circle
+         class="cls-2"
+         cx="25.91"
+         cy="25.91"
+         r="11.16"
+         id="circle10"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="59.1"
+         cy="25.91"
+         r="11.16"
+         id="circle12"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="92.28"
+         cy="25.91"
+         r="11.16"
+         id="circle14"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="125.47"
+         cy="25.91"
+         r="11.16"
+         id="circle16" />
+      <circle
+         class="cls-2"
+         cx="158.65"
+         cy="25.91"
+         r="11.16"
+         id="circle18" />
+      <circle
+         class="cls-2"
+         cx="191.84"
+         cy="25.91"
+         r="11.16"
+         id="circle20"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="225.02"
+         cy="25.91"
+         r="11.16"
+         id="circle22"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="258.2"
+         cy="25.91"
+         r="11.16"
+         id="circle24"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="25.91"
+         cy="59.1"
+         r="11.16"
+         id="circle26"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="59.1"
+         cy="59.1"
+         r="11.16"
+         id="circle28"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="92.28"
+         cy="59.1"
+         r="11.16"
+         id="circle30" />
+      <circle
+         class="cls-2"
+         cx="125.47"
+         cy="59.1"
+         r="11.16"
+         id="circle32" />
+      <circle
+         class="cls-2"
+         cx="158.65"
+         cy="59.1"
+         r="11.16"
+         id="circle34" />
+      <circle
+         class="cls-2"
+         cx="191.84"
+         cy="59.1"
+         r="11.16"
+         id="circle36" />
+      <circle
+         class="cls-2"
+         cx="225.02"
+         cy="59.1"
+         r="11.16"
+         id="circle38"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="258.2"
+         cy="59.1"
+         r="11.16"
+         id="circle40"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="25.91"
+         cy="92.28"
+         r="11.16"
+         id="circle42"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="59.1"
+         cy="92.28"
+         r="11.16"
+         id="circle44" />
+      <circle
+         class="cls-2"
+         cx="92.28"
+         cy="92.28"
+         r="11.16"
+         id="circle46" />
+      <circle
+         class="cls-2"
+         cx="125.47"
+         cy="92.28"
+         r="11.16"
+         id="circle48" />
+      <circle
+         class="cls-2"
+         cx="158.65"
+         cy="92.28"
+         r="11.16"
+         id="circle50" />
+      <circle
+         class="cls-2"
+         cx="191.84"
+         cy="92.28"
+         r="11.16"
+         id="circle52" />
+      <circle
+         class="cls-2"
+         cx="225.02"
+         cy="92.28"
+         r="11.16"
+         id="circle54" />
+      <circle
+         class="cls-2"
+         cx="258.2"
+         cy="92.28"
+         r="11.16"
+         id="circle56"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="25.91"
+         cy="125.47"
+         r="11.16"
+         id="circle58" />
+      <circle
+         class="cls-2"
+         cx="59.1"
+         cy="125.47"
+         r="11.16"
+         id="circle60" />
+      <circle
+         class="cls-2"
+         cx="92.28"
+         cy="125.47"
+         r="11.16"
+         id="circle62" />
+      <circle
+         class="cls-2"
+         cx="125.47"
+         cy="125.47"
+         r="11.16"
+         id="circle64" />
+      <circle
+         class="cls-2"
+         cx="158.65"
+         cy="125.47"
+         r="11.16"
+         id="circle66" />
+      <circle
+         class="cls-2"
+         cx="191.84"
+         cy="125.47"
+         r="11.16"
+         id="circle68" />
+      <circle
+         class="cls-2"
+         cx="225.02"
+         cy="125.47"
+         r="11.16"
+         id="circle70" />
+      <circle
+         class="cls-2"
+         cx="258.2"
+         cy="125.47"
+         r="11.16"
+         id="circle72" />
+      <circle
+         class="cls-2"
+         cx="25.91"
+         cy="158.65"
+         r="11.16"
+         id="circle74" />
+      <circle
+         class="cls-2"
+         cx="59.1"
+         cy="158.65"
+         r="11.16"
+         id="circle76" />
+      <circle
+         class="cls-2"
+         cx="92.28"
+         cy="158.65"
+         r="11.16"
+         id="circle78" />
+      <circle
+         class="cls-2"
+         cx="125.47"
+         cy="158.65"
+         r="11.16"
+         id="circle80" />
+      <circle
+         class="cls-2"
+         cx="158.65"
+         cy="158.65"
+         r="11.16"
+         id="circle82" />
+      <circle
+         class="cls-2"
+         cx="191.84"
+         cy="158.65"
+         r="11.16"
+         id="circle84" />
+      <circle
+         class="cls-2"
+         cx="225.02"
+         cy="158.65"
+         r="11.16"
+         id="circle86" />
+      <circle
+         class="cls-2"
+         cx="258.2"
+         cy="158.65"
+         r="11.16"
+         id="circle88" />
+      <circle
+         class="cls-2"
+         cx="25.91"
+         cy="191.84"
+         r="11.16"
+         id="circle90"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="59.1"
+         cy="191.84"
+         r="11.16"
+         id="circle92" />
+      <circle
+         class="cls-2"
+         cx="92.28"
+         cy="191.84"
+         r="11.16"
+         id="circle94" />
+      <circle
+         class="cls-2"
+         cx="125.47"
+         cy="191.84"
+         r="11.16"
+         id="circle96" />
+      <circle
+         class="cls-2"
+         cx="158.65"
+         cy="191.84"
+         r="11.16"
+         id="circle98" />
+      <circle
+         class="cls-2"
+         cx="191.84"
+         cy="191.84"
+         r="11.16"
+         id="circle100" />
+      <circle
+         class="cls-2"
+         cx="225.02"
+         cy="191.84"
+         r="11.16"
+         id="circle102" />
+      <circle
+         class="cls-2"
+         cx="258.2"
+         cy="191.84"
+         r="11.16"
+         id="circle104"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="25.91"
+         cy="225.02"
+         r="11.16"
+         id="circle106"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="59.1"
+         cy="225.02"
+         r="11.16"
+         id="circle108"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="92.28"
+         cy="225.02"
+         r="11.16"
+         id="circle110" />
+      <circle
+         class="cls-2"
+         cx="125.47"
+         cy="225.02"
+         r="11.16"
+         id="circle112" />
+      <circle
+         class="cls-2"
+         cx="158.65"
+         cy="225.02"
+         r="11.16"
+         id="circle114" />
+      <circle
+         class="cls-2"
+         cx="191.84"
+         cy="225.02"
+         r="11.16"
+         id="circle116" />
+      <circle
+         class="cls-2"
+         cx="225.02"
+         cy="225.02"
+         r="11.16"
+         id="circle118"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="258.2"
+         cy="225.02"
+         r="11.16"
+         id="circle120"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="25.91"
+         cy="258.2"
+         r="11.16"
+         id="circle122"
+         style="fill:#806600" />
+      <circle
+         class="cls-2"
+         cx="59.1"
+         cy="258.2"
+         r="11.16"
+         id="circle124"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="92.28"
+         cy="258.2"
+         r="11.16"
+         id="circle126"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="125.47"
+         cy="258.2"
+         r="11.16"
+         id="circle128" />
+      <circle
+         class="cls-2"
+         cx="158.65"
+         cy="258.2"
+         r="11.16"
+         id="circle130" />
+      <circle
+         class="cls-2"
+         cx="191.84"
+         cy="258.2"
+         r="11.16"
+         id="circle132"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="225.02"
+         cy="258.2"
+         r="11.16"
+         id="circle134"
+         style="fill:#806600;fill-opacity:1" />
+      <circle
+         class="cls-2"
+         cx="258.2"
+         cy="258.2"
+         r="11.16"
+         id="circle136"
+         style="fill:#806600;fill-opacity:1" />
+    </g>
+  </g>
+  <metadata
+     id="metadata13769">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>8_8_led_matrix_display_unit</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>

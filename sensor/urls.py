@@ -11,6 +11,6 @@ urlpatterns = [
     path('<str:pi_name>/', views.pi_name, name='pi_name'),
     path('<str:pi_name>/<str:sensor_name>/',
          views.sensor_name, name='sensor_name'),
-    path('<str:pi_name>/<str:sensor_name>/<str:extra_function>/',
+    path('<str:pi_name>/<str:sensor_name>/<str:extra>/',
          views.sensor_extra, name='sensor_extra'),
 ]

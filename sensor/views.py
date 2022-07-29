@@ -115,12 +115,12 @@ def sensor_name(request, pi_name, sensor_name):
     })
 
 
-def sensor_extra(request, pi_name, sensor_name, extra_function):
+def sensor_extra(request, pi_name, sensor_name, extra):
     debug = settings.DEBUG
     return render(request, 'sensor/extra.html', {
         'debug': debug,
         'pi_name': pi_name,
         'sensor_name': sensor_name,
-        'extra_function': extra_function,
-        'url': f'sensor/sensors/{sensor_name}/{extra_function}.html',
+        'extra': extra,
+        'url': f'sensor/sensors/{sensor_name}/{extra}.html',
     })

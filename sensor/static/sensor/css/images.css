@@ -45,6 +45,7 @@
 }
 
 .img-8x8matrix,
+.img-shape,
 .img-buzzer {
     padding: 10% 15%;
 }
@@ -61,6 +62,7 @@
     padding: 5% 10%;
 }
 
-.img-gauge {
+.img-gauge,
+.img-dpad {
     padding: 10% 15%;
 }

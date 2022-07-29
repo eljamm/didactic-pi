@@ -1,33 +1,3 @@
-{% load static %}
+{% load reusable_blocks %}
 
-{% load range_iterator %}
-{% make_list "gauge, lcd" as extra_list %}
-
-<!-- Card Group -->
-<div class="row row-cols-1 row-cols-md-4 g-4 grid-container">
-    {% for item in extra_list %}
-    <div class="col">
-        <div class="card card-container text-center h-100" onclick="var current_path=location['pathname'];
-            location.href=current_path+'{{item}}/';" style="cursor: pointer;">
-            <img src="{% static 'sensor/images/sensors/dht11/' %}{{item}}.svg" class="card-img-top img-{{item}}"
-                alt="dht11-{{item}}">
-            <div class="card-body">
-                <h5 class="card-title">
-                    {% if item == "gauge" %}
-                        Gauge
-                    {% elif item == "lcd" %}
-                        LCD Display
-                    {% endif %}
-                </h5>
-                <p class="card-text" style="padding-bottom: 20px;">
-                    {% if item == "gauge" %}
-                        Read data from DHT11 sensor and display them in a gauge.
-                    {% elif item == "lcd" %}
-                        Display DHT11 data on an LCD screen.
-                    {% endif %}
-                </p>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
-</div>
+{% show_extras "gauge, lcd" %}
