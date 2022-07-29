@@ -1,9 +1,10 @@
 {% extends 'sensor/sensor.html' %}
 {% load static %}
 {% load range_iterator %}
+{% load reusable_blocks %}
 
 <!-- === Title === -->
-{% block title %} {{ sensor_name|title }} with {{extra_function}} {% endblock %}
+{% block title %} {{ sensor_name|better_title }} with {{ extra|better_title }} {% endblock %}
 
 <!-- === Body === -->
 {% block content %}

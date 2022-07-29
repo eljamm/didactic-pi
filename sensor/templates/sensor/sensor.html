@@ -1,8 +1,9 @@
 {% extends 'sensor/base.html' %}
 {% load static %}
+{% load reusable_blocks %}
 
 <!-- === Title === -->
-{% block title %} {{sensor_name}} {% endblock %}
+{% block title %} {{ sensor_name|better_title }} {% endblock %}
 
 <!-- === Head === -->
 {% block content-head %}
