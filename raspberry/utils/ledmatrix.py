@@ -30,6 +30,10 @@ class Matrix:
                 GPIO.output(col, 0)
             else:
                 GPIO.output(col, 1)
+    
+    def selectPixel(self, x, y):
+        self.selectRow(x)
+        self.selectColumn(y)
 
     def scan(self):
         for i in range(8):
@@ -75,8 +79,8 @@ class Matrix:
 
 
 if __name__ == "__main__":
-    rows = [7, 18, 9, 24, 2, 10, 3, 27]
-    cols = [23, 4, 17, 8, 22, 25, 15, 14]
+    rows = [21, 8, 26, 12, 10, 19, 9, 6]
+    cols = [7, 11, 5, 20, 13, 16, 25, 24]
 
     shape = [
         [1, 1, 1, 1, 1, 1, 1, 1],

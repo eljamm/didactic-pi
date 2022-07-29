@@ -14,9 +14,10 @@ import board
 import coloredlogs
 import digitalio
 import websocket
-from gpiozero import LED
+from gpiozero import LED, Button
 
 from utils.dht11 import DHT11
+from utils.dpad import DirectionPad
 from utils.lcd import LCD
 from utils.ledarray import ArrayLED
 from utils.ledmatrix import Matrix
@@ -41,6 +42,18 @@ def initial_setup():
     mat_cols = [7, 11, 5, 20, 13, 16, 25, 24]
 
     mat8x8 = Matrix(mat_rows, mat_cols)
+
+    # --- D-Pad --- #
+    global dpad
+
+    directions = {
+        'up': Button(4),
+        'left': Button(2),
+        'down': Button(3),
+        'right': Button(17),
+    }
+
+    dpad = DirectionPad(directions, mat8x8)
 
     # --- LED Array --- #
     global array_led
@@ -79,15 +92,20 @@ async def my_receive():
 
 def run(sensor, stop_event):
     t = threading.current_thread()
+
+    # --- Sensor Regex --- #
     reg_dht = re.compile(".*dht11.*")
     reg_lcd = re.compile(".*lcd.*")
+    reg_mat = re.compile(".*8x8matrix.*")
 
     # --- Setup --- #
     if reg_dht.match(sensor):
         dht11 = DHT11(board.D4, logger)
+
     if reg_lcd.match(sensor):
         lcd.on()
-    if sensor == "mt-8x8matrix":
+
+    if reg_mat.match(sensor):
         mat8x8.setup()
 
     while not stop_event.is_set():
@@ -95,25 +113,32 @@ def run(sensor, stop_event):
         if message == "stop" and message_type == "command":
             if reg_dht.match(sensor):
                 dht11.device.exit()
+
             if reg_lcd.match(sensor):
                 lcd.clear()
                 lcd.off()
-            if sensor == "mt-8x8matrix":
+
+            if reg_mat.match(sensor):
                 mat8x8.clearMatrix()
-            elif sensor == "mt-ledarray":
+
+            if sensor == "mt-ledarray":
                 array_led.clear_leds()
+
             sensor = "none"
 
         # --- Process --- #
         try:
             if sensor == "mt-dht11-gauge":
                 dht11.processDHT(ws, 1.5)
-            
+
             elif sensor == "mt-dht11-lcd":
                 dht11.processDHT_LCD(lcd, 2.0)
 
-            elif sensor == "mt-8x8matrix":
+            elif sensor == "mt-8x8matrix-shape":
                 mat8x8.processMatrix(message)
+
+            elif sensor == "mt-8x8matrix-dpad":
+                dpad.processDPAD()
 
             elif sensor == "mt-ledarray":
                 blink_list = array_led.processArray(message)
