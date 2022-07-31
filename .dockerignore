@@ -3,3 +3,10 @@
 .gitignore
 .venv
 .vscode
+docker-compose.yml
+Dockerfile
+dostart
+open-log.sh
+raspberry
+stop-app.sh
+utils
