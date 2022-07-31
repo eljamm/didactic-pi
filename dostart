@@ -1,0 +1,95 @@
+#!/bin/bash
+
+function print_help() {
+  echo \
+'Usage: dostart [OPTION]
+
+Options:
+    -b, --build: Build or rebuild services. Can be combined with --up to build while starting.
+        > docker-compose build
+        
+    -u, --up: Create and start containers. Can be combined with --logs to view logs after starting.
+        > docker-compose up -d
+        > docker-compose up -d --build
+        > docker-compose up -d && docker-compose logs -f -t
+        
+    -d, --down: Stop and remove containers, networks.
+        > docker-compose down
+        
+    -l, --logs: View output from containers.
+        > docker-compose logs -f -t
+        
+    -h, --help: Print this message.
+        
+Examples:
+=>  To start the containers while also viewing the logs :
+    $ ./dostart --up --logs
+    
+--> Equivalent to :
+    $ ./dostart -u -l
+    
+    ------
+    
+=>  To build the containers without starting them :
+    $ ./dostart --build
+    
+--> Equivalent to :
+    $ ./dostart -b'
+}
+
+POSITIONAL_ARGS=()
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+  -b | --build)
+    BUILD="--build"
+    shift # past argument
+    ;;
+  -u | --up)
+    UP=true
+    DOWN=false
+    shift # past argument
+    ;;
+  -d | --down)
+    UP=false
+    DOWN=true
+    shift # past argument
+    ;;
+  -l | --logs)
+    LOGS=true
+    shift # past argument
+    ;;
+  -h | --help)
+    print_help
+    shift # past argument
+    ;;
+  -* | --*)
+    echo "Unknown option $1"
+    exit 1
+    ;;
+  *)
+    POSITIONAL_ARGS+=("$1") # save positional arg
+    shift                   # past argument
+    ;;
+  esac
+done
+
+set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
+
+# Process Arguments
+if [[ $UP == true ]]; then
+  docker-compose up -d ${BUILD}
+
+  if [[ $LOGS == true ]]; then
+    docker-compose logs -f -t
+  fi
+
+elif [[ $BUILD ]]; then
+  docker-compose build
+
+elif [[ $DOWN == true ]]; then
+  docker-compose down
+
+elif [[ $LOGS == true ]]; then
+  docker-compose logs -f -t
+fi
