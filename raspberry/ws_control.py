@@ -24,6 +24,15 @@ from utils.ledmatrix import Matrix
 
 
 def initial_setup():
+    # --- WebSocket --- #
+    global SERVER
+    global PORT
+    global RASPI
+    
+    SERVER = "192.168.1.10"
+    PORT = "8000"
+    RASPI = "IOT1"
+
     # --- Logger --- #
     global logger
 
@@ -157,7 +166,7 @@ def run(sensor, stop_event):
 if __name__ == "__main__":
     websocket.enableTrace(True)
 
-    url = "ws://192.168.1.52:8000/ws/IOT1/"
+    url = f"ws://{SERVER}:{PORT}/ws/{RASPI}/"
     ws = websocket.create_connection(url)
 
     initial_setup()

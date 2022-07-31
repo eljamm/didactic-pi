@@ -94,7 +94,7 @@ def pi_name(request, pi_name):
     sensors = ["dht11", "ultrasonic", "8x8matrix", "buzzer",
                "relay", "lcd", "7segment", "ledarray", "joystick"]
 
-    return render(request, 'sensor/raspberry/raspi.html', {
+    return render(request, 'sensor/raspi.html', {
         'pi_name': pi_name,
         'pi_list': pi_list,
         'sensors': sensors
