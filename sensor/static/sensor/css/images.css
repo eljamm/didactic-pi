@@ -46,7 +46,7 @@
 
 .img-8x8matrix,
 .img-shape,
-.img-buzzer {
+.img-joystick {
     padding: 10% 15%;
 }
 
@@ -58,8 +58,8 @@
     padding: 10% 35%;
 }
 
-.img-joystick {
-    padding: 5% 10%;
+.img-buzzer {
+    padding: 10% 10%;
 }
 
 .img-gauge,
