@@ -10,7 +10,7 @@ def better_title(name: str):
     title = {
         "dht11": "DHT11",
         "8x8matrix": "LED Matrix 8x8",
-        "lcd": "LCD",
+        "lcd": "LCD Display",
         "7segment": "Seven Segment Display",
         "ledarray": "LED Array",
         "dpad": "D-Pad",
@@ -28,4 +28,13 @@ def show_extras(context, extras):
     return {
         'sensor_name': context['sensor_name'],
         'extra_list': extra_list
+    }
+
+
+@register.inclusion_tag('sensor/blocks/header.html', takes_context=True)
+def sub_header(context, icon, text, alt):
+    return {
+        'icon': icon,
+        'text': text,
+        'alt': alt
     }
