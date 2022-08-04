@@ -5,6 +5,7 @@
 @media (min-width: 1100px) {
     :root {
         --img-raspberry-padding: 2% 18%;
+        --img-raspberry-width: 43vw;
         --img-icon-wh: 5%;
     }
 }
@@ -12,6 +13,7 @@
 @media (max-width: 1100px) {
     :root {
         --img-raspberry-padding: 2% 15%;
+        --img-raspberry-width: 48vw;
         --img-icon-wh: 10%;
     }
 }
@@ -19,6 +21,8 @@
 @media (max-width: 480px) {
     :root {
         --img-wiring-padding: 2% 5%;
+        --img-raspberry-padding: 2% 20%;
+        --img-raspberry-width: 70vw;
         --img-icon-wh: 12%;
     }
 }
@@ -33,6 +37,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    margin: 5%;
 }
 
 .img-raspberry {

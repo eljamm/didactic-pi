@@ -15,12 +15,18 @@
 {{ sensor_name|json_script:"sensor-name" }}
 {{ extra|json_script:"extra-function" }}
 
-<!-- Alert -->
-<div class="alert alert-primary alert-dismissible fade show" role="alert">
-    <p class="my-2">Check out the Raspberry Pi <a href="/pinout" class="alert-link">pinout page</a> for pin
-        numbers.</p>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+<!-- Breadcrumb -->
+<nav style="--bs-breadcrumb-divider: url({% static 'sensor/images/icons/chevron-right.svg' %});"
+    aria-label="breadcrumb">
+    <ol class="breadcrumb mx-4 mt-4 mb-0">
+        <li class="breadcrumb-item"><a href="/{{ pi_name }}">{{ pi_name }}</a></li>
+        <li class="breadcrumb-item"><a href="/{{ pi_name }}/{{ sensor_name }}">{{ sensor_name|better_title }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ extra|better_title }}</li>
+    </ol>
+</nav>
+
+<!-- Heading -->
+<h1 class="jumbotron title-header text-center mx-5 my-5">{{ sensor_name|better_title }} with {{ extra|better_title }}</h1>
 
 <!-- Extra Page -->
 {% make_list "gauge, lcd, shape, dpad" as extra_list %} 

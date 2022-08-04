@@ -1,26 +1,36 @@
-@media (min-width: 1100px) {
+@media (min-width: xl) {
     :root {
         --modal-padding-top: 3%;
-        --form-raspi-padding: 1% 20% 1% 20%;
+        --add-field-margin: 0% 20%;
     }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: lg) {
     :root {
         --modal-padding-top: 4%;
-        --form-raspi-padding: 2% 15% 1% 15%;
+        --add-field-margin: 0% 10%;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: sm) {
     :root {
         --modal-padding-top: 15%;
-        --form-raspi-padding: 4% 10% 2% 10%;
+        --add-field-margin: 0% 5%;
     }
+}
+
+.title-header {
+    font-size: 4rem;
 }
 
 .alert {
-    margin: 2% 5%;
+    margin: 4% 10% 0% 10%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.add-field {
+    margin: var(--add-field-margin);
 }
 
 .modal {
@@ -28,7 +38,7 @@
 }
 
 .form-raspi {
-    padding: var(--form-raspi-padding);
+    padding: 4% 5% 1% 5%;
 }
 
 .flex-container-column {
@@ -56,11 +66,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 3% 10% 2% 10%;
+    padding: 3% 10% 0% 10%;
 }
 
 .grid-container {
-    padding: 2% 40px 40px 40px;
+    padding: 2% 8%;
+    margin-bottom: 5%;
 }
 
 .card-img-top {
@@ -71,6 +82,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0% 3%;
 }
 
 .card-body p {
@@ -82,11 +94,15 @@
         font-size: 18px;
         margin: 0% 3%;
     }
+
+    .col {
+        margin-top: 5%;
+    }
 }
 
 @media (max-width: 1100px) {
-    .form-raspi {
-        padding: 2% 15% 1% 15%;
+    .alert {
+        margin: 5% 10%;
     }
 
     .btn-data {
@@ -96,15 +112,27 @@
     .btn-raspi {
         margin: 0% 3%;
     }
+
+    .col {
+        margin-top: 7%;
+    }
+
+    .btn-container {
+        padding: 3% 10% 1% 10%;
+    }
+
+    .form-raspi {
+        padding: 4% 3% 1% 3%;
+    }
+
+    .title-header {
+        font-size: 3rem;
+    }
 }
 
 @media (max-width: 480px) {
     .alert {
-        margin: 5% 10%;
-    }
-
-    .form-raspi {
-        padding: 4% 10% 2% 10%;
+        margin: 10% 10% 10% 10%;
     }
 
     .btn-data {
@@ -114,5 +142,17 @@
 
     .btn-raspi {
         margin: 4% 2% 2% 2%;
+    }
+
+    .col {
+        margin-top: 10%;
+    }
+
+    .btn-container {
+        padding: 3% 10% 2% 10%;
+    }
+
+    .title-header {
+        font-size: 2rem;
     }
 }

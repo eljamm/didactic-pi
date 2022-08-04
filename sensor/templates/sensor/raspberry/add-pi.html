@@ -7,8 +7,12 @@
 
 <!-- === Body === -->
 {% block content %}
-<div class="flex-container-column">
-    <img src="{% static 'sensor/images/icons/raspberry_logo.svg' %}" class="img-raspberry py-0" alt="Raspberry Pi"
+
+<!-- Heading -->
+<h1 class="display-3 d-flex justify-content-center mt-5">Add Raspberry Pi</h1>
+
+<div class="flex-container-column add-field">
+    <img src="{% static 'sensor/images/icons/raspberry_logo.svg' %}" class="img-raspberry pt-3 pb-0" alt="Raspberry Pi"
         style="width: var(--img-raspberry-width);">
     <form action="/add-pi/" method="post" class="flex-container-column" style="width: 100%;">
         {% csrf_token %}
@@ -17,16 +21,18 @@
         <div class="input-group mb-3 form-raspi">
             <span class="input-group-text"
                 id="basic-addon-{{field.id_for_label}}"><strong>{{ field.label|better_title }}</strong></span>
-            <input type="{{ field.field.widget.input_type }}" class="form-control form-control-lg" id="{{ field.id_for_label }}"
-                name="{{ field.name }}" {% if field.name == "address" %} placeholder="ex: 10.30.1.42"
+            <input type="{{ field.field.widget.input_type }}" class="form-control form-control-lg"
+                id="{{ field.id_for_label }}" name="{{ field.name }}" {% if field.name == "address" %}
+                placeholder="10.30.1.11"
                 pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" {% else %}
-                placeholder="ex: IOT1" {% endif %} required />
+                placeholder="IOT1" {% endif %} required />
         </div>
         {% endfor %}
 
-        <div class="d-grid gap-2 d-md-block" style="padding: 2% 0% 1% 0%">
-            <button class="btn btn-success btn-raspi text-nowrap" type="submit">Add Device</button>
-        </div>
+        <a class="btn btn-success btn-lg btn-raspi my-4 mb-5" href="/add-pi/" role="button">
+            Add Raspberry
+        </a>
     </form>
 </div>
+
 {% endblock %}

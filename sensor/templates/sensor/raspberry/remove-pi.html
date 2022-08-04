@@ -13,11 +13,15 @@
 <!-- === Body === -->
 {% block content %}
 
+<!-- Heading -->
+<h1 class="display-3 d-flex justify-content-center mt-5">Remove Raspberry Pi</h1>
+
 <!-- Alert -->
-<div class="alert alert-warning" role="alert">
-    <p class="my-2">
-        Click on a device's icon to remove it. <strong>(Cannot be undone!)</strong>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <p class="lead mt-2">
+        Device removal is <strong>irreversible</strong>, so choices must be confirmed before deletion.
     </p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 
 <!-- Modal -->
@@ -25,7 +29,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="ModalLabel"><strong>Remove Device</strong></h5>
+                <h5 class="modal-title" id="ModalLabel"><strong>Confirmation</strong></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
