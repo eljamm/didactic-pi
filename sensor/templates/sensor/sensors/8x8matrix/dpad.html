@@ -1,7 +1,8 @@
 {% load static %}
+{% load reusable_blocks %}
 
 <!-- Wiring -->
-<h1 class="display-2 px-5 py-3">Wiring Schematic</h1>
+{% sub_header "tool.svg" "Wiring Schematic" "wiring" %}
 
 <div class="d-flex justify-content-center align-items-center flex-column" style="padding: var(--img-wiring-padding)">
     <img class="img-cover" src="{% static 'sensor/images/wiring/ledmatrix_dpad.svg' %}" alt="LED Matrix Wiring">

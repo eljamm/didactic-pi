@@ -5,23 +5,28 @@
 @media (min-width: 1100px) {
     :root {
         --img-raspberry-padding: 2% 18%;
-        --img-raspberry-width: 53vw;
+        --img-icon-wh: 5%;
     }
 }
 
 @media (max-width: 1100px) {
     :root {
         --img-raspberry-padding: 2% 15%;
-        --img-raspberry-width: 60vw;
+        --img-icon-wh: 10%;
     }
 }
 
 @media (max-width: 480px) {
     :root {
         --img-wiring-padding: 2% 5%;
-        --img-raspberry-padding: 0% 0%;
-        --img-raspberry-width: 50vw;
+        --img-icon-wh: 12%;
     }
+}
+
+.img-icon {
+    margin: 0% 1%;
+    width: var(--img-icon-wh);
+    height: var(--img-icon-wh);
 }
 
 .img-cover {

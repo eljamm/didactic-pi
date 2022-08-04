@@ -1,9 +1,10 @@
 {% load static %}
+{% load reusable_blocks %}
 
 <link rel="stylesheet" href="{% static 'sensor/css/leds.css' %}">
 
 <!-- Wiring -->
-<h1 class="display-2 px-5 py-3">Wiring Schematic</h1>
+{% sub_header "tool.svg" "Wiring Schematic" "wiring" %}
 
 <div class="d-flex justify-content-center align-items-center flex-column" style="padding: var(--img-wiring-padding)">
     <img class="img-cover" src="{% static 'sensor/images/wiring/ledmatrix.svg' %}" alt="LED Matrix Wiring">
@@ -13,7 +14,7 @@
 </div>
 
 <!-- Interface -->
-<h1 class="display-2 px-5 py-3">Control Panel</h1>
+{% sub_header "sliders.svg" "Control Panel" "control" %}
 
 <div class="accordion" id="accordionInfo" style="padding: var(--accordion-padding);">
     <div class="accordion-item">
