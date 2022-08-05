@@ -9,12 +9,13 @@
 {% block content %}
 
 <!-- Heading -->
-<h1 class="display-3 d-flex justify-content-center mt-5">Add Raspberry Pi</h1>
+<h1 class="jumbotron title-header text-center mt-5 mx-5">Add Raspberry Pi</h1>
 
-<div class="flex-container-column add-field">
+<div class="add-field">
     <img src="{% static 'sensor/images/icons/raspberry_logo.svg' %}" class="img-raspberry pt-3 pb-0" alt="Raspberry Pi"
         style="width: var(--img-raspberry-width);">
-    <form action="/add-pi/" method="post" class="flex-container-column" style="width: 100%;">
+    <form action="/add-pi/" method="post" class="d-flex flex-column align-items-center justify-content-center"
+        style="width: 100%;">
         {% csrf_token %}
 
         {% for field in form %}
