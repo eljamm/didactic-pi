@@ -1,3 +1,6 @@
+@use "third-party/bootstrap" as *;
+@use "utils" as *;
+
 :root {
   --img-wiring-padding: 0% 10%;
 }
@@ -8,12 +11,14 @@
     --img-icon-wh: 5%;
   }
 }
+
 @media (max-width: 1100px) {
   :root {
     --img-raspberry-width: 48vw;
     --img-icon-wh: 10%;
   }
 }
+
 @media (max-width: 480px) {
   :root {
     --img-wiring-padding: 0% 5%;
@@ -21,39 +26,31 @@
     --img-icon-wh: 12%;
   }
 }
+
 .img-icon {
   margin: 1% 1%;
-}
-@media (min-width: 1200px) {
-  .img-icon {
+
+  @include media-breakpoint-up(xl) {
     width: 3%;
     height: 3%;
     margin-left: 2%;
   }
-}
-@media (max-width: 1199.98px) {
-  .img-icon {
+  @include media-breakpoint-down(xl) {
     width: 3.6%;
     height: 3.6%;
     margin-left: 2%;
   }
-}
-@media (max-width: 991.98px) {
-  .img-icon {
+  @include media-breakpoint-down(lg) {
     width: 3.7%;
     height: 3.7%;
     margin-left: 2%;
   }
-}
-@media (max-width: 767.98px) {
-  .img-icon {
+  @include media-breakpoint-down(md) {
     width: 3.9%;
     height: 3.9%;
     margin-left: 2%;
   }
-}
-@media (max-width: 575.98px) {
-  .img-icon {
+  @include media-breakpoint-down(sm) {
     width: 4.5%;
     height: 4.5%;
     margin: auto 3%;
@@ -68,28 +65,20 @@
 }
 
 /* -- img-raspberry -- */
-@media (min-width: 1200px) {
-  .img-raspberry {
+.img-raspberry {
+  @include media-breakpoint-up(xl) {
     padding: 2% 10%;
   }
-}
-@media (max-width: 1199.98px) {
-  .img-raspberry {
+  @include media-breakpoint-down(xl) {
     padding: 2% 15%;
   }
-}
-@media (max-width: 991.98px) {
-  .img-raspberry {
+  @include media-breakpoint-down(lg) {
     padding: 5% 15%;
   }
-}
-@media (max-width: 767.98px) {
-  .img-raspberry {
+  @include media-breakpoint-down(md) {
     padding: 5% 20% 2% 20%;
   }
-}
-@media (max-width: 575.98px) {
-  .img-raspberry {
+  @include media-breakpoint-down(sm) {
     padding: 5% 25% 2% 25%;
   }
 }
@@ -126,5 +115,3 @@
 .img-dpad {
   padding: 10% 15%;
 }
-
-/*# sourceMappingURL=images.css.map */

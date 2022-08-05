@@ -1,0 +1,228 @@
+@use "third-party/bootstrap" as *;
+@use "utils" as *;
+
+/* -- add-field -- */
+.add-field {
+  @include flex-column;
+  @include flex-center;
+
+  @include media-breakpoint-up(xl) {
+    margin: 0% 20%;
+  }
+  @include media-breakpoint-down(xl) {
+    margin: 0% 10%;
+  }
+  @include media-breakpoint-down(sm) {
+    margin: 0% 5%;
+  }
+}
+
+/* -- alert -- */
+.alert {
+  padding-left: 5%;
+  padding-right: 5%;
+
+  @include media-breakpoint-up(xl) {
+    margin: 4% 10% 2% 10%;
+  }
+  @include media-breakpoint-down(xl) {
+    margin: 4% 10% 2% 10%;
+  }
+  @include media-breakpoint-down(lg) {
+    margin: 4% 8% 2% 8%;
+  }
+  @include media-breakpoint-down(md) {
+    margin: 6% 7% 2% 7%;
+  }
+  @include media-breakpoint-down(sm) {
+    margin: 6% 7% 2% 7%;
+  }
+}
+
+/* -- btn-container -- */
+.btn-container {
+  @include flex-row;
+  @include flex-center;
+
+  @include media-breakpoint-up(xl) {
+    padding: 3% 10% 0% 10%;
+  }
+  @include media-breakpoint-down(xl) {
+    padding: 3% 10% 1% 10%;
+  }
+  @include media-breakpoint-down(lg) {
+    padding: 3% 10% 0% 10%;
+  }
+  @include media-breakpoint-down(md) {
+    padding: 3% 10% 0% 10%;
+  }
+  @include media-breakpoint-down(sm) {
+    padding: 3% 10% 2% 10%;
+  }
+}
+
+/* -- btn-data -- */
+.btn-data {
+  margin: 1% 2% 1% 2%;
+
+  @include media-breakpoint-up(xl) {
+    width: 15%;
+  }
+  @include media-breakpoint-down(xl) {
+    width: 10%;
+  }
+  @include media-breakpoint-down(sm) {
+    width: 20%;
+    margin: 2% 2% 2% 2%;
+  }
+}
+
+/* -- btn-raspi -- */
+.btn-raspi {
+  @include media-breakpoint-up(xl) {
+    font-size: 20px;
+    margin: 4% 2% 2% 2%;
+  }
+  @include media-breakpoint-down(xl) {
+    font-size: 18px;
+    margin: 4% 2% 2% 2%;
+  }
+  @include media-breakpoint-down(lg) {
+    font-size: 18px;
+    margin: 4% 2% 2% 2%;
+  }
+  @include media-breakpoint-down(md) {
+    font-size: 16px;
+    margin: 4% 3% 2% 3%;
+  }
+  @include media-breakpoint-down(sm) {
+    font-size: 16px;
+    margin: 4% 3% 2% 3%;
+  }
+}
+
+.card-body p {
+  padding-bottom: 20px;
+}
+
+.card-container {
+  @include flex-column;
+  @include flex-center;
+
+  margin: 0% 3%;
+}
+
+.card-img-top {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(241, 241, 241),
+    rgb(255, 255, 255)
+  );
+}
+
+/* -- col -- */
+.col {
+  @include media-breakpoint-up(xl) {
+    margin-top: 5%;
+  }
+  @include media-breakpoint-down(xl) {
+    margin-top: 7%;
+  }
+  @include media-breakpoint-down(sm) {
+    margin-top: 10%;
+  }
+}
+
+.form-raspi {
+  padding: 4% 5% 1% 5%;
+
+  @include media-breakpoint-up(xl) {
+    padding: 4% 3% 1% 3%;
+  }
+}
+
+/* -- grid-container -- */
+.grid-container {
+  @include media-breakpoint-up(xl) {
+    padding: 1% 7%;;
+    margin-bottom: 5%;
+  }
+  @include media-breakpoint-down(xl) {
+    padding: 0% 6%;
+    margin-bottom: 6%;
+  }
+  @include media-breakpoint-down(lg) {
+    padding: 2% 5%;
+    margin-bottom: 6%;
+  }
+  @include media-breakpoint-down(md) {
+    padding: 2% 4%;
+    margin-bottom: 7%;
+  }
+  @include media-breakpoint-down(sm) {
+    padding: 2% 3%;
+    margin-bottom: 7%;
+  }
+}
+
+/* -- modal -- */
+.modal {
+  @media (min-width: xl) {
+    padding-top: 3%;
+  }
+  @media (max-width: xl) {
+    padding-top: 4%;
+  }
+  @media (max-width: sm) {
+    padding-top: 15%;
+  }
+}
+
+/* -- title-header -- */
+.title-header {
+  @include media-breakpoint-up(xl) {
+    font-size: 3.8rem;
+    margin: auto;
+  }
+  @include media-breakpoint-down(xl) {
+    font-size: 3.6rem;
+    margin: auto;
+  }
+  @include media-breakpoint-down(lg) {
+    font-size: 3.5rem;
+    margin: auto;
+  }
+  @include media-breakpoint-down(md) {
+    font-size: 3.2rem;
+    margin: auto;
+  }
+  @include media-breakpoint-down(sm) {
+    font-size: 3rem;
+    margin: auto;
+  }
+}
+
+/* -- title-sub-header -- */
+.title-sub-header {
+  @include media-breakpoint-up(xl) {
+    font-size: 2.8rem;
+    margin: auto;
+  }
+  @include media-breakpoint-down(xl) {
+    font-size: 2.5rem;
+    margin: auto;
+  }
+  @include media-breakpoint-down(lg) {
+    font-size: 2.3rem;
+    margin: auto;
+  }
+  @include media-breakpoint-down(md) {
+    font-size: 2.2rem;
+    margin: auto;
+  }
+  @include media-breakpoint-down(sm) {
+    font-size: 2rem;
+    margin-top: 12%;
+    margin-bottom: 5%;
+  }
+}

@@ -9,6 +9,7 @@
 <!-- === Head === -->
 {% block content-head %}
 <link rel="stylesheet" href="{% static 'sensor/css/sensor.css' %}">
+<link rel="stylesheet" href="{% static 'sensor/css/sensor/gauge.css' %}">
 {% endblock %}
 
 <!-- === Body === -->
@@ -31,7 +32,7 @@
 
 <!-- Heading -->
 {% if sensor_name in has_extra %}
-    <h1 class="jumbotron title-header text-center mx-5 mt-5 mb-2">{{ sensor_name|better_title }}</h1>
+    <h1 class="jumbotron title-header text-center mx-5 mt-2 mb-2">{{ sensor_name|better_title }}</h1>
 {% else %}
     <h1 class="jumbotron title-header text-center mx-5 my-5">{{ sensor_name|better_title }}</h1>
 {% endif %}
