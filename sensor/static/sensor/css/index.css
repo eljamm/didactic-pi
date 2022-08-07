@@ -12,12 +12,22 @@
 }
 @media (max-width: 1199.98px) {
   .add-field {
-    margin: 0% 10%;
+    margin: 0% 20%;
+  }
+}
+@media (max-width: 991.98px) {
+  .add-field {
+    margin: 0% 20%;
+  }
+}
+@media (max-width: 767.98px) {
+  .add-field {
+    margin: 0% 20%;
   }
 }
 @media (max-width: 575.98px) {
   .add-field {
-    margin: 0% 5%;
+    margin: 0% 20%;
   }
 }
 
@@ -43,12 +53,12 @@
 }
 @media (max-width: 767.98px) {
   .alert {
-    margin: 6% 7% 2% 7%;
+    margin: 6% 13% 2% 13%;
   }
 }
 @media (max-width: 575.98px) {
   .alert {
-    margin: 6% 7% 2% 7%;
+    margin: 6% 12% 2% 12%;
   }
 }
 
@@ -61,48 +71,64 @@
 }
 @media (min-width: 1200px) {
   .btn-container {
-    padding: 3% 10% 0% 10%;
+    padding: 2% 10% 1% 10%;
   }
 }
 @media (max-width: 1199.98px) {
   .btn-container {
-    padding: 3% 10% 1% 10%;
+    padding: 2% 10% 1% 10%;
   }
 }
 @media (max-width: 991.98px) {
   .btn-container {
-    padding: 3% 10% 0% 10%;
+    padding: 3% 5% 0% 5%;
   }
 }
 @media (max-width: 767.98px) {
   .btn-container {
-    padding: 3% 10% 0% 10%;
+    padding: 6% 15% 0% 15%;
   }
 }
 @media (max-width: 575.98px) {
   .btn-container {
-    padding: 3% 10% 2% 10%;
+    padding: 10% 15% 0% 15%;
   }
 }
 
 /* -- btn-data -- */
-.btn-data {
-  margin: 1% 2% 1% 2%;
-}
 @media (min-width: 1200px) {
   .btn-data {
-    width: 15%;
+    font-size: 18px;
+    margin: 0% 7%;
+    padding: 2% 5%;
   }
 }
 @media (max-width: 1199.98px) {
   .btn-data {
-    width: 10%;
+    font-size: 18px;
+    margin: 0% 7%;
+    padding: 2% 6%;
+  }
+}
+@media (max-width: 991.98px) {
+  .btn-data {
+    font-size: 16px;
+    margin: 0% 8%;
+    padding: 2% 7%;
+  }
+}
+@media (max-width: 767.98px) {
+  .btn-data {
+    font-size: 16px;
+    margin: 0% 8%;
+    padding: 2% 8%;
   }
 }
 @media (max-width: 575.98px) {
   .btn-data {
-    width: 20%;
-    margin: 2% 2% 2% 2%;
+    font-size: 14px;
+    margin: 0% 8%;
+    padding: 2% 8%;
   }
 }
 
@@ -110,31 +136,31 @@
 @media (min-width: 1200px) {
   .btn-raspi {
     font-size: 20px;
-    margin: 4% 2% 2% 2%;
+    margin: 4% 2% 0% 2%;
   }
 }
 @media (max-width: 1199.98px) {
   .btn-raspi {
     font-size: 18px;
-    margin: 4% 2% 2% 2%;
+    margin: 4% 2% 0% 2%;
   }
 }
 @media (max-width: 991.98px) {
   .btn-raspi {
     font-size: 18px;
-    margin: 4% 2% 2% 2%;
+    margin: 4% 2% 0% 2%;
   }
 }
 @media (max-width: 767.98px) {
   .btn-raspi {
     font-size: 16px;
-    margin: 4% 3% 2% 3%;
+    margin: 4% 3% 0% 3%;
   }
 }
 @media (max-width: 575.98px) {
   .btn-raspi {
     font-size: 16px;
-    margin: 4% 3% 2% 3%;
+    margin: 0% 3%;
   }
 }
 
@@ -155,77 +181,133 @@
 }
 
 /* -- col -- */
+.col {
+  margin: 0%;
+}
 @media (min-width: 1200px) {
   .col {
-    margin-top: 5%;
+    padding: 2% 0.5%;
+    width: 22vw;
   }
 }
 @media (max-width: 1199.98px) {
   .col {
-    margin-top: 7%;
+    padding: 3.5% 0.5%;
+    width: 22vw;
+  }
+}
+@media (max-width: 991.98px) {
+  .col {
+    padding: 3.5% 0.5%;
+    width: 28vw;
+  }
+}
+@media (max-width: 767.98px) {
+  .col {
+    padding: 5% 10%;
+    width: 100vw;
   }
 }
 @media (max-width: 575.98px) {
   .col {
-    margin-top: 10%;
+    padding: 5% 10%;
+    width: 100vw;
   }
 }
 
+/* -- form-raspi -- */
 .form-raspi {
-  padding: 4% 5% 1% 5%;
+  margin: 5%;
+  padding: 0% 10% 0% 10%;
 }
-@media (min-width: 1200px) {
+@media (max-width: 991.98px) {
   .form-raspi {
-    padding: 4% 3% 1% 3%;
+    padding: 0% 5% 0% 5%;
+  }
+}
+@media (max-width: 767.98px) {
+  .form-raspi {
+    width: 80vw;
+  }
+}
+@media (max-width: 575.98px) {
+  .form-raspi {
+    width: 80vw;
+  }
+}
+
+.form-raspi-modify {
+  padding: 0% 10% 0% 10%;
+}
+@media (max-width: 575.98px) {
+  .form-raspi-modify {
+    padding: 0% 5% 0% 5%;
   }
 }
 
 /* -- grid-container -- */
+.grid-container {
+  justify-content: center;
+}
 @media (min-width: 1200px) {
   .grid-container {
-    padding: 1% 7%;
+    padding: 0% 5%;
+    margin-top: 2%;
     margin-bottom: 5%;
   }
 }
 @media (max-width: 1199.98px) {
   .grid-container {
     padding: 0% 6%;
+    margin-top: 1%;
     margin-bottom: 6%;
   }
 }
 @media (max-width: 991.98px) {
   .grid-container {
     padding: 2% 5%;
+    margin-top: 1%;
     margin-bottom: 6%;
   }
 }
 @media (max-width: 767.98px) {
   .grid-container {
     padding: 2% 4%;
+    margin-top: 2%;
     margin-bottom: 7%;
   }
 }
 @media (max-width: 575.98px) {
   .grid-container {
     padding: 2% 3%;
+    margin-top: 2%;
     margin-bottom: 7%;
   }
 }
 
 /* -- modal -- */
-@media (min-width: xl) {
+.modal {
+  padding-top: 3%;
+}
+@media (max-width: 767.98px) {
   .modal {
-    padding-top: 3%;
+    padding-top: 10%;
   }
 }
-@media (max-width: xl) {
-  .modal {
-    padding-top: 4%;
-  }
-}
-@media (max-width: sm) {
+@media (max-width: 575.98px) {
   .modal {
     padding-top: 15%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .modal-dialog {
+    margin: 8%;
+  }
+}
+@media (max-width: 575.98px) {
+  .modal-dialog {
+    margin: 8%;
   }
 }
 
@@ -233,31 +315,26 @@
 @media (min-width: 1200px) {
   .title-header {
     font-size: 3.8rem;
-    margin: auto;
   }
 }
 @media (max-width: 1199.98px) {
   .title-header {
     font-size: 3.6rem;
-    margin: auto;
   }
 }
 @media (max-width: 991.98px) {
   .title-header {
     font-size: 3.5rem;
-    margin: auto;
   }
 }
 @media (max-width: 767.98px) {
   .title-header {
     font-size: 3.2rem;
-    margin: auto;
   }
 }
 @media (max-width: 575.98px) {
   .title-header {
     font-size: 3rem;
-    margin: auto;
   }
 }
 
@@ -265,30 +342,34 @@
 @media (min-width: 1200px) {
   .title-sub-header {
     font-size: 2.8rem;
-    margin: auto;
+    margin-top: 8%;
+    margin-bottom: 3.5%;
   }
 }
 @media (max-width: 1199.98px) {
   .title-sub-header {
     font-size: 2.5rem;
-    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 3.5%;
   }
 }
 @media (max-width: 991.98px) {
   .title-sub-header {
-    font-size: 2.3rem;
-    margin: auto;
+    font-size: 2.2rem;
+    margin-top: 10%;
+    margin-bottom: 5%;
   }
 }
 @media (max-width: 767.98px) {
   .title-sub-header {
-    font-size: 2.2rem;
-    margin: auto;
+    font-size: 1.9rem;
+    margin-top: 12%;
+    margin-bottom: 5%;
   }
 }
 @media (max-width: 575.98px) {
   .title-sub-header {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-top: 12%;
     margin-bottom: 5%;
   }

@@ -60,13 +60,17 @@
 }
 @media (max-width: 767.98px) {
   .gauge-box {
-    margin: 2% 3%;
+    margin: 2% 5%;
   }
 }
 @media (max-width: 575.98px) {
   .gauge-box {
     margin: 1% 5%;
   }
+}
+.gauge-box canvas#gauge {
+  width: 100% !important;
+  height: auto !important;
 }
 @media (min-width: 1200px) {
   .gauge-box p {

@@ -12,8 +12,8 @@
 <h1 class="jumbotron title-header text-center mt-5 mx-5">Add Raspberry Pi</h1>
 
 <div class="add-field">
-    <img src="{% static 'sensor/images/icons/raspberry_logo.svg' %}" class="img-raspberry pt-3 pb-0" alt="Raspberry Pi"
-        style="width: var(--img-raspberry-width);">
+    <img src="{% static 'sensor/images/icons/raspberry_logo.svg' %}" class="img-raspberry-add pt-3 pb-0"
+        alt="Raspberry Pi">
     <form action="/add-pi/" method="post" class="d-flex flex-column align-items-center justify-content-center"
         style="width: 100%;">
         {% csrf_token %}

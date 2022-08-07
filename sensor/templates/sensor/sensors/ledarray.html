@@ -7,8 +7,8 @@
 <!-- Wiring -->
 {% sub_header "tool.svg" "Wiring Schematic" "wiring" %}
 
-<div class="d-flex justify-content-center align-items-center flex-column" style="padding: var(--img-wiring-padding)">
-    <img class="img-cover" src="{% static 'sensor/images/wiring/ledarray.svg' %}" alt="LED Matrix Wiring">
+<div class="d-flex justify-content-center align-items-center flex-column">
+    <img class="img-wiring" src="{% static 'sensor/images/wiring/ledarray.svg' %}" alt="LED Matrix Wiring">
 </div>
 
 <!-- Interface -->
@@ -29,7 +29,8 @@
                     <li>
                         <h5 class="card-title">Send Data</h5>
                         <p class="card-text">
-                            Click on a LED to switch its state between <strong>on</strong>, <strong>blinking</strong> and <strong>off</strong>
+                            Click on a LED to switch its state between <strong>on</strong>, <strong>blinking</strong>
+                            and <strong>off</strong>
                             then click the <u><strong>send</strong></u> button to display the pattern on the LED matrix.
                         </p>
                     </li><br>
@@ -64,8 +65,10 @@
         </div>
         {% endfor %}
     </div>
-    <button type="button" class="btn btn-success btn-data" id="send-data">Send</button>
-    <button type="button" class="btn btn-dark btn-data" id="clear-data">Clear</button>
+    <div class="btn-container" style="margin-bottom: 5%; padding-top: 0%;">
+        <button type="button" class="btn btn-success btn-data" id="send-data">Send</button>
+        <button type="button" class="btn btn-dark btn-data" id="clear-data">Clear</button>
+    </div>
 </div>
 
 <script src="{% static 'sensor/js/utils/ledutils.js' %}"></script>

@@ -19,6 +19,7 @@
 <nav style="--bs-breadcrumb-divider: url({% static 'sensor/images/icons/chevron-right.svg' %});"
     aria-label="breadcrumb">
     <ol class="breadcrumb mx-4 mt-4 mb-0">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
         <li class="breadcrumb-item"><a href="/{{ pi_name }}">{{ pi_name }}</a></li>
         <li class="breadcrumb-item"><a href="/{{ pi_name }}/{{ sensor_name }}">{{ sensor_name|better_title }}</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{ extra|better_title }}</li>

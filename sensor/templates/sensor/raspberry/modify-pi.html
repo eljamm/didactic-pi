@@ -27,7 +27,7 @@
             </div>
             <div class="modal-body">
                 {% for field in form %}
-                <div class="input-group mb-3 form-raspi">
+                <div class="input-group mb-3 form-raspi-modify">
                     <span class="input-group-text"
                         id="basic-addon-{{field.id_for_label}}"><strong>{{ field.label|better_title }}</strong></span>
                     <input type="{{ field.field.widget.input_type }}" class="form-control form-control-lg"

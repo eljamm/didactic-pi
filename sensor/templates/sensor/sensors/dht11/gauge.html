@@ -5,8 +5,8 @@
 <!-- Wiring -->
 {% sub_header "tool.svg" "Wiring Schematic" "wiring" %}
 
-<div class="d-flex justify-content-center align-items-center flex-column" style="padding: var(--img-wiring-padding)">
-    <img class="img-cover" src="{% static 'sensor/images/wiring/dht11.svg' %}" alt="LED Matrix Wiring">
+<div class="d-flex justify-content-center align-items-center flex-column">
+    <img class="img-wiring" src="{% static 'sensor/images/wiring/dht11.svg' %}" alt="LED Matrix Wiring">
 </div>
 
 <!-- Interface -->
@@ -14,12 +14,12 @@
 
 <div class="gauge-container">
     <div class="gauge-box">
-        <canvas id="temperaure" class="gauge"></canvas>
+        <canvas id="temperaure" class="gauge" style="width: auto; height: 100%;"></canvas>
         <p>Temperature</p>
         <div id="temp-text"></div>
     </div>
     <div class="gauge-box">
-        <canvas id="humidity" class="gauge"></canvas>
+        <canvas id="humidity" class="gauge" style="width: auto; height: 100%;"></canvas>
         <p>Humidity</p>
         <div id="humid-text"></div>
     </div>

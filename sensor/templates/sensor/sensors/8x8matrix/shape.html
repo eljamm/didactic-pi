@@ -6,11 +6,11 @@
 <!-- Wiring -->
 {% sub_header "tool.svg" "Wiring Schematic" "wiring" %}
 
-<div class="d-flex justify-content-center align-items-center flex-column" style="padding: var(--img-wiring-padding)">
-    <img class="img-cover" src="{% static 'sensor/images/wiring/ledmatrix.svg' %}" alt="LED Matrix Wiring">
+<div class="d-flex justify-content-center align-items-center flex-column">
+    <img class="img-wiring" src="{% static 'sensor/images/wiring/ledmatrix.svg' %}" alt="LED Matrix Wiring">
 </div>
-<div class="d-flex justify-content-center align-items-center flex-column" style="padding: var(--img-wiring-padding)">
-    <img class="img-cover" src="{% static 'sensor/images/wiring/ledmatrix_pins.svg' %}" alt="LED Matrix Wiring">
+<div class="d-flex justify-content-center align-items-center flex-column">
+    <img class="img-table" src="{% static 'sensor/images/wiring/ledmatrix_pins.svg' %}" alt="LED Matrix Wiring">
 </div>
 
 <!-- Interface -->
@@ -67,8 +67,10 @@
         </div>
         {% endfor %}
     </div>
-    <button type="button" class="btn btn-success btn-data" id="send-data">Send</button>
+    <div class="btn-container" style="margin-bottom: 5%; padding-top: 0%;">
+        <button type="button" class="btn btn-success btn-data" id="send-data">Send</button>
     <button type="button" class="btn btn-dark btn-data" id="clear-data">Clear</button>
+    </div>
 </div>
 
 <script src="{% static 'sensor/js/utils/ledutils.js' %}"></script>

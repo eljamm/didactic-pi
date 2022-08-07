@@ -40,10 +40,15 @@
     margin: 3% 4%;
   }
   @include media-breakpoint-down(md) {
-    margin: 2% 3%;
+    margin: 2% 5%;
   }
   @include media-breakpoint-down(sm) {
     margin: 1% 5%;
+  }
+
+  canvas#gauge {
+    width: 100% !important;
+    height: auto !important;
   }
 
   font-style: bold;

@@ -1,86 +1,57 @@
-:root {
-  --img-wiring-padding: 0% 10%;
-}
-
-@media (min-width: 1100px) {
-  :root {
-    --img-raspberry-width: 43vw;
-    --img-icon-wh: 5%;
-  }
-}
-@media (max-width: 1100px) {
-  :root {
-    --img-raspberry-width: 48vw;
-    --img-icon-wh: 10%;
-  }
-}
-@media (max-width: 480px) {
-  :root {
-    --img-wiring-padding: 0% 5%;
-    --img-raspberry-width: 70vw;
-    --img-icon-wh: 12%;
-  }
-}
+/* -- img-icon -- */
 .img-icon {
   margin: 1% 1%;
 }
 @media (min-width: 1200px) {
   .img-icon {
-    width: 3%;
-    height: 3%;
-    margin-left: 2%;
+    width: 3.6%;
+    height: 3.6%;
+    margin: 0% 1% 0.5% 3%;
   }
 }
 @media (max-width: 1199.98px) {
   .img-icon {
     width: 3.6%;
     height: 3.6%;
-    margin-left: 2%;
+    margin: 0% 1% 0.5% 3%;
   }
 }
 @media (max-width: 991.98px) {
   .img-icon {
-    width: 3.7%;
-    height: 3.7%;
-    margin-left: 2%;
+    width: 4.5%;
+    height: 4.5%;
+    margin: 0% 2% 0.5% 3%;
   }
 }
 @media (max-width: 767.98px) {
   .img-icon {
-    width: 3.9%;
-    height: 3.9%;
-    margin-left: 2%;
+    width: 5%;
+    height: 5%;
+    margin: 0% 3% 1% 3%;
   }
 }
 @media (max-width: 575.98px) {
   .img-icon {
-    width: 4.5%;
-    height: 4.5%;
-    margin: auto 3%;
+    width: 5%;
+    height: 5%;
+    margin: 0% 3% 1% 4%;
   }
-}
-
-.img-cover {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  margin: 5%;
 }
 
 /* -- img-raspberry -- */
 @media (min-width: 1200px) {
   .img-raspberry {
-    padding: 2% 10%;
+    padding: 5% 18%;
   }
 }
 @media (max-width: 1199.98px) {
   .img-raspberry {
-    padding: 2% 15%;
+    padding: 5% 18%;
   }
 }
 @media (max-width: 991.98px) {
   .img-raspberry {
-    padding: 5% 15%;
+    padding: 5% 18%;
   }
 }
 @media (max-width: 767.98px) {
@@ -94,37 +65,207 @@
   }
 }
 
-.img-dht11 {
-  padding: 17% 25%;
+/* -- img-raspberry-add -- */
+@media (min-width: 1200px) {
+  .img-raspberry-add {
+    width: 20vw;
+  }
+}
+@media (max-width: 1199.98px) {
+  .img-raspberry-add {
+    width: 22vw;
+  }
+}
+@media (max-width: 991.98px) {
+  .img-raspberry-add {
+    width: 25vw;
+  }
+}
+@media (max-width: 767.98px) {
+  .img-raspberry-add {
+    width: 30vw;
+  }
+}
+@media (max-width: 575.98px) {
+  .img-raspberry-add {
+    width: 40vw;
+  }
 }
 
-.img-ultrasonic,
+/* -- Sensors -- */
+@media (min-width: 1200px) {
+  .img-dht11 {
+    padding: 17% 25%;
+  }
+}
+@media (max-width: 1199.98px) {
+  .img-dht11 {
+    padding: 20% 25%;
+  }
+}
+@media (max-width: 991.98px) {
+  .img-dht11 {
+    padding: 25% 25%;
+  }
+}
+@media (max-width: 767.98px) {
+  .img-dht11 {
+    padding: 15% 30% 10% 30%;
+  }
+}
+@media (max-width: 575.98px) {
+  .img-dht11 {
+    padding: 15% 30% 10% 30%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .img-relay {
+    padding: 15% 25%;
+  }
+}
+@media (max-width: 1199.98px) {
+  .img-relay {
+    padding: 20% 25%;
+  }
+}
+@media (max-width: 991.98px) {
+  .img-relay {
+    padding: 25% 25%;
+  }
+}
+@media (max-width: 767.98px) {
+  .img-relay {
+    padding: 15% 35% 10% 35%;
+  }
+}
+@media (max-width: 575.98px) {
+  .img-relay {
+    padding: 15% 35% 10% 35%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .img-ultrasonic,
 .img-lcd,
-.img-7segment {
-  padding: 20% 10%;
-}
-
-.img-8x8matrix,
-.img-shape,
-.img-joystick {
-  padding: 10% 15%;
-}
-
-.img-relay {
-  padding: 10% 30%;
-}
-
-.img-ledarray {
-  padding: 10% 35%;
-}
-
+.img-7segment,
 .img-buzzer {
-  padding: 10% 10%;
+    padding: 20% 15%;
+  }
+}
+@media (max-width: 1199.98px) {
+  .img-ultrasonic,
+.img-lcd,
+.img-7segment,
+.img-buzzer {
+    padding: 20% 15%;
+  }
+}
+@media (max-width: 991.98px) {
+  .img-ultrasonic,
+.img-lcd,
+.img-7segment,
+.img-buzzer {
+    padding: 25% 15%;
+  }
+}
+@media (max-width: 767.98px) {
+  .img-ultrasonic,
+.img-lcd,
+.img-7segment,
+.img-buzzer {
+    padding: 15% 20% 10% 20%;
+  }
+}
+@media (max-width: 575.98px) {
+  .img-ultrasonic,
+.img-lcd,
+.img-7segment,
+.img-buzzer {
+    padding: 15% 20% 15% 20%;
+  }
 }
 
+@media (min-width: 1200px) {
+  .img-8x8matrix,
+.img-shape,
+.img-joystick,
 .img-gauge,
 .img-dpad {
-  padding: 10% 15%;
+    padding: 15% 15%;
+  }
+}
+@media (max-width: 1199.98px) {
+  .img-8x8matrix,
+.img-shape,
+.img-joystick,
+.img-gauge,
+.img-dpad {
+    padding: 15% 15%;
+  }
+}
+@media (max-width: 991.98px) {
+  .img-8x8matrix,
+.img-shape,
+.img-joystick,
+.img-gauge,
+.img-dpad {
+    padding: 20% 15%;
+  }
+}
+@media (max-width: 767.98px) {
+  .img-8x8matrix,
+.img-shape,
+.img-joystick,
+.img-gauge,
+.img-dpad {
+    padding: 15% 25% 10% 25%;
+  }
+}
+@media (max-width: 575.98px) {
+  .img-8x8matrix,
+.img-shape,
+.img-joystick,
+.img-gauge,
+.img-dpad {
+    padding: 15% 25% 15% 25%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .img-ledarray {
+    padding: 20% 35% 10% 35%;
+  }
+}
+@media (max-width: 1199.98px) {
+  .img-ledarray {
+    padding: 20% 35% 10% 35%;
+  }
+}
+@media (max-width: 991.98px) {
+  .img-ledarray {
+    padding: 20% 35% 10% 35%;
+  }
+}
+@media (max-width: 767.98px) {
+  .img-ledarray {
+    padding: 15% 40% 10% 40%;
+  }
+}
+@media (max-width: 575.98px) {
+  .img-ledarray {
+    padding: 15% 40% 10% 40%;
+  }
+}
+
+.img-wiring {
+  width: 80%;
+  padding: 2% 0%;
+}
+
+.img-table {
+  width: 80%;
+  padding: 5% 0% 2% 0%;
 }
 
 /*# sourceMappingURL=images.css.map */
