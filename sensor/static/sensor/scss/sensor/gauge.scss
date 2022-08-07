@@ -19,43 +19,35 @@
     padding: 2% 6%;
   }
   @include media-breakpoint-down(md) {
+    flex-direction: column;
     padding: 2% 4%;
   }
   @include media-breakpoint-down(sm) {
+    flex-direction: column;
     padding: 2% 2%;
   }
+
+  margin-bottom: 5%;
 }
 
 .gauge-box {
   @include flex-column;
   @include flex-center;
 
-  @include media-breakpoint-up(xl) {
-    margin: 3% 4% 5% 4%;
-  }
-  @include media-breakpoint-down(xl) {
-    margin: 4% 4%;
-  }
-  @include media-breakpoint-down(lg) {
-    margin: 3% 4%;
-  }
-  @include media-breakpoint-down(md) {
-    margin: 2% 5%;
-  }
-  @include media-breakpoint-down(sm) {
-    margin: 1% 5%;
-  }
-
-  canvas#gauge {
-    width: 100% !important;
-    height: auto !important;
-  }
+  object-fit: fill;
 
   font-style: bold;
   text-align: center;
   font-size: 24px;
 
+  canvas#gauge {
+    width: auto;
+    height: 100%;
+  }
+
   p {
+    margin: 0%;
+
     @include media-breakpoint-up(xl) {
       font-size: 2.2rem;
     }
@@ -63,13 +55,13 @@
       font-size: 2rem;
     }
     @include media-breakpoint-down(lg) {
-      font-size: 1.9rem;
+      font-size: 1.6rem;
     }
     @include media-breakpoint-down(md) {
-      font-size: 1.7rem;
+      font-size: 1.5rem;
     }
     @include media-breakpoint-down(sm) {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
     }
   }
 
@@ -78,16 +70,18 @@
       font-size: 2rem;
     }
     @include media-breakpoint-down(xl) {
-      font-size: 1.7rem;
+      font-size: 1.6rem;
     }
     @include media-breakpoint-down(lg) {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
     }
     @include media-breakpoint-down(md) {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
+      margin-bottom: 15%;
     }
     @include media-breakpoint-down(sm) {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
+      margin-bottom: 10%;
     }
   }
 }

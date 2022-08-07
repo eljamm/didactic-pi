@@ -7,6 +7,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin-bottom: 5%;
 }
 @media (min-width: 1200px) {
   .gauge-container {
@@ -25,11 +26,13 @@
 }
 @media (max-width: 767.98px) {
   .gauge-container {
+    flex-direction: column;
     padding: 2% 4%;
   }
 }
 @media (max-width: 575.98px) {
   .gauge-container {
+    flex-direction: column;
     padding: 2% 2%;
   }
 }
@@ -39,38 +42,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  object-fit: fill;
   font-style: bold;
   text-align: center;
   font-size: 24px;
 }
-@media (min-width: 1200px) {
-  .gauge-box {
-    margin: 3% 4% 5% 4%;
-  }
-}
-@media (max-width: 1199.98px) {
-  .gauge-box {
-    margin: 4% 4%;
-  }
-}
-@media (max-width: 991.98px) {
-  .gauge-box {
-    margin: 3% 4%;
-  }
-}
-@media (max-width: 767.98px) {
-  .gauge-box {
-    margin: 2% 5%;
-  }
-}
-@media (max-width: 575.98px) {
-  .gauge-box {
-    margin: 1% 5%;
-  }
-}
 .gauge-box canvas#gauge {
-  width: 100% !important;
-  height: auto !important;
+  width: auto;
+  height: 100%;
+}
+.gauge-box p {
+  margin: 0%;
 }
 @media (min-width: 1200px) {
   .gauge-box p {
@@ -84,17 +66,17 @@
 }
 @media (max-width: 991.98px) {
   .gauge-box p {
-    font-size: 1.9rem;
+    font-size: 1.6rem;
   }
 }
 @media (max-width: 767.98px) {
   .gauge-box p {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
   }
 }
 @media (max-width: 575.98px) {
   .gauge-box p {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 }
 @media (min-width: 1200px) {
@@ -104,22 +86,24 @@
 }
 @media (max-width: 1199.98px) {
   .gauge-box div {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
   }
 }
 @media (max-width: 991.98px) {
   .gauge-box div {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 }
 @media (max-width: 767.98px) {
   .gauge-box div {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    margin-bottom: 15%;
   }
 }
 @media (max-width: 575.98px) {
   .gauge-box div {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    margin-bottom: 10%;
   }
 }
 

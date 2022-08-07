@@ -41,7 +41,7 @@
     margin: 6% 13% 2% 13%;
   }
   @include media-breakpoint-down(sm) {
-    margin: 6% 12% 2% 12%;
+    margin: 6% 10% 2% 10%;
   }
 }
 
@@ -160,7 +160,7 @@
     width: 100vw;
   }
   @include media-breakpoint-down(sm) {
-    padding: 5% 10%;
+    padding: 5% 5%;
     width: 100vw;
   }
 }

@@ -58,7 +58,7 @@
 }
 @media (max-width: 575.98px) {
   .alert {
-    margin: 6% 12% 2% 12%;
+    margin: 6% 10% 2% 10%;
   }
 }
 
@@ -210,7 +210,7 @@
 }
 @media (max-width: 575.98px) {
   .col {
-    padding: 5% 10%;
+    padding: 5% 5%;
     width: 100vw;
   }
 }
