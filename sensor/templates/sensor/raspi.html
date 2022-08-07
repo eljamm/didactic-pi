@@ -8,6 +8,18 @@
 {% block content %}
 {% if pi_name in pi_list %}
 
+<!-- Breadcrumb -->
+<nav style="--bs-breadcrumb-divider: url({% static 'sensor/images/icons/chevron-right.svg' %});"
+    aria-label="breadcrumb">
+    <ol class="breadcrumb mx-4 mt-4 mb-0">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ pi_name }}</a></li>
+    </ol>
+</nav>
+
+<!-- Heading -->
+<h1 class="jumbotron title-header text-center mx-5 mt-3 mb-2">{{ pi_name }}</h1>
+
 <!-- Alert -->
 <div class="alert alert-primary alert-dismissible fade show" role="alert">
     <p class="lead my-2">Check out the Raspberry Pi <a href="/pinout" class="alert-link">pinout page</a> for pin
@@ -75,7 +87,7 @@
 
 {% else %}
 
-    {% include 'sensor/base/404.html' %}
+{% include 'sensor/base/404.html' %}
 
 {% endif %}
 {% endblock %}
