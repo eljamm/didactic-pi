@@ -5,7 +5,7 @@
    viewBox="0 0 540.028346 162.028346"
    version="1.2"
    id="svg909"
-   sodipodi:docname="Dpad.pdf"
+   sodipodi:docname="Dpad.svg"
    inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -22,9 +22,9 @@
      inkscape:pagecheckerboard="1"
      inkscape:document-units="pt"
      showgrid="false"
-     inkscape:zoom="0.80065245"
-     inkscape:cx="279.77183"
-     inkscape:cy="31.224534"
+     inkscape:zoom="1.6013049"
+     inkscape:cx="360.33113"
+     inkscape:cy="108.03689"
      inkscape:window-width="1366"
      inkscape:window-height="708"
      inkscape:window-x="0"
@@ -502,7 +502,7 @@
     </g>
   </defs>
   <g
-     id="surface3777">
+     id="surface2711">
     <path
        style=" stroke:none;fill-rule:evenodd;fill:rgb(18.431091%,30.979919%,30.979919%);fill-opacity:1;"
        d="M 0.0273438 35.71875 L 538.921875 35.71875 L 538.921875 -0.0859375 L 0.0273438 -0.0859375 Z M 0.0273438 35.71875 "
@@ -2192,7 +2192,7 @@
          id="use888" />
     </g>
     <g
-       style="fill:rgb(0%,50.195312%,50.195312%);fill-opacity:1;"
+       style="fill:rgb(0%,0%,0%);fill-opacity:1;"
        id="g894">
       <use
          xlink:href="#glyph1-5"
@@ -2201,7 +2201,7 @@
          id="use892" />
     </g>
     <g
-       style="fill:rgb(0%,50.195312%,50.195312%);fill-opacity:1;"
+       style="fill:rgb(0%,0%,0%);fill-opacity:1;"
        id="g898">
       <use
          xlink:href="#glyph1-13"
@@ -2210,7 +2210,7 @@
          id="use896" />
     </g>
     <g
-       style="fill:rgb(0%,50.195312%,50.195312%);fill-opacity:1;"
+       style="fill:rgb(0%,0%,0%);fill-opacity:1;"
        id="g902">
       <use
          xlink:href="#glyph1-11"
