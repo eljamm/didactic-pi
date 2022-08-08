@@ -28,6 +28,19 @@
   padding-left: 5%;
   padding-right: 5%;
 
+  h1 {
+    font-size: 2rem;
+    margin: 3% 0% 2% 2%;
+  }
+  h5 {
+    font-size: 1.5rem;
+    margin: 3% 0% 2% 2%;
+  }
+  p.card-text {
+    font-size: 1.1rem;
+    margin: 2%;
+  }
+
   @include media-breakpoint-up(xl) {
     margin: 4% 10% 2% 10%;
   }
@@ -39,9 +52,35 @@
   }
   @include media-breakpoint-down(md) {
     margin: 6% 13% 2% 13%;
+    font-size: 14px;
+
+    h1 {
+      font-size: 1.5rem;
+      margin: 3% 0% 2% 2%;
+    }
+    h5 {
+      font-size: 1.2rem;
+      margin: 3% 0% 2% 2%;
+    }
+    p.card-text {
+      margin: 3%;
+    }
   }
   @include media-breakpoint-down(sm) {
     margin: 6% 10% 2% 10%;
+    font-size: 12px;
+
+    h1 {
+      font-size: 1.5rem;
+      margin: 3% 0% 2% 2%;
+    }
+    h5 {
+      font-size: 1.2rem;
+      margin: 3% 0% 2% 2%;
+    }
+    p.card-text {
+      margin: 3%;
+    }
   }
 }
 
@@ -69,54 +108,45 @@
 
 /* -- btn-data -- */
 .btn-data {
-  @include media-breakpoint-up(xl) {
-    font-size: 18px;
-    margin: 0% 7%;
-    padding: 2% 5%;
-  }
-  @include media-breakpoint-down(xl) {
-    font-size: 18px;
-    margin: 0% 7%;
-    padding: 2% 6%;
-  }
+  font-size: 18px;
+  margin: 2% 5%;
+  padding: 1% 5%;
+
   @include media-breakpoint-down(lg) {
     font-size: 16px;
-    margin: 0% 8%;
-    padding: 2% 7%;
   }
   @include media-breakpoint-down(md) {
     font-size: 16px;
-    margin: 0% 8%;
+    margin: 2% 8%;
     padding: 2% 8%;
   }
   @include media-breakpoint-down(sm) {
-    font-size: 14px;
-    margin: 0% 8%;
+    font-size: 12px;
+    margin: 2% 10%;
     padding: 2% 8%;
   }
 }
 
 /* -- btn-raspi -- */
 .btn-raspi {
+  margin: 4% 3% 0% 3%;
+
   @include media-breakpoint-up(xl) {
     font-size: 20px;
-    margin: 4% 2% 0% 2%;
   }
   @include media-breakpoint-down(xl) {
     font-size: 18px;
-    margin: 4% 2% 0% 2%;
   }
   @include media-breakpoint-down(lg) {
     font-size: 18px;
-    margin: 4% 2% 0% 2%;
   }
   @include media-breakpoint-down(md) {
     font-size: 16px;
-    margin: 4% 3% 0% 3%;
+    margin: 4% 4% 0% 4%;
   }
   @include media-breakpoint-down(sm) {
     font-size: 16px;
-    margin: 0% 3%;
+    margin: 0% 4%;
   }
 }
 
@@ -165,6 +195,31 @@
   }
 }
 
+/* -- form-input -- */
+.form-input {
+  padding: 5% 10% 0% 10%;
+
+  span.input-group-text,
+  input.form-control {
+    height: 120%;
+  }
+
+  @include media-breakpoint-down(md) {
+    span.input-group-text,
+    input.form-control {
+      font-size: 16px;
+      height: 80%;
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    span.input-group-text,
+    input.form-control {
+      font-size: 14px;
+      height: 80%;
+    }
+  }
+}
+
 /* -- form-raspi -- */
 .form-raspi {
   margin: 5%;
@@ -192,7 +247,7 @@
 /* -- grid-container -- */
 .grid-container {
   justify-content: center;
-  
+
   @include media-breakpoint-up(xl) {
     padding: 0% 5%;
     margin-top: 2%;
@@ -264,27 +319,27 @@
 .title-sub-header {
   @include media-breakpoint-up(xl) {
     font-size: 2.8rem;
-    margin-top: 8%;
+    margin-top: 5%;
     margin-bottom: 3.5%;
   }
   @include media-breakpoint-down(xl) {
     font-size: 2.5rem;
-    margin-top: 10%;
+    margin-top: 8%;
     margin-bottom: 3.5%;
   }
   @include media-breakpoint-down(lg) {
     font-size: 2.2rem;
-    margin-top: 10%;
+    margin-top: 8%;
     margin-bottom: 5%;
   }
   @include media-breakpoint-down(md) {
     font-size: 1.9rem;
-    margin-top: 12%;
+    margin-top: 10%;
     margin-bottom: 5%;
   }
   @include media-breakpoint-down(sm) {
     font-size: 1.5rem;
-    margin-top: 12%;
+    margin-top: 10%;
     margin-bottom: 5%;
   }
 }

@@ -122,17 +122,17 @@
 
 @media (min-width: 1200px) {
   .img-relay {
-    padding: 15% 25%;
+    padding: 15% 28%;
   }
 }
 @media (max-width: 1199.98px) {
   .img-relay {
-    padding: 20% 25%;
+    padding: 20% 28%;
   }
 }
 @media (max-width: 991.98px) {
   .img-relay {
-    padding: 25% 25%;
+    padding: 25% 28%;
   }
 }
 @media (max-width: 767.98px) {

@@ -36,6 +36,18 @@
   padding-left: 5%;
   padding-right: 5%;
 }
+.alert h1 {
+  font-size: 2rem;
+  margin: 3% 0% 2% 2%;
+}
+.alert h5 {
+  font-size: 1.5rem;
+  margin: 3% 0% 2% 2%;
+}
+.alert p.card-text {
+  font-size: 1.1rem;
+  margin: 2%;
+}
 @media (min-width: 1200px) {
   .alert {
     margin: 4% 10% 2% 10%;
@@ -54,11 +66,35 @@
 @media (max-width: 767.98px) {
   .alert {
     margin: 6% 13% 2% 13%;
+    font-size: 14px;
+  }
+  .alert h1 {
+    font-size: 1.5rem;
+    margin: 3% 0% 2% 2%;
+  }
+  .alert h5 {
+    font-size: 1.2rem;
+    margin: 3% 0% 2% 2%;
+  }
+  .alert p.card-text {
+    margin: 3%;
   }
 }
 @media (max-width: 575.98px) {
   .alert {
     margin: 6% 10% 2% 10%;
+    font-size: 12px;
+  }
+  .alert h1 {
+    font-size: 1.5rem;
+    margin: 3% 0% 2% 2%;
+  }
+  .alert h5 {
+    font-size: 1.2rem;
+    margin: 3% 0% 2% 2%;
+  }
+  .alert p.card-text {
+    margin: 3%;
   }
 }
 
@@ -96,71 +132,60 @@
 }
 
 /* -- btn-data -- */
-@media (min-width: 1200px) {
-  .btn-data {
-    font-size: 18px;
-    margin: 0% 7%;
-    padding: 2% 5%;
-  }
-}
-@media (max-width: 1199.98px) {
-  .btn-data {
-    font-size: 18px;
-    margin: 0% 7%;
-    padding: 2% 6%;
-  }
+.btn-data {
+  font-size: 18px;
+  margin: 2% 5%;
+  padding: 1% 5%;
 }
 @media (max-width: 991.98px) {
   .btn-data {
     font-size: 16px;
-    margin: 0% 8%;
-    padding: 2% 7%;
   }
 }
 @media (max-width: 767.98px) {
   .btn-data {
     font-size: 16px;
-    margin: 0% 8%;
+    margin: 2% 8%;
     padding: 2% 8%;
   }
 }
 @media (max-width: 575.98px) {
   .btn-data {
-    font-size: 14px;
-    margin: 0% 8%;
+    font-size: 12px;
+    margin: 2% 10%;
     padding: 2% 8%;
   }
 }
 
 /* -- btn-raspi -- */
+.btn-raspi {
+  margin: 4% 3% 0% 3%;
+}
 @media (min-width: 1200px) {
   .btn-raspi {
     font-size: 20px;
-    margin: 4% 2% 0% 2%;
   }
 }
 @media (max-width: 1199.98px) {
   .btn-raspi {
     font-size: 18px;
-    margin: 4% 2% 0% 2%;
   }
 }
 @media (max-width: 991.98px) {
   .btn-raspi {
     font-size: 18px;
-    margin: 4% 2% 0% 2%;
   }
 }
 @media (max-width: 767.98px) {
   .btn-raspi {
     font-size: 16px;
-    margin: 4% 3% 0% 3%;
+    margin: 4% 4% 0% 4%;
   }
 }
 @media (max-width: 575.98px) {
   .btn-raspi {
     font-size: 16px;
-    margin: 0% 3%;
+    margin: 0% 4%;
   }
 }
 
@@ -212,6 +237,29 @@
   .col {
     padding: 5% 5%;
     width: 100vw;
+  }
+}
+
+/* -- form-input -- */
+.form-input {
+  padding: 5% 10% 0% 10%;
+}
+.form-input span.input-group-text,
+.form-input input.form-control {
+  height: 120%;
+}
+@media (max-width: 767.98px) {
+  .form-input span.input-group-text,
+.form-input input.form-control {
+    font-size: 16px;
+    height: 80%;
+  }
+}
+@media (max-width: 575.98px) {
+  .form-input span.input-group-text,
+.form-input input.form-control {
+    font-size: 14px;
+    height: 80%;
   }
 }
 
@@ -342,35 +390,35 @@
 @media (min-width: 1200px) {
   .title-sub-header {
     font-size: 2.8rem;
-    margin-top: 8%;
+    margin-top: 5%;
     margin-bottom: 3.5%;
   }
 }
 @media (max-width: 1199.98px) {
   .title-sub-header {
     font-size: 2.5rem;
-    margin-top: 10%;
+    margin-top: 8%;
     margin-bottom: 3.5%;
   }
 }
 @media (max-width: 991.98px) {
   .title-sub-header {
     font-size: 2.2rem;
-    margin-top: 10%;
+    margin-top: 8%;
     margin-bottom: 5%;
   }
 }
 @media (max-width: 767.98px) {
   .title-sub-header {
     font-size: 1.9rem;
-    margin-top: 12%;
+    margin-top: 10%;
     margin-bottom: 5%;
   }
 }
 @media (max-width: 575.98px) {
   .title-sub-header {
     font-size: 1.5rem;
-    margin-top: 12%;
+    margin-top: 10%;
     margin-bottom: 5%;
   }
 }

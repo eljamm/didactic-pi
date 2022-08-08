@@ -92,13 +92,13 @@
 
 .img-relay {
   @include media-breakpoint-up(xl) {
-    padding: 15% 25%;
+    padding: 15% 28%;
   }
   @include media-breakpoint-down(xl) {
-    padding: 20% 25%;
+    padding: 20% 28%;
   }
   @include media-breakpoint-down(lg) {
-    padding: 25% 25%;
+    padding: 25% 28%;
   }
   @include media-breakpoint-down(md) {
     padding: 15% 35% 10% 35%;

@@ -59,12 +59,6 @@ window.onload = function () {
     document.querySelector('#lcd-clear-textarea').onclick = function (e) {
         const dataLogDom = document.querySelector('#lcd-data-message-input');
         dataLogDom.value = '';
-
-        dataSocket.send(JSON.stringify({
-            'sensor': sensorName,
-            'message': '',
-            'message_type': 'data'
-        }));
     };
 
     if (debug === true) {
