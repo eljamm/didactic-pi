@@ -1,206 +1,126 @@
-import _thread
 import asyncio
 import json
 import logging
-import re
-import sys
-import textwrap
+import os
 import threading
-from time import sleep
 
-import adafruit_character_lcd.character_lcd as character_lcd
-import adafruit_dht
 import board
 import coloredlogs
 import digitalio
 import websocket
-from gpiozero import LED, Button
 
 from sensors import DHT11, LCD, ArrayLED, DPad, Joystick, Matrix
 from utils import async_receive, run
 
 
-def initial_setup():
-    # --- WebSocket --- #
-    global SERVER
-    global PORT
-    global RASPI
-    
-    SERVER = "192.168.1.10"
-    PORT = "8000"
-    RASPI = "IOT1"
+class RaspberryClient:
+    def __init__(self, server, port, pi_name):
+        # --- Websocket --- #
+        websocket.enableTrace(True)
 
-    # --- Logger --- #
-    global logger
+        self.url = "ws://%s:%s/ws/%s/" % (server, port, pi_name)
+        self.ws = websocket.create_connection(self.url)
 
-    logger = logging.getLogger(__name__)
-    coloredlogs.install(level='DEBUG', logger=logger)
+        # --- Logger --- #
+        self.logger = logging.getLogger(__name__)
+        coloredlogs.install(level='DEBUG', logger=self.logger)
 
-    # --- DHT11 --- #
-    global dht11
+        # --- DHT11 --- #
+        self.dht11 = DHT11(board.D14, self.logger)
 
-    dht11 = DHT11(board.D14, logger)
+        # --- 8x8 Matrix --- #
+        mat_rows = [21, 8, 26, 12, 10, 19, 9, 6]
+        mat_cols = [7, 11, 5, 20, 13, 16, 25, 24]
 
-    # --- 8x8 Matrix --- #
-    global mat8x8
+        self.mat8x8 = Matrix(mat_rows, mat_cols)
 
-    mat_rows = [21, 8, 26, 12, 10, 19, 9, 6]
-    mat_cols = [7, 11, 5, 20, 13, 16, 25, 24]
+        # --- D-Pad --- #
+        dpad_dirs = {
+            'up': 4,
+            'down': 3,
+            'left': 2,
+            'right': 17
+        }
 
-    mat8x8 = Matrix(mat_rows, mat_cols)
+        self.dpad = DPad(dpad_dirs, self.mat8x8)
 
-    # --- D-Pad --- #
-    global dpad
+        # --- LED Array --- #
+        blue_array = [21, 20, 16, 12, 7, 8, 25, 24, 23, 18]
+        red_array = [26, 19, 13, 6, 5, 11, 9, 10, 22, 27]
 
-    directions = {
-        'up': Button(4),
-        'left': Button(2),
-        'down': Button(3),
-        'right': Button(17),
-    }
+        self.array_led = ArrayLED(blue_array, red_array)
 
-    dpad = DirectionPad(directions, mat8x8)
+        # --- LCD Display --- #
+        lcd_pins = {
+            'rs': digitalio.DigitalInOut(board.D19),
+            'en': digitalio.DigitalInOut(board.D26),
+            'd4': digitalio.DigitalInOut(board.D7),
+            'd5': digitalio.DigitalInOut(board.D12),
+            'd6': digitalio.DigitalInOut(board.D16),
+            'd7': digitalio.DigitalInOut(board.D20),
+            'backlight': digitalio.DigitalInOut(board.D21)
+        }
 
-    # --- LED Array --- #
-    global array_led
+        lcd_columns = 16
+        lcd_rows = 2
 
-    blue_array = [LED(21), LED(20), LED(16), LED(12), LED(7),
-                  LED(8), LED(25), LED(24), LED(23), LED(18)]
+        self.lcd = LCD(lcd_pins, lcd_columns, lcd_rows)
 
-    red_array = [LED(26), LED(19), LED(13), LED(6), LED(5),
-                 LED(11), LED(9), LED(10), LED(22), LED(27)]
+        # --- Joystick --- #
+        adc_pins = {
+            'clk': 18,
+            'do': 27,
+            'di': 22,
+            'cs': 17,
+        }
 
-    array_led = ArrayLED(blue_array, red_array)
+        joy_dirs = {
+            'LEFT': 24,
+            'DOWN': 25,
+            'UP': 14,
+            'RIGHT': 15,
+            'CENTER': 23
+        }
 
-    # --- LCD Display --- #
-    global lcd
+        self.joystick = Joystick(adc_pins, joy_dirs)
 
-    lcd_pins = {
-        'rs': digitalio.DigitalInOut(board.D19),
-        'en': digitalio.DigitalInOut(board.D26),
-        'd4': digitalio.DigitalInOut(board.D7),
-        'd5': digitalio.DigitalInOut(board.D12),
-        'd6': digitalio.DigitalInOut(board.D16),
-        'd7': digitalio.DigitalInOut(board.D20),
-        'backlight': digitalio.DigitalInOut(board.D21)
-    }
-
-    lcd_columns = 16
-    lcd_rows = 2
-
-    lcd = LCD(lcd_pins, lcd_columns, lcd_rows)
-
-
-async def my_receive():
-    result = await asyncio.get_event_loop().run_in_executor(None, ws.recv)
-    return result
-
-
-def run(sensor, stop_event):
-    t = threading.current_thread()
-
-    # --- Sensor Regex --- #
-    reg_dht = re.compile(".*dht11.*")
-    reg_lcd = re.compile(".*lcd.*")
-    reg_mat = re.compile(".*8x8matrix.*")
-
-    # --- Setup --- #
-    if reg_dht.match(sensor):
-        dht11 = DHT11(board.D4, logger)
-
-    if reg_lcd.match(sensor):
-        lcd.on()
-
-    if reg_mat.match(sensor):
-        mat8x8.setup()
-
-    while not stop_event.is_set():
-        # --- Clear --- #
-        if message == "stop" and message_type == "command":
-            if reg_dht.match(sensor):
-                dht11.device.exit()
-
-            if reg_lcd.match(sensor):
-                lcd.clear()
-                lcd.off()
-
-            if reg_mat.match(sensor):
-                mat8x8.clearMatrix()
-
-            if sensor == "mt-ledarray":
-                array_led.clear_leds()
-
-            sensor = "none"
-
-        # --- Process --- #
-        try:
-            if sensor == "mt-dht11-gauge":
-                dht11.processDHT(ws, 1.5)
-
-            elif sensor == "mt-dht11-lcd":
-                dht11.processDHT_LCD(lcd, 2.0)
-
-            elif sensor == "mt-8x8matrix-shape":
-                mat8x8.processMatrix(message)
-
-            elif sensor == "mt-8x8matrix-dpad":
-                dpad.processDPAD()
-
-            elif sensor == "mt-ledarray":
-                blink_list = array_led.processArray(message)
-                array_led.blinkLEDs(blink_list, 1.0, 1.0)
-
-            elif sensor == "mt-lcd":
-                if message_type != "command":
-                    lcd.processLCD(message, 3.0, 1.5)
-
-        except RuntimeError as error:
-            logger.warning(error.args[0])
-            sleep(2.0)
-            continue
+        self.sensors = [self.logger, self.dht11, self.mat8x8, self.dpad,
+                        self.array_led, self.lcd, self.joystick]
 
 
 if __name__ == "__main__":
-    websocket.enableTrace(True)
+    # --- Raspi Config --- #
+    server = "192.168.1.52"
+    port = "8000"
+    pi_name = "IOT1"
 
-    url = f"ws://{SERVER}:{PORT}/ws/{RASPI}/"
-    ws = websocket.create_connection(url)
+    raspi = RaspberryClient(server, port, pi_name)
 
-    initial_setup()
-
+    # --- Start App --- #
     while True:
         try:
-            data = asyncio.run(my_receive())
+            # Async Read from Websocket
+            data = asyncio.run(async_receive(raspi.ws))
             json_file = json.loads(data)
 
+            # Update Data
             sensor = json_file['sensor']
-            message = json_file['message']
-            message_type = json_file['message_type']
+            raspi.message = message = json_file['message']
+            raspi.message_type = message_type = json_file['message_type']
 
-            stop_event = threading.Event()
             t = threading.Thread(target=run,
-                                 args=(sensor, stop_event),
+                                 args=(sensor, raspi),
                                  daemon=True)
 
             if message == "start" and message_type == "command":
                 print("Starting Thread")
                 t.start()
 
-            elif message == "stop" and message_type == "command":
-                print("Stopping Thread")
-                stop_event.set()
-                ws.close()
-                ws.connect(url)
-
             elif message == "exit" and message_type == "command":
                 print("\nClosing Program")
-                stop_event.set()
-                ws.close()
+                raspi.ws.close()
                 break
 
         except KeyboardInterrupt:
             print("\nClosing Program")
-            stop_event.set()
-            ws.close()
-            break
-    sys.exit()
+            os._exit(0)
