@@ -15,7 +15,7 @@ window.onload = function () {
     dataSocket.onmessage = function (e) {
         const data = JSON.parse(e.data);
 
-        if (! data.sensor.match(/^mt-.*/i)) {
+        if (!data.message_type === "command") {
             document.querySelector('#data-log').value += (data.message + '\n');
         }
 
@@ -35,14 +35,14 @@ window.onload = function () {
 
     dataSocket.onopen = function (e) {
         dataSocket.send(JSON.stringify({
-            'sensor': 'mt-' + sensorName,
+            'sensor': sensorName,
             'message': 'start'
         }));
     }
 
     window.onbeforeunload = function () {
         dataSocket.send(JSON.stringify({
-            'sensor': 'mt-' + sensorName,
+            'sensor': sensorName,
             'message': 'stop'
         }));
         dataSocket.close
@@ -63,7 +63,7 @@ window.onload = function () {
         const messageInputDom = document.querySelector('#data-message-input');
         const message = messageInputDom.value;
         dataSocket.send(JSON.stringify({
-            'sensor': 'mt-' + sensorName,
+            'sensor': sensorName,
             'message': message
         }));
         messageInputDom.value = '';
