@@ -30,7 +30,7 @@
 <h1 class="jumbotron title-header text-center mx-5 my-5">{{ sensor_name|better_title }} with {{ extra|better_title }}</h1>
 
 <!-- Extra Page -->
-{% make_list "gauge, lcd, shape, dpad" as extra_list %} 
+{% make_list "gauge, lcd, shape, dpad, leds, matrix" as extra_list %}
 {% if extra in extra_list %}
     {% if extra == "gauge" %}
         <script src="{% static 'sensor/js/third-party/gauge/gauge.min.js' %}"></script>

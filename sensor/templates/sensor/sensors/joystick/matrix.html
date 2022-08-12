@@ -1,0 +1,19 @@
+{% load static %}
+{% load range_iterator %}
+{% load reusable_blocks %}
+
+<!-- Wiring -->
+{% sub_header "tool.svg" "Wiring Schematic" "wiring" %}
+
+<div class="d-flex justify-content-center align-items-center flex-column">
+    <img class="img-wiring" src="{% static 'sensor/images/wiring/joystick_matrix.svg' %}" alt="Joystick Matrix Wiring">
+</div>
+
+<!-- Pinout -->
+{% sub_header "table.svg" "Pinout Table" "pinout" %}
+
+<div class="d-flex justify-content-center align-items-center flex-column">
+    <img class="img-table" src="{% static 'sensor/images/wiring/pins/ADC0832.svg' %}" alt="ADC0832 Pins">
+    <img class="img-table" src="{% static 'sensor/images/wiring/pins/joystick_matrix.svg' %}" alt="Joystick Pins">
+    <img class="img-table" src="{% static 'sensor/images/wiring/pins/ledmatrix.svg' %}" alt="LED Matrix Wiring">
+</div>

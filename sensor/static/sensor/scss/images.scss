@@ -133,7 +133,9 @@
 .img-shape,
 .img-joystick,
 .img-gauge,
-.img-dpad {
+.img-dpad,
+.img-matrix,
+.img-leds {
   @include media-breakpoint-up(xl) {
     padding: 15% 15%;
   }

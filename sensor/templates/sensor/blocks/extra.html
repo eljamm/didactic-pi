@@ -10,25 +10,45 @@
                 alt="{{sensor_name}}-{{item}}">
             <div class="card-body">
                 <h5 class="card-title">
-                    {% if item == "gauge" %}
-                        Gauge
-                    {% elif item == "lcd" %}
-                        LCD Display
-                    {% elif item == "shape" %}
-                        Shape
-                    {% elif item == "dpad" %}
-                        Directional Pad
+                    {% if sensor_name == "dht11" %}
+                        {% if item == "gauge" %}
+                            Data Gauge
+                        {% elif item == "lcd" %}
+                            LCD Display
+                        {% endif %}
+                    {% elif sensor_name == "8x8matrix" %}
+                        {% if item == "shape" %}
+                            Draw Shape
+                        {% elif item == "dpad" %}
+                            Directional Pad
+                        {% endif %}
+                    {% elif sensor_name == "joystick" %}
+                        {% if item == "leds" %}
+                            Directional LEDs
+                        {% elif item == "matrix" %}
+                            8x8 LED Matrix
+                        {% endif %}
                     {% endif %}
                 </h5>
                 <p class="card-text" style="padding-bottom: 20px;">
-                    {% if item == "gauge" %}
-                        Read data from DHT11 sensor and display them in a gauge.
-                    {% elif item == "lcd" %}
-                        Display DHT11 data on an LCD screen.
-                    {% elif item == "shape" %}
-                        Draw and display a shape on the 8x8 LED matrix.
-                    {% elif item == "dpad" %}
-                        Use a directional pad to control a pixel on the screen.
+                    {% if sensor_name == "dht11" %}
+                        {% if item == "gauge" %}
+                            Read data from DHT11 sensor and display them in a gauge.
+                        {% elif item == "lcd" %}
+                            Display DHT11 data on an LCD screen.
+                        {% endif %}
+                    {% elif sensor_name == "8x8matrix" %}
+                        {% if item == "shape" %}
+                            Draw and display a shape on the 8x8 LED matrix.
+                        {% elif item == "dpad" %}
+                            Use a directional pad to control a pixel on the screen.
+                        {% endif %}
+                    {% elif sensor_name == "joystick" %}
+                        {% if item == "leds" %}
+                            Use the joystick to control LED directions.
+                        {% elif item == "matrix" %}
+                            Use the joystick to control a pixel on an 8x8 LED Matrix.
+                        {% endif %}
                     {% endif %}
                 </p>
             </div>

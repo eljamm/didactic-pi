@@ -192,7 +192,9 @@
 .img-shape,
 .img-joystick,
 .img-gauge,
-.img-dpad {
+.img-dpad,
+.img-matrix,
+.img-leds {
     padding: 15% 15%;
   }
 }
@@ -201,7 +203,9 @@
 .img-shape,
 .img-joystick,
 .img-gauge,
-.img-dpad {
+.img-dpad,
+.img-matrix,
+.img-leds {
     padding: 15% 15%;
   }
 }
@@ -210,7 +214,9 @@
 .img-shape,
 .img-joystick,
 .img-gauge,
-.img-dpad {
+.img-dpad,
+.img-matrix,
+.img-leds {
     padding: 20% 15%;
   }
 }
@@ -219,7 +225,9 @@
 .img-shape,
 .img-joystick,
 .img-gauge,
-.img-dpad {
+.img-dpad,
+.img-matrix,
+.img-leds {
     padding: 15% 25% 10% 25%;
   }
 }
@@ -228,7 +236,9 @@
 .img-shape,
 .img-joystick,
 .img-gauge,
-.img-dpad {
+.img-dpad,
+.img-matrix,
+.img-leds {
     padding: 15% 25% 15% 25%;
   }
 }
