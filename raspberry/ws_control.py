@@ -16,11 +16,7 @@ import digitalio
 import websocket
 from gpiozero import LED, Button
 
-from utils.dht11 import DHT11
-from utils.dpad import DirectionPad
-from utils.lcd import LCD
-from utils.ledarray import ArrayLED
-from utils.ledmatrix import Matrix
+from sensors import DHT11, LCD, ArrayLED, DPad, Joystick, Matrix
 
 
 def initial_setup():

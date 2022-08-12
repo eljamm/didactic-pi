@@ -1,5 +1,6 @@
-import RPi.GPIO as GPIO
 from time import sleep
+
+import RPi.GPIO as GPIO
 
 
 class Matrix:
@@ -30,7 +31,7 @@ class Matrix:
                 GPIO.output(col, 0)
             else:
                 GPIO.output(col, 1)
-    
+
     def selectPixel(self, x, y):
         self.selectRow(x)
         self.selectColumn(y)
@@ -53,7 +54,6 @@ class Matrix:
             self.selectRow(i)
             for j in range(8):
                 self.setLED(j, 1)
-        GPIO.cleanup()
 
     def drawShape(self, shape):
         for i in range(8):
@@ -102,4 +102,5 @@ if __name__ == "__main__":
         except KeyboardInterrupt:
             print("\nExiting Program")
             mat8x8.clearMatrix()
+            GPIO.cleanup
             break

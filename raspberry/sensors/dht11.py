@@ -1,6 +1,5 @@
 import json
 import logging
-import textwrap
 from time import sleep
 
 import adafruit_dht
@@ -10,7 +9,8 @@ import coloredlogs
 
 class DHT11:
     def __init__(self, pin, logger):
-        self.device = adafruit_dht.DHT11(pin, use_pulseio=False)
+        self.pin = pin
+        self.device = adafruit_dht.DHT11(self.pin, use_pulseio=False)
         self.logger = logger
 
     def readDHT(self):
@@ -50,7 +50,7 @@ class DHT11:
         except (RuntimeError, TypeError) as error:
             self.logger.warning(error.args[0])
             sleep(2.0)
-    
+
     def processDHT_LCD(self, lcd, delay):
         json_file = self.readDHT()
 
@@ -68,7 +68,7 @@ if __name__ == "__main__":
     logger = logging.getLogger(__name__)
     coloredlogs.install(level='DEBUG', logger=logger)
 
-    dht11 = DHT11(board.D4, logger)
+    dht11 = DHT11(board.D14, logger)
 
     while True:
         try:

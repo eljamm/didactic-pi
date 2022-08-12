@@ -1,5 +1,6 @@
-from gpiozero import LED
 from time import sleep
+
+from gpiozero import LED
 
 
 class ArrayLED:
@@ -8,8 +9,18 @@ class ArrayLED:
         self.red = red
         self.array = [blue, red]
 
+        self.setup()
+
+    def setup(self):
+        for item in self.blue:
+            item = LED(item)
+
+        for item in self.red:
+            item = LED(item)
+
     def cleanup(self):
         self.clear_leds()
+
         for array in self.array:
             for led in array:
                 led.close()
@@ -51,16 +62,18 @@ class ArrayLED:
 
 
 if __name__ == "__main__":
-    blue_array = [LED(21), LED(20), LED(16), LED(12), LED(7),
-                  LED(8), LED(25), LED(24), LED(23), LED(18)]
-
-    red_array = [LED(26), LED(19), LED(13), LED(6), LED(5),
-                 LED(11), LED(9), LED(10), LED(22), LED(27)]
+    blue_array = [21, 20, 16, 12, 7, 8, 25, 24, 23, 18]
+    red_array = [26, 19, 13, 6, 5, 11, 9, 10, 22, 27]
 
     array_led = ArrayLED(blue_array, red_array)
 
-    state_array = [["active", "inactive", "blink", "inactive", "active", "inactive", "blink", "active", "inactive", "active"], [
-        "blink", "inactive", "active", "active", "inactive", "active", "blink", "inactive", "active", "inactive"]]
+    state_array = [
+        ["active", "inactive", "blink", "inactive", "active", "inactive",
+         "blink", "active", "inactive", "active"],
+
+        ["blink", "inactive", "active", "active", "inactive", "active",
+         "blink", "inactive", "active", "inactive"]
+    ]
 
     try:
         blink_list = array_led.processArray(state_array)
