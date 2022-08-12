@@ -1,16 +1,16 @@
 # Description
 
-This application is an educational platform made to interface with the [DuinoKit Raspberry Pi learning Kit](https://duinokit.com/store/home/10-duinokit-rpi-raspberry-pi-learning-kit.html) for teaching beginners how some sensors work.
+This application is an educational platform made to interface with the [DuinoKit Raspberry Pi learning Kit](https://duinokit.com/store/home/10-duinokit-rpi-raspberry-pi-learning-kit.html) for teaching beginners how to work with sensors.
 
-For easier testing and deployability, it's available as a docker application made up of Django, Postgresql and Redis services.
+For better deployability and compatibility across platforms, it's packaged with docker using Django, Postgresql and Redis services.
 
 # Local Environment
 
 I have only tested the app using a Raspberry Pi 3, Model B v1.2 with 1GB of RAM, so performance might vary depending on your device.
 
-I have initially used [RaspiOS Bullseye](https://www.raspberrypi.com/software/operating-systems/), but I found it to be slow even after applying the optimizations from the [Improving Performance](#improving-performance-recommended) section. However, I found [DietPi](https://dietpi.com/) which is a lighter and more performant alternative to RaspiOS. Both versions I tried were AARCH64 with a command-line interface.
+I have initially used [RaspiOS Bullseye](https://www.raspberrypi.com/software/operating-systems/), but I found it to be slow even after applying some optimizations to [improve performance](#improving-performance-recommended). That's why I later switched to [DietPi](https://dietpi.com/): a lighter and more performant alternative to RaspiOS.
 
-I recommend you try them both and see which one works best for you.
+Both were AARCH64 systems, however, with only a command-line interface. So, I recommend you try them and see which one works best for you.
 
 # Project Setup
 
@@ -43,19 +43,28 @@ This upgrades the system packages and installs the required dependencies for the
 
 It may take some time depending on your SD card and the number of packages to upgrade, so you may want to grab a cup of coffee in the meantime.
 
+* RaspiOS
+
 ```sh
 ./utils/install-client.sh
 ```
 
-### Server
+* DietPi
 
-On RaspiOS, if you don't already have docker and docker-compose, you can install them with :
+```sh
+sudo ./utils/install-client.sh
+```
+
+### Server
+Given that the server runs as a docker service, it only depends on docker and docker-compose.
+
+* RaspiOS
 
 ```sh
 ./utils/install-docker.sh
 ```
 
-On DietPi, you can install them with :
+* DietPi
 
 ```sh
 sudo dietpi-software install 162 # Docker
@@ -194,13 +203,15 @@ RASPI = "IOT1"
 - PORT: The server port.
 - RASPI: The name of the Raspberry Pi to connect to. Make sure it's created first from the website.
 
-Then, for RaspiOS, you can connect with the server :
+Then, you can connect with the server :
+
+* RaspiOS
 
 ```txt
 python ws_control.py
 ```
 
-or for DietPi :
+* DietPi
 
 ```txt
 sudo python3 ws_control.py
@@ -228,4 +239,4 @@ sudo python3 ws_control.py
 - Raspberry Pi icon from [Raspberry Pi Ltd](https://www.raspberrypi.org/).
 - Website icons from [Feather icons](https://github.com/feathericons/feather).
 - Sensor icons from the [Flat Arduino SVG Icons Kit](https://github.com/philanri/arduino-icons)
-- The buzzer and joystick icons and the wiring schematics were originally created with [Fritzing](https://fritzing.org/) and were modified using [inkscape](https://inkscape.org/). So they all fall under the (CC BY-SA 3.0) license, as described in the [fritzing-parts license](https://github.com/fritzing/fritzing-parts/blob/develop/LICENSE.txt).
+- Some icons and all wiring schematics were originally created with [Fritzing](https://fritzing.org/) and were modified using [inkscape](https://inkscape.org/). Therefore, they all fall under the (CC BY-SA 3.0) license, as described in the [fritzing-parts license](https://github.com/fritzing/fritzing-parts/blob/develop/LICENSE.txt).
