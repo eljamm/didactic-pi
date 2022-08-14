@@ -2,7 +2,7 @@ import asyncio
 import re
 from time import sleep
 
-from ..sensors import DHT11
+from raspi.sensors import DHT11
 
 
 async def async_receive(ws):
@@ -67,12 +67,10 @@ def run(sensor, pi):
 
     # Buzzer
     if sensor_is_buz:
-        # Alarm
-        if extra_is_alarm:
-            buzzer.setup()
+        buzzer.setup()
 
         # Midi
-        elif extra_is_midi:
+        if extra_is_midi:
             buzzer.setupMidi()
 
     while True:
@@ -165,10 +163,27 @@ def run(sensor, pi):
             # Buzzer
             elif sensor_is_buz:
                 if extra_is_alarm:
-                    buzzer.alarm(10, 0.5)
-                    sleep(2.0)
+                    if message == "play":
+                        buzzer.alarm(10, 0.5)
+                        sleep(2.0)
+                    elif message == "stop":
+                        buzzer.stop()
+
                 elif extra_is_midi:
                     buzzer.processMidi(0.2)
+
+                    if re.search("^play-.*", message):
+                        key = message.split("-")[1]
+                        index = 0
+
+                        for item in buzzer.midi_keys:
+                            if key == item:
+                                buzzer.play(index+57, 0.1)
+                            else:
+                                index += 1
+
+                    elif message == "stop":
+                        buzzer.stop()
 
         except RuntimeError as error:
             logger.warning(error.args[0])

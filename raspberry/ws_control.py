@@ -9,8 +9,10 @@ import coloredlogs
 import digitalio
 import websocket
 
-from sensors import DHT11, LCD, ArrayLED, DPad, Joystick, Matrix, Buzzer
-from utils import async_receive, run
+from raspi import (
+    DHT11, LCD, ArrayLED, DPad, Joystick, Matrix, Buzzer,
+    async_receive, run
+)
 
 
 class RaspberryClient:
