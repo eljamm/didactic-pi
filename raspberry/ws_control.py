@@ -9,7 +9,7 @@ import coloredlogs
 import digitalio
 import websocket
 
-from sensors import DHT11, LCD, ArrayLED, DPad, Joystick, Matrix
+from sensors import DHT11, LCD, ArrayLED, DPad, Joystick, Matrix, Buzzer
 from utils import async_receive, run
 
 
@@ -84,8 +84,19 @@ class RaspberryClient:
 
         self.joystick = Joystick(adc_pins, joy_dirs)
 
+        # --- Buzzer --- #
+        midi_pins = {
+            "C4": 2,
+            "D4": 3,
+            "E4": 4,
+            "F4": 17,
+            "G4": 27,
+        }
+
+        self.buzzer = Buzzer(25, midi_pins)
+
         self.sensors = [self.logger, self.dht11, self.mat8x8, self.dpad,
-                        self.array_led, self.lcd, self.joystick]
+                        self.array_led, self.lcd, self.joystick, self.buzzer]
 
 
 if __name__ == "__main__":

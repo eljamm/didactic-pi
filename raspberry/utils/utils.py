@@ -11,7 +11,7 @@ async def async_receive(ws):
 
 
 def run(sensor, pi):
-    logger, dht11, mat8x8, dpad, array_led, lcd, joystick = pi.sensors
+    logger, dht11, mat8x8, dpad, array_led, lcd, joystick, buzzer = pi.sensors
 
     # --- Sensor Regex --- #
     sensor_is_dht = re.search(".*dht11-.*", sensor)
@@ -19,6 +19,7 @@ def run(sensor, pi):
     sensor_is_lcd = re.search(".*lcd-.*", sensor)
     sensor_is_mat = re.search(".*8x8matrix-.*", sensor)
     sensor_is_joy = re.search(".*joystick-.*", sensor)
+    sensor_is_buz = re.search(".*buzzer-.*", sensor)
 
     # --- Extra Regex --- #
     extra_is_gauge = re.search(".*gauge.*", sensor)
@@ -27,6 +28,8 @@ def run(sensor, pi):
     extra_is_dpad = re.search(".*dpad.*", sensor)
     extra_is_leds = re.search(".*leds.*", sensor)
     extra_is_mat = re.search(".*matrix.*", sensor)
+    extra_is_alarm = re.search(".*alarm.*", sensor)
+    extra_is_midi = re.search(".*midi.*", sensor)
 
     # --- Setup --- #
     # DHT11
@@ -55,6 +58,16 @@ def run(sensor, pi):
 
         elif extra_is_leds:
             joystick.setupLEDs()
+
+    # Buzzer
+    if sensor_is_buz:
+        # Alarm
+        if extra_is_alarm:
+            buzzer.setup()
+
+        # Midi
+        elif extra_is_midi:
+            buzzer.setupMidi()
 
     while True:
         message = pi.message
@@ -86,6 +99,16 @@ def run(sensor, pi):
                 if extra_is_mat:
                     mat8x8.clearMatrix()
                     sleep(3.0)
+
+            # Buzzer
+            if sensor_is_buz:
+                # Alarm
+                if extra_is_alarm:
+                    buzzer.cleanup()
+
+                # Midi
+                elif extra_is_midi:
+                    buzzer.cleanupMidi()
 
             break
 
@@ -121,6 +144,14 @@ def run(sensor, pi):
                     joystick.processJoy()
                 elif extra_is_mat:
                     joystick.processJoyMatrix(mat8x8)
+
+            # Buzzer
+            elif sensor_is_buz:
+                if extra_is_alarm:
+                    buzzer.alarm(10, 0.5)
+                    sleep(2.0)
+                elif extra_is_midi:
+                    buzzer.processMidi(0.2)
 
         except RuntimeError as error:
             logger.warning(error.args[0])
