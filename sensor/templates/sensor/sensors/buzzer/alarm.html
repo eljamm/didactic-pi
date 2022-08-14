@@ -1,0 +1,16 @@
+{% load static %}
+{% load reusable_blocks %}
+
+<!-- Wiring -->
+{% sub_header "tool.svg" "Wiring Schematic" "wiring" %}
+
+<div class="d-flex justify-content-center align-items-center flex-column">
+    <img class="img-wiring" src="{% static 'sensor/images/wiring/buzzer.svg' %}" alt="Buzzer Wiring">
+</div>
+
+<!-- Pinout -->
+{% sub_header "table.svg" "Pinout Table" "pinout" %}
+
+<div class="d-flex justify-content-center align-items-center flex-column">
+    <img class="img-table" src="{% static 'sensor/images/wiring/pins/buzzer.svg' %}" alt="Buzzer Pins">
+</div>

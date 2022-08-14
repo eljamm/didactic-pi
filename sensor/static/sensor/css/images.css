@@ -150,7 +150,8 @@
   .img-ultrasonic,
 .img-lcd,
 .img-7segment,
-.img-buzzer {
+.img-buzzer,
+.img-alarm {
     padding: 20% 15%;
   }
 }
@@ -158,7 +159,8 @@
   .img-ultrasonic,
 .img-lcd,
 .img-7segment,
-.img-buzzer {
+.img-buzzer,
+.img-alarm {
     padding: 20% 15%;
   }
 }
@@ -166,7 +168,8 @@
   .img-ultrasonic,
 .img-lcd,
 .img-7segment,
-.img-buzzer {
+.img-buzzer,
+.img-alarm {
     padding: 25% 15%;
   }
 }
@@ -174,7 +177,8 @@
   .img-ultrasonic,
 .img-lcd,
 .img-7segment,
-.img-buzzer {
+.img-buzzer,
+.img-alarm {
     padding: 15% 20% 10% 20%;
   }
 }
@@ -182,7 +186,8 @@
   .img-ultrasonic,
 .img-lcd,
 .img-7segment,
-.img-buzzer {
+.img-buzzer,
+.img-alarm {
     padding: 15% 20% 15% 20%;
   }
 }
@@ -194,7 +199,8 @@
 .img-gauge,
 .img-dpad,
 .img-matrix,
-.img-leds {
+.img-leds,
+.img-midi {
     padding: 15% 15%;
   }
 }
@@ -205,7 +211,8 @@
 .img-gauge,
 .img-dpad,
 .img-matrix,
-.img-leds {
+.img-leds,
+.img-midi {
     padding: 15% 15%;
   }
 }
@@ -216,7 +223,8 @@
 .img-gauge,
 .img-dpad,
 .img-matrix,
-.img-leds {
+.img-leds,
+.img-midi {
     padding: 20% 15%;
   }
 }
@@ -227,7 +235,8 @@
 .img-gauge,
 .img-dpad,
 .img-matrix,
-.img-leds {
+.img-leds,
+.img-midi {
     padding: 15% 25% 10% 25%;
   }
 }
@@ -238,7 +247,8 @@
 .img-gauge,
 .img-dpad,
 .img-matrix,
-.img-leds {
+.img-leds,
+.img-midi {
     padding: 15% 25% 15% 25%;
   }
 }
@@ -267,6 +277,11 @@
   .img-ledarray {
     padding: 15% 40% 10% 40%;
   }
+}
+
+.img-pinout {
+  width: 80%;
+  padding: 10% 0%;
 }
 
 .img-wiring {

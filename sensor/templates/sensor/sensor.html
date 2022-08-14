@@ -19,7 +19,7 @@
 {{ debug|json_script:"debug" }}
 {{ pi_name|json_script:"pi-name" }}
 {{ sensor_name|json_script:"sensor-name" }}
-{% make_list "dht11, 8x8matrix, joystick" as has_extra %}
+{% make_list "dht11, 8x8matrix, joystick, buzzer" as has_extra %}
 
 <!-- Breadcrumb -->
 <nav style="--bs-breadcrumb-divider: url({% static 'sensor/images/icons/chevron-right.svg' %});"

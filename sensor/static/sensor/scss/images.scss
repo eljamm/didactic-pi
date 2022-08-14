@@ -111,7 +111,8 @@
 .img-ultrasonic,
 .img-lcd,
 .img-7segment,
-.img-buzzer {
+.img-buzzer,
+.img-alarm {
   @include media-breakpoint-up(xl) {
     padding: 20% 15%;
   }
@@ -135,7 +136,8 @@
 .img-gauge,
 .img-dpad,
 .img-matrix,
-.img-leds {
+.img-leds,
+.img-midi {
   @include media-breakpoint-up(xl) {
     padding: 15% 15%;
   }
@@ -169,6 +171,11 @@
   @include media-breakpoint-down(sm) {
     padding: 15% 40% 10% 40%;
   }
+}
+
+.img-pinout {
+  width: 80%;
+  padding: 10% 0%;
 }
 
 .img-wiring {

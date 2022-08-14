@@ -28,6 +28,12 @@
                         {% elif item == "matrix" %}
                             8x8 LED Matrix
                         {% endif %}
+                    {% elif sensor_name == "buzzer" %}
+                        {% if item == "alarm" %}
+                            Alarm
+                        {% elif item == "midi" %}
+                            Midi Keyboard
+                        {% endif %}
                     {% endif %}
                 </h5>
                 <p class="card-text" style="padding-bottom: 20px;">
@@ -48,6 +54,12 @@
                             Use the joystick to control LED directions.
                         {% elif item == "matrix" %}
                             Use the joystick to control a pixel on an 8x8 LED Matrix.
+                        {% endif %}
+                    {% elif sensor_name == "buzzer" %}
+                        {% if item == "alarm" %}
+                            Periodically emit an alarm sound.
+                        {% elif item == "midi" %}
+                            Control a midi keyboard using buttons.
                         {% endif %}
                     {% endif %}
                 </p>
