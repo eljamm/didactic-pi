@@ -2,7 +2,7 @@
 {% load reusable_blocks %}
 
 <!-- Wiring -->
-{% sub_header "tool.svg" "Wiring Schematic" "wiring" %}
+{% sub_header "tool.svg" "Physical Midi Keyboard" "wiring" %}
 
 <div class="d-flex justify-content-center align-items-center flex-column">
     <img class="img-wiring" src="{% static 'sensor/images/wiring/buzzer_midi.svg' %}" alt="Buzzer Midi Wiring">
@@ -14,4 +14,30 @@
 <div class="d-flex justify-content-center align-items-center flex-column">
     <img class="img-table" src="{% static 'sensor/images/wiring/pins/buzzer.svg' %}" alt="Buzzer Pins">
     <img class="img-table" src="{% static 'sensor/images/wiring/pins/buzzer_midi.svg' %}" alt="Buzzer Midi Pins">
+</div>
+
+<!-- Interface -->
+{% sub_header "sliders.svg" "Virtual Midi Keyboard" "control" %}
+
+<!-- Alert -->
+<div class="alert alert-secondary alert-dismissible fade show" role="alert">
+    <h1 style="margin: 3% -2% 2% -2%;">How To Use ?</h1>
+    <ul>
+        <li>
+            <p class="card-text">
+                Use the following image to play the Midi on the buzzer using your keyboard.<br>
+                At the moment mobile devices are not supported because keyboard input cannot be read.
+            </p>
+        </li>
+        <li>
+            <p class="card-text">
+                Only the buzzer needs to be wired for this to function, no need to wire the Buttons.
+            </p>
+        </li>
+    </ul>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="d-flex justify-content-center align-items-center flex-column">
+    <img class="img-wiring" src="{% static 'sensor/images/misc/midi.svg' %}" alt="Midi Keys">
 </div>

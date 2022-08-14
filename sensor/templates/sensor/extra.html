@@ -3,6 +3,11 @@
 {% load range_iterator %}
 {% load reusable_blocks %}
 
+<!-- === Head === -->
+{% block content-head %}
+    <script src="{% static 'sensor/js/sensors/' %}{{sensor_name}}.js"></script>
+{% endblock %}
+
 <!-- === Title === -->
 {% block title %} {{ sensor_name|better_title }} with {{ extra|better_title }} {% endblock %}
 
@@ -33,6 +38,7 @@
 {% make_list "gauge, lcd, shape, dpad, leds, matrix, alarm, midi" as extra_list %}
 {% if extra in extra_list %}
     {% if extra == "gauge" %}
+        <link rel="stylesheet" href="{% static 'sensor/css/sensor/gauge.css' %}">
         <script src="{% static 'sensor/js/third-party/gauge/gauge.min.js' %}"></script>
         <script src="{% static 'sensor/js/utils/gauge.js' %}"></script>
     {% endif %}
@@ -41,8 +47,6 @@
 {% else %}
     {% include 'sensor/base/404.html' %}
 {% endif %}
-
-<script src="{% static 'sensor/js/sensors/dht11.js' %}"></script>
 
 <!-- Debugging -->
 {% if debug == True %}
