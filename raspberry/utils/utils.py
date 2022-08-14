@@ -40,6 +40,10 @@ def run(sensor, pi):
     if sensor_is_mat:
         mat8x8.setup()
 
+        # D-Pad
+        if extra_is_dpad:
+            dpad.setup()
+
     # LED Array
     if sensor_is_led:
         array_led.setup()
@@ -52,10 +56,12 @@ def run(sensor, pi):
     if sensor_is_joy:
         joystick.setup()
 
+        # Matrix
         if extra_is_mat:
             mat8x8.setup()
             mat8x8.selectPixel(0, 0)
 
+        # LEDs
         elif extra_is_leds:
             joystick.setupLEDs()
 
@@ -85,6 +91,10 @@ def run(sensor, pi):
             if sensor_is_mat:
                 mat8x8.clearMatrix()
 
+                # D-Pad
+                if extra_is_dpad:
+                    dpad.cleanup()
+
             # LED Array
             if sensor_is_led:
                 array_led.cleanup()
@@ -96,9 +106,16 @@ def run(sensor, pi):
 
             # Joystick
             if sensor_is_joy:
+                joystick.cleanup()
+
+                # Matrix
                 if extra_is_mat:
                     mat8x8.clearMatrix()
                     sleep(3.0)
+
+                # LEDs
+                elif extra_is_leds:
+                    joystick.cleanupLEDs()
 
             # Buzzer
             if sensor_is_buz:

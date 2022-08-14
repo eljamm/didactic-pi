@@ -6,17 +6,32 @@ from .ledmatrix import Matrix
 
 
 class DPad:
-    def __init__(self, directions, matrix=None):
+    def __init__(self, directions, matrix=None, setup=False):
         self.matrix = matrix
-        self.up = Button(directions["up"])
-        self.left = Button(directions["left"])
-        self.down = Button(directions["down"])
-        self.right = Button(directions["right"])
+        self.pin_up = directions["up"]
+        self.pin_left = directions["left"]
+        self.pin_down = directions["down"]
+        self.pin_right = directions["right"]
 
         self.x = 0
         self.y = 0
 
         self.matrix.selectPixel(self.x, self.y)
+
+        if setup:
+            self.setup()
+
+    def setup(self):
+        self.up = Button(self.pin_up)
+        self.left = Button(self.pin_left)
+        self.down = Button(self.pin_down)
+        self.right = Button(self.pin_right)
+
+        self.dirs = [self.up, self.left, self.down, self.right]
+
+    def cleanup(self):
+        for direction in self.dirs:
+            direction.close()
 
     def move_up(self):
         if self.x > 0:
@@ -58,7 +73,7 @@ if __name__ == "__main__":
         'right': 17
     }
 
-    dpad = DPad(directions, mat8x8)
+    dpad = DPad(directions, mat8x8, True)
 
     dpad.processDPad()
 

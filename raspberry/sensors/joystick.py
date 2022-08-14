@@ -27,8 +27,6 @@ class Joystick:
         self.x = 0
         self.y = 0
 
-        self.setup()
-
     def setup(self):
         GPIO.setmode(GPIO.BCM)
 
@@ -38,13 +36,27 @@ class Joystick:
         GPIO.setup(self.clk, GPIO.OUT)
         GPIO.setup(self.cs,  GPIO.OUT)
 
+        self.CENTER = Button(self.CENTER)
+
     def setupLEDs(self):
         GPIO.setmode(GPIO.BCM)
 
-        self.CENTER = Button(self.CENTER)
-
         for pin in self.dir_pins.values():
             GPIO.setup(pin,  GPIO.OUT)
+
+    def cleanup(self):
+        GPIO.setup(self.di,  GPIO.IN)
+        GPIO.setup(self.do,  GPIO.IN)
+        GPIO.setup(self.clk, GPIO.IN)
+        GPIO.setup(self.cs,  GPIO.IN)
+
+        self.CENTER.close()
+
+    def cleanupLEDs(self):
+        GPIO.setmode(GPIO.BCM)
+
+        for pin in self.dir_pins.values():
+            GPIO.setup(pin,  GPIO.IN)
 
     # read SPI data from ADC8032
     def getADC(self, channel):
