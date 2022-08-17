@@ -10,7 +10,7 @@ import digitalio
 import websocket
 
 from raspi import (
-    DHT11, LCD, ArrayLED, DPad, Joystick, Matrix, Buzzer,
+    DHT11, LCD, ArrayLED, DPad, Joystick, Matrix, Buzzer, Segment,
     async_receive, run
 )
 
@@ -97,8 +97,30 @@ class RaspberryClient:
 
         self.buzzer = Buzzer(25, midi_pins)
 
+        # --- 7 Segment --- #
+        seg_pins = {
+            "dp": 21,
+            "A": 20,
+            "B": 16,
+            "C": 12,
+            "D": 7,
+            "E": 8,
+            "F": 25,
+            "G": 24,
+        }
+        seg_multi = {
+            "dig1": 14,
+            "dig2": 15,
+            "dig3": 18,
+            "dig4": 23,
+        }
+
+        self.segment = Segment(seg_pins, multi=seg_multi)
+
+        self.sensor = ""
         self.sensors = [self.logger, self.dht11, self.mat8x8, self.dpad,
-                        self.array_led, self.lcd, self.joystick, self.buzzer]
+                        self.array_led, self.lcd, self.joystick, self.buzzer,
+                        self.segment]
 
 
 if __name__ == "__main__":
@@ -117,7 +139,7 @@ if __name__ == "__main__":
             json_file = json.loads(data)
 
             # Update Data
-            sensor = json_file['sensor']
+            raspi.sensor = sensor = json_file['sensor']
             raspi.message = message = json_file['message']
             raspi.message_type = message_type = json_file['message_type']
 

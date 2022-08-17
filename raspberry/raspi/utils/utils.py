@@ -1,5 +1,6 @@
 import asyncio
 import re
+import threading
 from time import sleep
 
 from raspi.sensors import DHT11
@@ -11,7 +12,8 @@ async def async_receive(ws):
 
 
 def run(sensor, pi):
-    logger, dht11, mat8x8, dpad, array_led, lcd, joystick, buzzer = pi.sensors
+    (logger, dht11, mat8x8, dpad, array_led,
+     lcd, joystick, buzzer, segment) = pi.sensors
 
     # --- Sensor Regex --- #
     sensor_is_dht = re.search(".*dht11-.*", sensor)
@@ -20,6 +22,7 @@ def run(sensor, pi):
     sensor_is_mat = re.search(".*8x8matrix-.*", sensor)
     sensor_is_joy = re.search(".*joystick-.*", sensor)
     sensor_is_buz = re.search(".*buzzer-.*", sensor)
+    sensor_is_seg = re.search(".*7segment.*", sensor)
 
     # --- Extra Regex --- #
     extra_is_gauge = re.search(".*gauge.*", sensor)
@@ -37,7 +40,7 @@ def run(sensor, pi):
         dht11 = DHT11(dht11.pin, logger)
 
     # 8x8 LED Matrix
-    if sensor_is_mat:
+    elif sensor_is_mat:
         mat8x8.setup()
 
         # D-Pad
@@ -45,15 +48,15 @@ def run(sensor, pi):
             dpad.setup()
 
     # LED Array
-    if sensor_is_led:
+    elif sensor_is_led:
         array_led.setup()
 
     # LCD Display
-    if sensor_is_lcd:
+    elif sensor_is_lcd:
         lcd.on()
 
     # Joystick
-    if sensor_is_joy:
+    elif sensor_is_joy:
         joystick.setup()
 
         # Matrix
@@ -66,16 +69,22 @@ def run(sensor, pi):
             joystick.setupLEDs()
 
     # Buzzer
-    if sensor_is_buz:
+    elif sensor_is_buz:
         buzzer.setup()
 
         # Midi
         if extra_is_midi:
             buzzer.setupMidi()
 
+    # Segment
+    elif sensor_is_seg:
+        segment.setup()
+
     while True:
         message = pi.message
         message_type = pi.message_type
+
+        sensor_is_seg = re.search(".*7segment.*", pi.sensor)
 
         # --- Stop --- #
         if message == "stop" and message_type == "command":
@@ -86,7 +95,7 @@ def run(sensor, pi):
                 dht11.device.exit()
 
             # 8x8 LED Matrix
-            if sensor_is_mat:
+            elif sensor_is_mat:
                 mat8x8.clearMatrix()
 
                 # D-Pad
@@ -94,16 +103,16 @@ def run(sensor, pi):
                     dpad.cleanup()
 
             # LED Array
-            if sensor_is_led:
+            elif sensor_is_led:
                 array_led.cleanup()
 
             # LCD Display
-            if sensor_is_lcd:
+            elif sensor_is_lcd:
                 lcd.clear()
                 lcd.off()
 
             # Joystick
-            if sensor_is_joy:
+            elif sensor_is_joy:
                 joystick.cleanup()
 
                 # Matrix
@@ -116,7 +125,7 @@ def run(sensor, pi):
                     joystick.cleanupLEDs()
 
             # Buzzer
-            if sensor_is_buz:
+            elif sensor_is_buz:
                 # Alarm
                 if extra_is_alarm:
                     buzzer.cleanup()
@@ -124,6 +133,10 @@ def run(sensor, pi):
                 # Midi
                 elif extra_is_midi:
                     buzzer.cleanupMidi()
+
+            # Segment
+            elif sensor_is_seg:
+                segment.cleanup()
 
             break
 
@@ -184,6 +197,20 @@ def run(sensor, pi):
 
                     elif message == "stop":
                         buzzer.stop()
+
+            # Segment
+            elif sensor_is_seg and message_type == "data":
+                stop_event = threading.Event()
+                clean_msg = segment.clean_str(message)
+
+                def run_scroll(stop_event: threading.Event):
+                    if not stop_event.is_set():
+                        segment.scroll(clean_msg)
+
+                t = threading.Thread(target=run_scroll, args=(stop_event,))
+                t.start()
+
+                pi.sensor = "none"
 
         except RuntimeError as error:
             logger.warning(error.args[0])
