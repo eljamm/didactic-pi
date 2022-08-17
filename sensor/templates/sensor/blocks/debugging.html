@@ -1,12 +1,16 @@
+{% load static %}
+{% load range_iterator %}
+{% load reusable_blocks %}
+
+{% sub_header "x-octagon.svg" "Debugging" "Debugging" %}
+
 <div class="d-flex p-2 align-content-center justify-content-center" style="margin: 20px;">
     <div class="d-inline-flex p-2 flex-column log-container">
-        <textarea id="data-log" cols="100" rows="10" style="border:solid 2px;" readonly></textarea><br>
+        <textarea id="data-log" cols="80" rows="10" style="border:solid 2px;" readonly></textarea><br>
         <input id="data-message-input" type="text" size="100" style="border:solid 2px; margin-top: 20px;"><br>
-        <div class="card-container">
-            <input class="d-flex align-self-start" id="data-message-submit" type="button" value="Send"
-                style="width: 50%; margin: 20px 20px;">
-            <input class="d-flex align-self-end" id="clear-textarea" type="button" value="Clear"
-                style="width: 50%; margin: 20px 20px;">
+        <div class="btn-container" style="margin: 5%; padding-top: 0%;">
+            <button type="button" class="btn btn-secondary btn-data" id="data-message-submit">Send Command</button>
+            <button type="button" class="btn btn-secondary btn-data" id="clear-textarea">Clear Log</button>
         </div>
     </div>
 </div>
