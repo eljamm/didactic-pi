@@ -1,0 +1,35 @@
+{% load static %}
+{% load range_iterator %}
+{% load reusable_blocks %}
+
+<!-- Wiring -->
+{% sub_header "tool.svg" "Wiring Schematic" "wiring" %}
+
+<div class="d-flex justify-content-center align-items-center flex-column">
+    <img class="img-wiring" src="{% static 'sensor/images/wiring/segment.svg' %}" alt="7 Segment Wiring">
+</div>
+
+<!-- Pinout -->
+{% sub_header "table.svg" "Pinout Table" "pinout" %}
+
+<div class="d-flex justify-content-center align-items-center flex-column">
+    <img class="img-table" src="{% static 'sensor/images/wiring/pins/segment.svg' %}" alt="7 Segment Pins">
+    <img class="img-table" src="{% static 'sensor/images/wiring/pins/NPN8050.svg' %}" alt="NPN8050 Pins">
+</div>
+
+<!-- Interface -->
+{% sub_header "sliders.svg" "Control Panel" "control" %}
+
+<div class="input-group input-group-lg form-input">
+    <span class="input-group-text">
+        <strong>Input</strong>
+    </span>
+    <input type="text" id="seg-data-message-input" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-lg" placeholder="What's on your mind today ?">
+</div>
+<div class="btn-container" style="margin: 5%; padding-top: 0%;">
+    <button type="button" class="btn btn-success btn-data" id="seg-data-message-submit">Send</button>
+    <button type="button" class="btn btn-dark btn-data" id="seg-clear-textarea">Clear</button>
+</div>
+
+<script src="{% static 'sensor/js/sensors/segment.js' %}"></script>
