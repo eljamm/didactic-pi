@@ -1,25 +1,47 @@
 # Description
 
-This application is an educational platform made to interface with the [DuinoKit Raspberry Pi learning Kit](https://duinokit.com/store/home/10-duinokit-rpi-raspberry-pi-learning-kit.html) for teaching beginners how to work with sensors.
+An educational platform for teaching beginners how to work with sensors using a Raspberry Pi. Therefore, it guides them with wiring schematics and pinout tables and allows them to control some sensors directly through the web interface.
 
-For better deployability and compatibility across platforms, it's packaged with docker using Django, Postgresql and Redis services.
+The server includes both the django backend and the frontend components and is packaged as a docker container for better deployability and cross-platform compatibility. As such, it can run as a docker-compose service, alongside Postgresql and Redis, on any system capable of running docker.
 
-# Local Environment
+The client contains a script to control the websocket `ws_control.py` and a package `raspi` that includes all the code for sensors and utilities.
 
-I have only tested the app using a Raspberry Pi 3, Model B v1.2 with 1GB of RAM, so performance might vary depending on your device.
+# Table of Contents
 
-I have initially used [RaspiOS Bullseye](https://www.raspberrypi.com/software/operating-systems/), but I found it to be slow even after applying some optimizations to [improve performance](#improving-performance-recommended). That's why I later switched to [DietPi](https://dietpi.com/): a lighter and more performant alternative to RaspiOS.
+- [Description](#description)
+- [Table of Contents](#table-of-contents)
+- [Hardware Requirements](#hardware-requirements)
+- [Software Requirements](#software-requirements)
+  - [Improving Performance (Recommended)](#improving-performance-recommended)
+- [Project Setup](#project-setup)
+  - [Installing Dependencies](#installing-dependencies)
+    - [Client](#client)
+    - [Server](#server)
+  - [Configuration](#configuration)
+  - [Docker Image](#docker-image)
+    - [Building](#building)
+    - [Starting](#starting)
+    - [Modification](#modification)
+    - [Migrating Database](#migrating-database)
+  - [Testing Connection](#testing-connection)
+- [Client Setup](#client-setup)
+- [Useful resources](#useful-resources)
+- [Credits](#credits)
 
-Both were AARCH64 systems, however, with only a command-line interface. So, I recommend you try them and see which one works best for you.
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 
-# Project Setup
+# Hardware Requirements
 
-First, install the git project on your local machine with :
+- It's recommended to use something like the [DuinoKit Raspberry Pi learning Kit](https://duinokit.com/store/home/10-duinokit-rpi-raspberry-pi-learning-kit.html) which conveniently groups together all the components a beginner might need while protecting some of them with built-in resistors. However, you can also use individual components or even make your own board if you're curious.
 
-```sh
-git clone https://www.github.com/eljamm/didactic-card
-cd didactic-card
-```
+- The project was developed on a Raspberry Pi 3, Model B v1.2 with 1GB of RAM, so expect better or worse performance depending on your device.
+
+# Software Requirements
+
+Initially, I've used [RaspiOS](https://www.raspberrypi.com/software/operating-systems/) Bullseye, but I experienced frequent freezes while using it, even after trying to [optimize](#improving-performance-recommended) its performance.
+This made me switch to an alternative to RaspiOS named [DietPi](https://dietpi.com/), which i found to be lighter and more performant.
+
+The versions I tested were both AARCH64 and with a command-line interface only. So, I recommend you try them out and see which one works best for you.
 
 ## Improving Performance (Recommended)
 
@@ -29,6 +51,15 @@ This step is recommended in case you're using a low memory device or a sub-optim
 
 ```sh
 ./utils/optimize.sh
+```
+
+# Project Setup
+
+First, clone the git project on your local machine with :
+
+```sh
+git clone https://www.github.com/eljamm/didactic-card
+cd didactic-card
 ```
 
 ## Installing Dependencies
@@ -43,28 +74,29 @@ This upgrades the system packages and installs the required dependencies for the
 
 It may take some time depending on your SD card and the number of packages to upgrade, so you may want to grab a cup of coffee in the meantime.
 
-* RaspiOS
+- RaspiOS
 
 ```sh
 ./utils/install-client.sh
 ```
 
-* DietPi
+- DietPi
 
 ```sh
 sudo ./utils/install-client.sh
 ```
 
 ### Server
+
 Given that the server runs as a docker service, it only depends on docker and docker-compose.
 
-* RaspiOS
+- RaspiOS
 
 ```sh
 ./utils/install-docker.sh
 ```
 
-* DietPi
+- DietPi
 
 ```sh
 sudo dietpi-software install 162 # Docker
@@ -99,7 +131,7 @@ ALLOWED_HOSTS="localhost"
 - POSTGRES_PASSWORD: Password to be used if demanded.
 - ALLOWED_HOSTS: A space-separated list of host/domain names that the Django site can serve.
 
-### Note
+**Note**
 
 To access the server from other devices you need to add your machine's ip address to the ALLOWED_HOSTS variable. For example, if your machine's address is **192.168.1.10** then change the variable to :
 
@@ -135,13 +167,13 @@ or the wrapper script for convenience :
 ./dostart --up --logs
 ```
 
-#### Note
+**Note**
 
 Running the service in detached mode allows us to exit the container log with `CTRL-C` without stopping the application.
 
 ### Modification
 
-Any time you modify docker-compose.yml or the Dockerfile, you should rebuild the service, either with :
+Any time you modify docker-compose.yml or the Dockerfile, you should rebuild the service with :
 
 ```sh
 ./dostart --build
@@ -153,7 +185,7 @@ or directly while starting it:
 ./dostart --up --build
 ```
 
-#### Note
+**Note**
 
 You can find out more about the `dostart` wrapper by executing :
 
@@ -177,7 +209,7 @@ docker-compose exec web python manage.py migrate
 
 With this, the database is ready to be used and we can start using the application.
 
-### Testing Connection
+## Testing Connection
 
 You can try connecting to the server by opening **[http://localhost:8000](http://localhost:8000)** in your browser. Don't forget to replace the port `8000` in the URL if you changed it in the configuration.
 
@@ -187,7 +219,7 @@ If you don't see a webpage, try restarting the web service :
 docker-compose restart web
 ```
 
-If you do, then you can proceed in creating, modifying or removing how many devices you want.
+If you do, then you can proceed in creating, modifying or removing your Raspberry Pi devices.
 
 # Client Setup
 
@@ -205,13 +237,13 @@ RASPI = "IOT1"
 
 Then, you can connect with the server :
 
-* RaspiOS
+- RaspiOS
 
 ```txt
 python ws_control.py
 ```
 
-* DietPi
+- DietPi
 
 ```txt
 sudo python3 ws_control.py
@@ -219,16 +251,9 @@ sudo python3 ws_control.py
 
 # Useful resources
 
-## Documentation
-
-### Web
-
 - [Django](https://docs.djangoproject.com/en/4.0/)
 - [Django Channels](https://channels.readthedocs.io/en/stable/)
 - [Bootstrap](https://getbootstrap.com/docs/5.2/getting-started/introduction/)
-
-### Sensors
-
 - [GPIO Zero](https://gpiozero.readthedocs.io/en/stable/)
 - [Adafruit CircuitPython Library Bundle](https://docs.circuitpython.org/projects/bundle/en/latest/index.html)
 
