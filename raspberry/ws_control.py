@@ -10,7 +10,7 @@ import digitalio
 import websocket
 
 from raspi import (
-    DHT11, LCD, ArrayLED, DPad, Joystick, Matrix, Buzzer, Segment,
+    DHT11, LCD, ArrayLED, DPad, Joystick, Matrix, Buzzer, Segment, Relay,
     async_receive, run
 )
 
@@ -117,10 +117,20 @@ class RaspberryClient:
 
         self.segment = Segment(seg_pins, multi=seg_multi)
 
+        # --- Relay --- #
+        pins = {
+            "COM": 21,      # Common pin
+            "SWITCH": 20    # Relay coil switch
+        }
+
+        self.relay = Relay(pins)
+
+        # --- Misc --- #
+
         self.sensor = ""
         self.sensors = [self.logger, self.dht11, self.mat8x8, self.dpad,
                         self.array_led, self.lcd, self.joystick, self.buzzer,
-                        self.segment]
+                        self.segment, self.relay]
 
 
 if __name__ == "__main__":

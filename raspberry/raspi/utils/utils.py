@@ -13,7 +13,7 @@ async def async_receive(ws):
 
 def run(sensor, pi):
     (logger, dht11, mat8x8, dpad, array_led,
-     lcd, joystick, buzzer, segment) = pi.sensors
+     lcd, joystick, buzzer, segment, relay) = pi.sensors
 
     # --- Sensor Regex --- #
     sensor_is_dht = re.search(".*dht11-.*", sensor)
@@ -23,6 +23,7 @@ def run(sensor, pi):
     sensor_is_joy = re.search(".*joystick-.*", sensor)
     sensor_is_buz = re.search(".*buzzer-.*", sensor)
     sensor_is_seg = re.search(".*7segment.*", sensor)
+    sensor_is_rel = re.search(".*relay-.*", sensor)
 
     # --- Extra Regex --- #
     extra_is_gauge = re.search(".*gauge.*", sensor)
@@ -79,6 +80,11 @@ def run(sensor, pi):
     # Segment
     elif sensor_is_seg:
         segment.setup()
+
+    # Relay
+    elif sensor_is_rel:
+        relay.setup()
+        relay.com.on()  # Power COM on from GPIO
 
     while True:
         message = pi.message
@@ -137,6 +143,11 @@ def run(sensor, pi):
             # Segment
             elif sensor_is_seg:
                 segment.cleanup()
+
+            # Relay
+            elif sensor_is_rel:
+                relay.com.off()  # Power COM off from GPIO
+                relay.cleanup()
 
             break
 
@@ -211,6 +222,11 @@ def run(sensor, pi):
                 t.start()
 
                 pi.sensor = "none"
+
+            # Relay
+            elif sensor_is_rel:
+                if extra_is_alarm:
+                    relay.toggle_switch(1.0)
 
         except RuntimeError as error:
             logger.warning(error.args[0])
