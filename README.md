@@ -1,3 +1,5 @@
+[![License](https://img.shields.io/badge/license-MIT-green?label=license&style=for-the-badge)](./LICENSE)
+
 # Description
 
 An educational platform for teaching beginners how to work with sensors using a Raspberry Pi. Therefore, it guides them with wiring schematics and pinout tables and allows them to control some sensors directly through the web interface.
@@ -9,6 +11,7 @@ The client contains a script to control the websocket `ws_control.py` and a pack
 # Table of Contents
 
 - [Description](#description)
+- [Screenshots](#screenshots)
 - [Table of Contents](#table-of-contents)
 - [Hardware Requirements](#hardware-requirements)
 - [Software Requirements](#software-requirements)
@@ -29,6 +32,14 @@ The client contains a script to control the websocket `ws_control.py` and a pack
 - [Credits](#credits)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+
+# Screenshots
+
+  |<img src=".static/screenshots/01.png?raw=true" alt="Main" width="auto"/> | <img src=".static/screenshots/02.png?raw=true" alt="Main" width="auto"/>|
+  |---|---|
+  |<img src=".static/screenshots/03.png?raw=true" alt="Main" width="auto"/> | <img src=".static/screenshots/04.png?raw=true" alt="Main" width="auto"/>|
+  |<img src=".static/screenshots/05.png?raw=true" alt="Main" width="auto"/> | <img src=".static/screenshots/06.png?raw=true" alt="Main" width="auto"/>|
+  |<img src=".static/screenshots/07.png?raw=true" alt="Main" width="auto"/> | <img src=".static/screenshots/08.png?raw=true" alt="Main" width="auto"/>|
 
 # Hardware Requirements
 
