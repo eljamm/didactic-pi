@@ -15,7 +15,7 @@
     <a class="btn btn-success btn-lg btn-raspi" href="/add-pi/" role="button">
         <img src="{% static 'sensor/images/icons/plus.svg' %}" width="30" height="24" alt="add-pi"
             style="filter: invert(85%); margin: 5px 0px;" class="icon">
-        Add Device
+        Create Device
     </a>
     <a class="btn btn-dark btn-lg btn-raspi" href="/modify-pi/" role="button">
         <img src="{% static 'sensor/images/icons/edit-2.svg' %}" width="30" height="24" alt="remove-pi"
@@ -30,14 +30,16 @@
 </div>
 
 <!-- Card Group -->
-<div class="row row-cols-1 row-cols-md-4 g-4 grid-container">
+<div class="row row-cols-1 row-cols-md-auto g-4 grid-container">
     {% for item in raspi %}
     <div class="col">
         <div class="card card-container text-center h-100" onclick="location.href='/{{item.name}}/';"
             style="cursor: pointer;">
-            <img src="{% static 'sensor/images/icons/raspberry_logo.svg' %}" class="card-img-top img-raspberry"
-                alt="{{item.name}}">
-            <div class="card-body">
+            <div class="card-img-top">
+                <img src="{% static 'sensor/images/icons/raspberry_logo.svg' %}" class="img-raspberry"
+                    loading="lazy" alt="{{item.name}}">
+            </div>
+            <div class="card-body lead">
                 <h5 class="card-title">{{item.name}}</h5>
                 <p class="card-text" style="padding-bottom: 20px;">{{item.address}}</p>
             </div>

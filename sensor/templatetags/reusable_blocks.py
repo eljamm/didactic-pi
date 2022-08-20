@@ -10,6 +10,7 @@ def better_title(name: str):
     title = {
         "dht11": "DHT11",
         "8x8matrix": "LED Matrix 8x8",
+        "relay": "Relay Module",
         "lcd": "LCD Display",
         "7segment": "Seven Segment Display",
         "ledarray": "LED Array",

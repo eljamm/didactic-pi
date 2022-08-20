@@ -14,6 +14,15 @@
 <!-- === Body === -->
 {% block content %}
 
+<!-- Breadcrumb -->
+<nav style="--bs-breadcrumb-divider: url({% static 'sensor/images/icons/chevron-right.svg' %});"
+    aria-label="breadcrumb">
+    <ol class="breadcrumb mx-4 mt-4 mb-0">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Modify Pi</a></li>
+    </ol>
+</nav>
+
 <!-- Heading -->
 <h1 class="jumbotron title-header text-center mt-5 mx-5">Modify Raspberry Pi</h1>
 
@@ -46,16 +55,18 @@
 </div>
 
 <!-- Card Group -->
-<div class="row row-cols-1 row-cols-md-4 g-4 grid-container">
+<div class="row row-cols-1 row-cols-md-auto g-4 grid-container">
     {% for item in raspi %}
     <div class="col">
         <form action="POST">
             {% csrf_token %}
             <div class="card card-container text-center h-100" style="cursor: pointer;"
                 onclick="location.href='javascript:analyzeText(\'{{item.id}}\', \'{{item.name}}\', \'{{item.address}}\')';">
-                <img src="{% static 'sensor/images/icons/raspberry_logo.svg' %}" class="card-img-top img-raspberry"
-                    alt="{{item.name}}">
-                <div class="card-body">
+                <div class="card-img-top">
+                    <img src="{% static 'sensor/images/icons/raspberry_logo.svg' %}" class="img-raspberry"
+                        loading="lazy" alt="{{item.name}}">
+                </div>
+                <div class="card-body lead">
                     <h5 class="card-title">{{item.name}}</h5>
                     <p class="card-text" style="padding-bottom: 20px;">{{item.address}}</p>
                 </div>

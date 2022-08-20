@@ -1,15 +1,17 @@
 {% load static %}
 
 <!-- Card Group -->
-<div class="row row-cols-1 row-cols-md-4 g-4 grid-container">
+<div class="row row-cols-1 row-cols-md-auto g-4 grid-container">
     {% for item in extra_list %}
     <div class="col">
         <div class="card card-container text-center h-100" onclick="var current_path=location['pathname'];
             location.href=current_path+'{{item}}/';" style="cursor: pointer;">
-            <img src="{% static 'sensor/images/sensors/' %}{{sensor_name}}/{{item}}.svg" class="card-img-top img-{{item}}"
-                alt="{{sensor_name}}-{{item}}">
-            <div class="card-body">
-                <h5 class="card-title">
+            <div class="card-img-top">
+                <img src="{% static 'sensor/images/sensors/' %}{{sensor_name}}/{{item}}.svg" class="img-{{item}}"
+                    loading="lazy" alt="{{sensor_name}}-{{item}}">
+            </div>
+            <div class="card-body lead">
+                <h5 class="card-title jumbotron">
                     {% if sensor_name == "dht11" %}
                         {% if item == "gauge" %}
                             Data Gauge
@@ -34,9 +36,15 @@
                         {% elif item == "midi" %}
                             Midi Keyboard
                         {% endif %}
+                    {% elif sensor_name == "relay" %}
+                        {% if item == "switch" %}
+                            Switch
+                        {% elif item == "alarm" %}
+                            Alarm
+                        {% endif %}
                     {% endif %}
                 </h5>
-                <p class="card-text" style="padding-bottom: 20px;">
+                <p class="card-text">
                     {% if sensor_name == "dht11" %}
                         {% if item == "gauge" %}
                             Read data from DHT11 sensor and display them in a gauge.
@@ -60,6 +68,12 @@
                             Periodically emit an alarm sound.
                         {% elif item == "midi" %}
                             Control a midi keyboard using buttons.
+                        {% endif %}
+                    {% elif sensor_name == "relay" %}
+                        {% if item == "switch" %}
+                            Control relay states using an SPDT switch.
+                        {% elif item == "alarm" %}
+                            Switch between relay states to make a periodic alarm using LEDs.
                         {% endif %}
                     {% endif %}
                 </p>

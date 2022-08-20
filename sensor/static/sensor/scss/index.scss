@@ -48,10 +48,10 @@
     margin: 4% 10% 2% 10%;
   }
   @include media-breakpoint-down(lg) {
-    margin: 4% 8% 2% 8%;
+    margin: 4% 8% 1% 8%;
   }
   @include media-breakpoint-down(md) {
-    margin: 6% 13% 2% 13%;
+    margin: 6% 12% 2% 12%;
     font-size: 14px;
 
     h1 {
@@ -90,19 +90,19 @@
   @include flex-center;
 
   @include media-breakpoint-up(xl) {
-    padding: 2% 10% 1% 10%;
+    padding: 1% 10% 1% 10%;
   }
   @include media-breakpoint-down(xl) {
-    padding: 2% 10% 1% 10%;
+    padding: 1% 10% 1% 10%;
   }
   @include media-breakpoint-down(lg) {
     padding: 3% 5% 0% 5%;
   }
   @include media-breakpoint-down(md) {
-    padding: 6% 15% 0% 15%;
+    padding: 2% 10% 0% 10%;
   }
   @include media-breakpoint-down(sm) {
-    padding: 10% 15% 0% 15%;
+    padding: 6% 10% 0% 10%;
   }
 }
 
@@ -129,36 +129,108 @@
 
 /* -- btn-raspi -- */
 .btn-raspi {
-  margin: 4% 3% 0% 3%;
-
   @include media-breakpoint-up(xl) {
-    font-size: 20px;
+    font-size: 1.2rem;
+    margin: 0% 5% 0% 5%;
   }
   @include media-breakpoint-down(xl) {
-    font-size: 18px;
+    font-size: 1.2rem;
+    margin: 0% 4% 0% 4%;
   }
   @include media-breakpoint-down(lg) {
-    font-size: 18px;
+    font-size: 1.1rem;
+    margin: 0% 2% 0% 2%;
   }
   @include media-breakpoint-down(md) {
-    font-size: 16px;
+    font-size: 1.1rem;
     margin: 4% 4% 0% 4%;
   }
   @include media-breakpoint-down(sm) {
-    font-size: 16px;
+    font-size: 1rem;
     margin: 0% 4%;
   }
-}
-
-.card-body p {
-  padding-bottom: 20px;
 }
 
 .card-container {
   @include flex-column;
   @include flex-center;
 
-  margin: 0% 3%;
+  @include media-breakpoint-up(xl) {
+    width: 25vw;
+  }
+  @include media-breakpoint-down(xl) {
+    width: 25vw;
+  }
+  @include media-breakpoint-down(lg) {
+    width: 38vw;
+  }
+  @include media-breakpoint-down(md) {
+    width: auto;
+  }
+  @include media-breakpoint-down(sm) {
+    width: auto;
+  }
+
+  // Title
+  .card-title {
+    // TODO
+    @include media-breakpoint-up(xl) {
+      font-size: 28px;
+      padding: auto;
+    }
+    @include media-breakpoint-down(xl) {
+      font-size: 28px;
+      padding: auto;
+    }
+    @include media-breakpoint-down(lg) {
+      font-size: 28px;
+      padding: auto;
+    }
+    @include media-breakpoint-down(md) {
+      font-size: 2rem;
+      padding: auto;
+    }
+    @include media-breakpoint-down(sm) {
+      font-size: 1.5rem;
+      padding: auto;
+    }
+  }
+
+  // Body
+  .card-body {
+    width: 100%;
+    padding: auto;
+
+    p {
+      @include media-breakpoint-up(xl) {
+        font-size: 1.3rem;
+        padding: 2% 10%;
+        margin-top: 5%;
+        margin-bottom: 8%;
+      }
+      @include media-breakpoint-down(xl) {
+        font-size: 1.3rem;
+        padding: 2% 10%;
+        margin-top: 5%;
+        margin-bottom: 8%;
+      }
+      @include media-breakpoint-down(lg) {
+        font-size: 1.25rem;
+        margin-top: 5%;
+        margin-bottom: 8%;
+      }
+      @include media-breakpoint-down(md) {
+        font-size: 1.25rem;
+        margin-top: 5%;
+        margin-bottom: 5%;
+      }
+      @include media-breakpoint-down(sm) {
+        font-size: 1.15rem;
+        margin-top: 5%;
+        margin-bottom: 5%;
+      }
+    }
+  }
 }
 
 .card-img-top {
@@ -174,24 +246,19 @@
   margin: 0%;
 
   @include media-breakpoint-up(xl) {
-    padding: 2% 0.5%;
-    width: 22vw;
+    padding: 2% 2%;
   }
   @include media-breakpoint-down(xl) {
-    padding: 3.5% 0.5%;
-    width: 22vw;
+    padding: 2% 2%;
   }
   @include media-breakpoint-down(lg) {
-    padding: 3.5% 0.5%;
-    width: 28vw;
+    padding: 4% 2%;
   }
   @include media-breakpoint-down(md) {
     padding: 5% 10%;
-    width: 100vw;
   }
   @include media-breakpoint-down(sm) {
-    padding: 5% 5%;
-    width: 100vw;
+    padding: 5% 10%;
   }
 }
 
@@ -247,6 +314,8 @@
 /* -- grid-container -- */
 .grid-container {
   justify-content: center;
+  margin: 0%;
+  width: 100%;
 
   @include media-breakpoint-up(xl) {
     padding: 0% 5%;
@@ -299,19 +368,24 @@
 /* -- title-header -- */
 .title-header {
   @include media-breakpoint-up(xl) {
-    font-size: 3.8rem;
+    font-size: 3.4rem;
+    margin: 1% 5% 2% 5%;
   }
   @include media-breakpoint-down(xl) {
-    font-size: 3.6rem;
+    font-size: 3rem;
+    margin: 1% 5% 2% 5%;
   }
   @include media-breakpoint-down(lg) {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
+    margin: 1% 5% 2% 5%;
   }
   @include media-breakpoint-down(md) {
-    font-size: 3.2rem;
+    font-size: 2.8rem;
+    margin: 8% 5% 2% 5%;
   }
   @include media-breakpoint-down(sm) {
-    font-size: 3rem;
+    font-size: 2rem;
+    margin: 8% 5% 2% 5%;
   }
 }
 

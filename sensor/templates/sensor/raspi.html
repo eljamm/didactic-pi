@@ -1,5 +1,6 @@
 {% extends 'sensor/base.html' %}
 {% load static %}
+{% load reusable_blocks %}
 
 <!-- === Title === -->
 {% block title %} {{ pi_name }} {% endblock %}
@@ -17,67 +18,54 @@
     </ol>
 </nav>
 
+<!-- Heading -->
+<h1 class="jumbotron title-header text-center mx-5">{{ pi_name }} Sensors</h1>
+
 <!-- Alert -->
-<div class="alert alert-primary alert-dismissible fade show" role="alert"
-style="margin-top: 4%; margin-bottom: 4%;">
+<div class="alert alert-secondary alert-dismissible fade show" role="alert">
     <p class="lead my-2">Check out the Raspberry Pi <a href="/pinout" class="alert-link">pinout page</a> for pin
         numbers.</p>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 
-<!-- Heading -->
-<h1 class="jumbotron title-header text-center mx-5 mt-3 mb-2">{{ pi_name }} Sensors</h1>
-
-<div class="row row-cols-1 row-cols-md-4 g-4 grid-container">
-
+<div class="row row-cols-1 row-cols-md-auto g-4 grid-container">
     {% for sensor_name in sensors %}
     <div class="col">
         <div class="card text-center h-100 card-container" onclick="location.href='/{{pi_name}}/{{sensor_name}}';"
             style="cursor: pointer;">
-            <img src="{% static 'sensor/images/sensors/' %}{{sensor_name}}.svg" class="card-img-top img-{{sensor_name}}"
-                alt="{{sensor_name}}">
-
-            <div class="card-body">
-                {% if sensor_name == "dht11" %}
-                <h5 class="card-title">DHT11</h5>
-                <p class="card-text">Capture Temperature and humidity values and output
-                    them as serial data</p>
-
-                {% elif sensor_name == "ultrasonic" %}
-                <h5 class="card-title">HC-SR04</h5>
-                <p class="card-text">Measure distance using ultrasonic sound waves</p>
-
-                {% elif sensor_name == "8x8matrix" %}
-                <h5 class="card-title">8x8 LED Matrix</h5>
-                <p class="card-text">An 8x8 LED matrix which can be changed into various
-                    patterns</p>
-
-                {% elif sensor_name == "buzzer" %}
-                <h5 class="card-title">Buzzer</h5>
-                <p class="card-text">Make a buzzing noise by controlling the frequency</p>
-
-                {% elif sensor_name == "relay" %}
-                <h5 class="card-title">Relay Module</h5>
-                <p class="card-text">An electrical switch that opens or closes to control
-                    other components such as
-                    motors</p>
-
-                {% elif sensor_name == "lcd" %}
-                <h5 class="card-title">LCD Display</h5>
-                <p class="card-text">Display messages on a 16x2 flat-panel screen</p>
-
-                {% elif sensor_name == "7segment" %}
-                <h5 class="card-title">7 Segment Display</h5>
-                <p class="card-text">Display decimal numerals</p>
-
-                {% elif sensor_name == "ledarray" %}
-                <h5 class="card-title">LED Array</h5>
-                <p class="card-text">An arrangement of LEDs</p>
-
-                {% elif sensor_name == "joystick" %}
-                <h5 class="card-title">Joystick</h5>
-                <p class="card-text">Control joystick directions</p>
-                {% endif %}
+            <div class="card-img-top">
+                <img src="{% static 'sensor/images/sensors/' %}{{sensor_name}}.svg" class="img-{{sensor_name}}"
+                    loading="lazy" alt="{{sensor_name}}">
+            </div>
+            <div class="card-body lead">
+                <h5 class="card-title jumbotron">
+                    {{ sensor_name|better_title }}
+                </h5>
+                <p class="card-text">
+                    {% if sensor_name == "dht11" %}
+                        Capture Temperature and humidity values and output
+                        them as serial data
+                    {% elif sensor_name == "ultrasonic" %}
+                        Measure distance using ultrasonic sound waves
+                    {% elif sensor_name == "8x8matrix" %}
+                        An 8x8 LED matrix which can be changed into various
+                        patterns
+                    {% elif sensor_name == "buzzer" %}
+                        Make a buzzing noise by controlling the frequency
+                    {% elif sensor_name == "relay" %}
+                        An electrical switch that opens or closes to control
+                        other components such as
+                        motors
+                    {% elif sensor_name == "lcd" %}
+                        Display messages on a 16x2 flat-panel screen
+                    {% elif sensor_name == "7segment" %}
+                        Display decimal numerals
+                    {% elif sensor_name == "ledarray" %}
+                        An arrangement of LEDs
+                    {% elif sensor_name == "joystick" %}
+                        Control joystick directions
+                    {% endif %}
+                </p>
             </div>
 
         </div>
