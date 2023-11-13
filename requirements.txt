@@ -4,4 +4,4 @@ channels==3.0.5
 django==4.1.10
 psycopg2-binary==2.9.3
 python-decouple==3.6
-sqlparse==0.4.2
+sqlparse==0.4.4
