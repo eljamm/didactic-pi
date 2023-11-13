@@ -11,7 +11,7 @@ import websocket
 
 from raspi import (
     DHT11, LCD, ArrayLED, DPad, Joystick, Matrix, Buzzer, Segment, Relay,
-    async_receive, run
+    Ultrasonic, async_receive, run
 )
 
 
@@ -118,19 +118,28 @@ class RaspberryClient:
         self.segment = Segment(seg_pins, multi=seg_multi)
 
         # --- Relay --- #
-        pins = {
+        relay_pins = {
             "COM": 21,      # Common pin
             "SWITCH": 20    # Relay coil switch
         }
 
-        self.relay = Relay(pins)
+        self.relay = Relay(relay_pins)
+
+        # --- Ultrasonic --- #
+
+        ultra_pins = {
+            "T": 18,
+            "E": 17
+        }
+
+        self.ultra = Ultrasonic(ultra_pins)
 
         # --- Misc --- #
 
         self.sensor = ""
         self.sensors = [self.logger, self.dht11, self.mat8x8, self.dpad,
                         self.array_led, self.lcd, self.joystick, self.buzzer,
-                        self.segment, self.relay]
+                        self.segment, self.relay, self.ultra]
 
 
 if __name__ == "__main__":

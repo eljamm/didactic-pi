@@ -7,6 +7,7 @@ For more information on this file, see
 https://docs.djangoproject.com/en/4.0/howto/deployment/asgi/
 """
 
+import sensor.routing
 import os
 
 from channels.auth import AuthMiddlewareStack
@@ -19,11 +20,10 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
 
 django_asgi_app = get_asgi_application()
 
-import sensor.routing
 
 application = ProtocolTypeRouter({
-  "http": django_asgi_app,
-  "websocket": AllowedHostsOriginValidator(
+    "http": django_asgi_app,
+    "websocket": AllowedHostsOriginValidator(
         AuthMiddlewareStack(
             URLRouter(
                 sensor.routing.websocket_urlpatterns
