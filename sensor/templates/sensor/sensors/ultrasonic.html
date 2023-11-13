@@ -2,6 +2,9 @@
 {% load range_iterator %}
 {% load reusable_blocks %}
 
+<script src="{% static 'sensor/js/sensors/ultrasonic.js' %}"></script>
+<link rel="stylesheet" href="{% static 'sensor/css/sensor/ultrasonic.css' %}">
+
 <!-- Wiring -->
 {% sub_header "tool.svg" "Wiring Schematic" "wiring" %}
 
@@ -14,4 +17,14 @@
 
 <div class="d-flex justify-content-center align-items-center flex-column">
     <img class="img-table" src="{% static 'sensor/images/wiring/pins/ultrasonic.svg' %}" alt="Ultrasonic Pins">
+</div>
+
+<!-- Interface -->
+{% sub_header "tablet.svg" "Display Panel" "display" %}
+
+<div class="ultra-container">
+    <div class="ultra-box">
+        <p class="jumbotron">Distance</p>
+        <div id="distance-text"></div>
+    </div>
 </div>

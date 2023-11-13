@@ -1,0 +1,106 @@
+.ultra {
+  width: 30vw;
+}
+
+.ultra-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5%;
+}
+@media (min-width: 1200px) {
+  .ultra-container {
+    padding: 2% 10%;
+  }
+}
+@media (max-width: 1199.98px) {
+  .ultra-container {
+    padding: 2% 8%;
+  }
+}
+@media (max-width: 991.98px) {
+  .ultra-container {
+    padding: 2% 6%;
+  }
+}
+@media (max-width: 767.98px) {
+  .ultra-container {
+    flex-direction: column;
+    padding: 2% 4%;
+  }
+}
+@media (max-width: 575.98px) {
+  .ultra-container {
+    flex-direction: column;
+    padding: 2% 2%;
+  }
+}
+
+.ultra-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  object-fit: fill;
+  font-style: bold;
+  text-align: center;
+  font-size: 24px;
+}
+.ultra-box p {
+  margin: 0%;
+}
+@media (min-width: 1200px) {
+  .ultra-box p {
+    font-size: 2.2rem;
+  }
+}
+@media (max-width: 1199.98px) {
+  .ultra-box p {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 991.98px) {
+  .ultra-box p {
+    font-size: 1.6rem;
+  }
+}
+@media (max-width: 767.98px) {
+  .ultra-box p {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 575.98px) {
+  .ultra-box p {
+    font-size: 1.2rem;
+  }
+}
+@media (min-width: 1200px) {
+  .ultra-box div {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 1199.98px) {
+  .ultra-box div {
+    font-size: 1.6rem;
+  }
+}
+@media (max-width: 991.98px) {
+  .ultra-box div {
+    font-size: 1.4rem;
+  }
+}
+@media (max-width: 767.98px) {
+  .ultra-box div {
+    font-size: 1.2rem;
+    margin-bottom: 15%;
+  }
+}
+@media (max-width: 575.98px) {
+  .ultra-box div {
+    font-size: 1.1rem;
+    margin-bottom: 10%;
+  }
+}
+
+/*# sourceMappingURL=ultrasonic.css.map */

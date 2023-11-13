@@ -50,19 +50,28 @@ class PiConsumer(AsyncWebsocketConsumer):
             'time': now.isoformat()
         }
 
-        if (sensor == 'dht11'):
-            temp = text_data_json['temp']
-            hum = text_data_json['hum']
-
-            dht11_json = {
-                'temp': temp,
-                'hum': hum,
-            }
-
-            json_file = {**json_file, **dht11_json}
-
         # Write data to database
-        if message_type != "control":
+        if message_type != "command":
+            if (sensor == 'dht11'):
+                temp = text_data_json['temp']
+                hum = text_data_json['hum']
+
+                tmp_json = {
+                    'temp': temp,
+                    'hum': hum,
+                }
+
+                json_file = {**json_file, **tmp_json}
+
+            if (sensor == 'ultrasonic'):
+                distance = text_data_json['distance']
+
+                tmp_json = {
+                    'distance': distance,
+                }
+
+                json_file = {**json_file, **tmp_json}
+
             await self.register_data(self.pi_name, sensor, now, message)
 
         # Send message to group
@@ -84,16 +93,26 @@ class PiConsumer(AsyncWebsocketConsumer):
             'time': now
         }
 
-        if (sensor == 'dht11'):
-            temp = event['temp']
-            hum = event['hum']
+        if message_type != "command":
+            if (sensor == 'dht11'):
+                temp = event['temp']
+                hum = event['hum']
 
-            dht11_json = {
-                'temp': temp,
-                'hum': hum,
-            }
+                tmp_json = {
+                    'temp': temp,
+                    'hum': hum,
+                }
 
-            json_file = {**json_file, **dht11_json}
+                json_file = {**json_file, **tmp_json}
+
+            if (sensor == 'ultrasonic'):
+                distance = event['distance']
+
+                tmp_json = {
+                    'distance': distance,
+                }
+
+                json_file = {**json_file, **tmp_json}
 
         # Send message to WebSocket
         await self.send(text_data=json.dumps(json_file))
@@ -104,6 +123,7 @@ class PiConsumer(AsyncWebsocketConsumer):
             pi = Raspi.objects.get(name=raspi)
             se = pi.sensor_set.get(name=sensor)
             se.item_set.create(datetime=time, data=data)
-        except:
-            #logging.debug("Raspi: %s | Sensor: %s | Time: %s | Data: %s" % (raspi, sensor, time, data))
+        except Exception:
+            # logging.debug("Raspi: %s | Sensor: %s | Time: %s | Data: %s" %
+            # (raspi, sensor, time, data))
             logging.debug("Sensor does not exist in database")

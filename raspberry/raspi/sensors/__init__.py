@@ -7,3 +7,4 @@ from .ledmatrix import Matrix
 from .buzzer import Buzzer
 from .segment import Segment
 from .relay import Relay
+from .distance import Ultrasonic
